@@ -25,7 +25,7 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 	@Override
 	public User register(User u) {
 		String passwordSha = encoder.encode(u.getPassword());
-		u.setPassWord(passwordSha);
+		u.setPassword(passwordSha);
 		em.persist(u);
 		em.flush();
 		return u;
