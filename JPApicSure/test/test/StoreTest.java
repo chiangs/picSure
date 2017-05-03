@@ -31,10 +31,17 @@ public class StoreTest {
 		emf.close();
 	}
 	
+	@Test
+    public void test() {
+      boolean pass = true;
+      assertEquals(pass, true);
+    }
+	
 	  @Test
 	  public void test_store_map() {
 		 assertEquals("Bob", store.getName());
 	  }
+	  
 	  
 
 }
