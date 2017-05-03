@@ -37,6 +37,7 @@ public class InventoryItem {
 
 
 	// gets and sets
+
 	public int getId() {
 		return id;
 	}
@@ -76,39 +77,30 @@ public class InventoryItem {
 		this.inventory = inventory;
 	}
 
+
 	public List<ReservationItem> getReservationItems() {
 		return reservationItems;
 	}
+
 
 	public void setReservationItems(List<ReservationItem> reservationItems) {
 		this.reservationItems = reservationItems;
 	}
 
-	public List<Cart> getCart() {
-		return cart;
-	}
 
-	public void setCart(List<Cart> cart) {
-		this.cart = cart;
-	}
-
-=======
 	public List<CartItem> getCartItems() {
 		return cartItems;
 	}
+
 
 	public void setCartItems(List<CartItem> cartItems) {
 		this.cartItems = cartItems;
 	}
 
-	public int getId() {
-		return id;
-	}
-
 	// toString
 	@Override
 	public String toString() {
-		return "InventoryItem [id=" + id + ", active=" + active + ", equipment=" + equipment + ", inventory="
+		return "InventoryItem [id=" + id + ", active=" + active + ", equipment=" + equipment + ", inventory=";
 
 	}
 }
