@@ -5,6 +5,13 @@
 	<persistence-unit name="picSure">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
+			<class>entities.Address</class>
+			<class>entities.Cart</class>
+			<class>entities.Equipment</class>
+			<class>entities.InventoryItem</class>
+			<class>entities.ReservationItem</class>
+			<class>entities.Store</class>
+			<class>entities.User</class>
 
 		<properties>
 			<!-- Make connection to DB -->
