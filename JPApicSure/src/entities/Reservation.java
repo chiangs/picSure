@@ -1,6 +1,7 @@
 package entities;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,49 +23,74 @@ public class Reservation {
 	  
 	private Date createdDate;
 
-	// gets and sets
+
 	@OneToOne
 	@JoinColumn(name="userId")
 	private User user;
 
 	@OneToMany(mappedBy="reservation")
-	private Reservation reservation;
+	private List<ReservationItem> reservation;
+	// gets and set
+
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 
 	public int getUserId() {
 		return userId;
 	}
 
+
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
+
 
 	public Date getCreatedDate() {
 		return createdDate;
 	}
 
+
+
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+
+
 
 	public User getUser() {
 		return user;
 	}
 
+
+
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-	public Reservation getReservation() {
+
+
+	public List<ReservationItem> getReservation() {
 		return reservation;
 	}
 
-	public void setReservation(Reservation reservation) {
+
+
+	public void setReservation(List<ReservationItem> reservation) {
 		this.reservation = reservation;
 	}
 
-	public int getId() {
-		return id;
-	}
+
 
 	// toString
 	@Override

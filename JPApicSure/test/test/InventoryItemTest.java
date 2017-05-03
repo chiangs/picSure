@@ -41,7 +41,7 @@ public class InventoryItemTest {
 	
 	@Test
 	public void test_inventory_map() {
-		 assertEquals("Bob", inventory.getActive());
+		 assertEquals("Bob", inventory.getEquipment());
 	}
 }
 

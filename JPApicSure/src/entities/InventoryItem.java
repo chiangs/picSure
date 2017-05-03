@@ -30,61 +30,77 @@ public class InventoryItem {
 	private Inventory inventory;
 	
 	@OneToMany(mappedBy="inventoryItem")
-	private ReservationItem reservationItems;
+	private List<ReservationItem> reservationItems;
 	
 	@ManyToMany(mappedBy="inventoryItem")
 	private List<Cart> cart;
 
 	
 	// gets and sets
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
 	public boolean isActive() {
 		return active;
 	}
+
 
 	public void setActive(boolean active) {
 		this.active = active;
 	}
 
+
 	public Equipment getEquipment() {
 		return equipment;
 	}
+
 
 	public void setEquipment(Equipment equipment) {
 		this.equipment = equipment;
 	}
 
+
 	public Inventory getInventory() {
 		return inventory;
 	}
+
 
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
 	}
 
-	public ReservationItem getReservationItems() {
+
+	public List<ReservationItem> getReservationItems() {
 		return reservationItems;
 	}
 
-	public void setReservationItems(ReservationItem reservationItems) {
+
+	public void setReservationItems(List<ReservationItem> reservationItems) {
 		this.reservationItems = reservationItems;
 	}
+
 
 	public List<Cart> getCart() {
 		return cart;
 	}
 
+
 	public void setCart(List<Cart> cart) {
 		this.cart = cart;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	} 
+	
 
 	// toString
 	@Override
 	public String toString() {
 		return "InventoryItem [id=" + id + ", active=" + active + ", equipment=" + equipment + ", inventory="
 				+ inventory + ", reservationItems=" + reservationItems + ", cart=" + cart + "]";
-	}   
+	}
 }
