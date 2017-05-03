@@ -29,7 +29,7 @@ public class CartItem {
 	
 	@ManyToOne
 	@JoinColumn(name="inventoryItemId")
-	private InventoryItem iventoryItem;
+	private InventoryItem inventoryItem;
 
 	// toString
 	public Date getTimeOut() {
@@ -64,12 +64,12 @@ public class CartItem {
 		this.cart = cart;
 	}
 
-	public InventoryItem getIventoryItem() {
-		return iventoryItem;
+	public InventoryItem getInventoryItem() {
+		return inventoryItem;
 	}
 
-	public void setIventoryItem(InventoryItem iventoryItem) {
-		this.iventoryItem = iventoryItem;
+	public void setInventoryItem(InventoryItem iventoryItem) {
+		this.inventoryItem = iventoryItem;
 	}
 
 	public int getId() {
@@ -80,6 +80,6 @@ public class CartItem {
 	@Override
 	public String toString() {
 		return "CartItem [id=" + id + ", timeOut=" + timeOut + ", timeIn=" + timeIn + ", total=" + total + ", cart="
-				+ cart + ", iventoryItem=" + iventoryItem + "]";
+				+ cart + ", iventoryItem=" + inventoryItem + "]";
 	}
 }

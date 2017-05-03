@@ -18,10 +18,6 @@ public class ReservationItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private int inventoryItemId;
-	
-	private int reservationId;
-	
 	private Date timeIn;
 	
 	private Date timeOut;
@@ -36,23 +32,8 @@ public class ReservationItem {
 	@JoinColumn(name="inventoryItemId")
 	private InventoryItem inventoryitems;
 
-	// gets and sets
-	public int getInventoryItemId() {
-		return inventoryItemId;
-	}
-
-	public void setInventoryItemId(int inventoryItemId) {
-		this.inventoryItemId = inventoryItemId;
-	}
-
-	public int getReservationId() {
-		return reservationId;
-	}
-
-	public void setReservationId(int reservationId) {
-		this.reservationId = reservationId;
-	}
-
+	
+	//gets and sets
 	public Date getTimeIn() {
 		return timeIn;
 	}
@@ -97,13 +78,13 @@ public class ReservationItem {
 		return id;
 	}
 
-	// toString
+	
+	// toString()
 	@Override
 	public String toString() {
-		return "ReservationItem [id=" + id + ", inventoryItemId=" + inventoryItemId + ", reservationId=" + reservationId
-				+ ", timeIn=" + timeIn + ", timeOut=" + timeOut + ", total=" + total + ", reservations=" + reservations
-				+ ", inventoryitems=" + inventoryitems + "]";
+		return "ReservationItem [id=" + id + ", timeIn=" + timeIn + ", timeOut=" + timeOut + ", total=" + total
+				+ ", reservations=" + reservations + ", inventoryitems=" + inventoryitems + "]";
 	}
-	
+
 	
 }

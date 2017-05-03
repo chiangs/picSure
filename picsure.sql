@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `address` ;
 CREATE TABLE IF NOT EXISTS `address` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(150) NOT NULL,
-  `street2` VARCHAR(150) NULL,
+  `streetTwo` VARCHAR(150) NULL,
   `city` VARCHAR(150) NOT NULL,
   `state` VARCHAR(2) NOT NULL,
   `zip` INT(5) NOT NULL,
@@ -267,25 +267,24 @@ CREATE INDEX `fk_cartItems_inventoryItem1_idx` ON `cartItem` (`inventoryItemId` 
 DROP TABLE IF EXISTS `lister` ;
 
 CREATE TABLE IF NOT EXISTS `lister` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `userId` INT NOT NULL,
   `storeId` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_lister_user1`
-    FOREIGN KEY (`userId`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_lister_store1`
+  `userId` INT NOT NULL,
+  PRIMARY KEY (`storeId`, `userId`),
+  CONSTRAINT `fk_store_has_user_store1`
     FOREIGN KEY (`storeId`)
     REFERENCES `store` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_store_has_user_user1`
+    FOREIGN KEY (`userId`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_lister_user1_idx` ON `lister` (`userId` ASC);
+CREATE INDEX `fk_store_has_user_user1_idx` ON `lister` (`userId` ASC);
 
-CREATE INDEX `fk_lister_store1_idx` ON `lister` (`storeId` ASC);
+CREATE INDEX `fk_store_has_user_store1_idx` ON `lister` (`storeId` ASC);
 
 SET SQL_MODE = '';
 GRANT USAGE ON *.* TO picSureAdmin;
@@ -305,11 +304,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (1, '1701 Wynkoop', NULL, 'Denver', 'CO', 80202, 'USA', 39.7391536, -104.9847034
+INSERT INTO `address` (`id`, `street`, `streetTwo`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (1, '1701 Wynkoop', NULL, 'Denver', 'CO', 80202, 'USA', 39.7391536, -104.9847034
 -104.9847034
 -104.9847034);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (2, '1935 North Logan St', 'ph 1', 'Denver', 'CO', 80203, 'USA', 39.746910, -104.982303);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (3, '4380 S. Monaco St', 'Unit 2105', 'Denver', 'CO', 80237, 'USA', 39.634528, -104.911013);
+INSERT INTO `address` (`id`, `street`, `streetTwo`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (2, '1935 North Logan St', 'ph 1', 'Denver', 'CO', 80203, 'USA', 39.746910, -104.982303);
+INSERT INTO `address` (`id`, `street`, `streetTwo`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (3, '4380 S. Monaco St', 'Unit 2105', 'Denver', 'CO', 80237, 'USA', 39.634528, -104.911013);
 
 COMMIT;
 
@@ -529,7 +528,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `lister` (`id`, `userId`, `storeId`) VALUES (1, 1, 1);
+INSERT INTO `lister` (`storeId`, `userId`) VALUES (1, 1);
 
 COMMIT;
 

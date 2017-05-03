@@ -18,7 +18,6 @@ public class Inventory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private int storeId;
 
 	@OneToOne
 	@JoinColumn(name="storeId")
@@ -26,15 +25,6 @@ public class Inventory {
 	
 	@OneToMany(mappedBy="inventory")
 	private List<InventoryItem> iventoryItems;
-
-	// gets and sets
-	public int getStoreId() {
-		return storeId;
-	}
-
-	public void setStoreId(int storeId) {
-		this.storeId = storeId;
-	}
 
 	public Store getStore() {
 		return store;
@@ -59,7 +49,7 @@ public class Inventory {
 	// toString
 	@Override
 	public String toString() {
-		return "Inventory [id=" + id + ", storeId=" + storeId + ", store=" + store + ", iventoryItems=" + iventoryItems
+		return "Inventory [id=" + id + ", " + ", store=" + store + ", iventoryItems=" + iventoryItems
 				+ "]";
 	}
 	

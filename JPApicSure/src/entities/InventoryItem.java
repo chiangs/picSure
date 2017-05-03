@@ -29,7 +29,7 @@ public class InventoryItem {
 	@JoinColumn(name="inventoryId")
 	private Inventory inventory;
 	
-	@OneToMany(mappedBy="inventoryItem")
+	@ManyToMany(mappedBy="inventoryitems")
 	private List<ReservationItem> reservationItems;
 	
 	@OneToMany(mappedBy="inventoryItem")
