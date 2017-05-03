@@ -1,10 +1,10 @@
 package data;
 
-import entities.Equipment;
+import entities.User;
 
 public interface UserDAO {
-	public Equipment show(Integer id);
-	public Equipment update(Integer id, Equipment c);
-	public Equipment create(Integer id, Equipment c);
-	public Equipment destroy(Integer id);
+	public User show(Integer id);
+	public User update(Integer id, User c);
+	public User create(Integer id, User c);
+	public Boolean destroy(Integer id);
 }
