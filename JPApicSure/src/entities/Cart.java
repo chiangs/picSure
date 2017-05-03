@@ -1,39 +1,37 @@
 package entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cart {
-	
-	  @Id
-	  @GeneratedValue(strategy = GenerationType.IDENTITY)
-	  private int id;
-	  
-	  private int userId;
-	  
-	  private int inventoryId;
-	  
-	  private double total;
 
-	public int getId() {
-		return id;
-	}
+	// fields
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+	private int inventoryId;
 
-	public int getUserId() {
-		return userId;
-	}
+	private double total;
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+	@OneToOne
+	@JoinColumn(name = "userId")
+	private User user;
 
+	@ManyToMany
+	@JoinTable(name = "cartItems", joinColumns = @JoinColumn(name = "cartId"), inverseJoinColumns = @JoinColumn(name = "inventoryItemId"))
+	private List<InventoryItem> inventoryItems;
+
+	// gets and sets
 	public int getInventoryId() {
 		return inventoryId;
 	}
@@ -50,9 +48,30 @@ public class Cart {
 		this.total = total;
 	}
 
-	@Override
-	public String toString() {
-		return "Cart id=" + id + ", userId=" + userId + ", inventoryId=" + inventoryId + ", total=" + total;
+	public User getUser() {
+		return user;
 	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<InventoryItem> getInventoryItems() {
+		return inventoryItems;
+	}
+
+	public void setInventoryItems(List<InventoryItem> inventoryItems) {
+		this.inventoryItems = inventoryItems;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	// toString
+	@Override
+	public String toString() {
+		return "Cart [id=" + id + ", inventoryId=" + inventoryId + ", total=" + total + ", user=" + user
+				+ ", inventoryItems=" + inventoryItems + "]";
+	}	
 }
