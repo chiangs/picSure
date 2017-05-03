@@ -6,15 +6,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity
 public class ReservationItem {
+	
+	// fields
 	@Id
-	  @GeneratedValue(strategy = GenerationType.IDENTITY)
-	  private int id;
-	
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
 	private int inventoryItemId;
 	
 	private int reservationId;
@@ -24,15 +27,16 @@ public class ReservationItem {
 	private Date timeOut;
 	
 	private double total;
+	
+	@ManyToOne
+	@JoinColumn(name="reservationId")
+	private Reservation reservations;
 
-	public int getId() {
-		return id;
-	}
+	@ManyToOne
+	@JoinColumn(name="inventoryItemId")
+	private InventoryItem inventoryitems;
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	// gets and sets
 	public int getInventoryItemId() {
 		return inventoryItemId;
 	}
@@ -73,14 +77,33 @@ public class ReservationItem {
 		this.total = total;
 	}
 
+	public Reservation getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Reservation reservations) {
+		this.reservations = reservations;
+	}
+
+	public InventoryItem getInventoryitems() {
+		return inventoryitems;
+	}
+
+	public void setInventoryitems(InventoryItem inventoryitems) {
+		this.inventoryitems = inventoryitems;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	// toString
 	@Override
 	public String toString() {
-		return "ReservationItems id=" + id + ", inventoryItemId=" + inventoryItemId + ", reservationId="
-				+ reservationId + ", timeIn=" + timeIn + ", timeOut=" + timeOut + ", total=" + total;
+		return "ReservationItem [id=" + id + ", inventoryItemId=" + inventoryItemId + ", reservationId=" + reservationId
+				+ ", timeIn=" + timeIn + ", timeOut=" + timeOut + ", total=" + total + ", reservations=" + reservations
+				+ ", inventoryitems=" + inventoryitems + "]";
 	}
-	
-	
-	
 	
 	
 }

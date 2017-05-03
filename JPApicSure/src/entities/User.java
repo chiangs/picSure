@@ -1,13 +1,20 @@
 package entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
 
+	// fields
 	  @Id
 	  @GeneratedValue(strategy = GenerationType.IDENTITY)
 	  private int id;
@@ -18,22 +25,30 @@ public class User {
 	  
 	  private int addressId;
 	  
-	  private String userName;
+	  private String username;
 	  
 	  private String passWord;
 	  
 	  private String phone;
 	  
 	  private String email;
-
-	
 	  
+	  @OneToOne
+	  @JoinColumn(name="addressId")
+	  private Address address;
+
+	  @OneToOne(mappedBy="user")
+	  private Cart cart;
+	  
+	  @OneToMany(mappedBy="user")
+	  private List<Reservation> rservations;
+
+	  @ManyToMany(mappedBy="user")
+	  private List<Store> store; 
+	
+	// gets and sets 
 	  public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		id = id;
 	}
 
 	public String getfName() {
@@ -61,11 +76,11 @@ public class User {
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.username = userName;
 	}
 
 	public String getPassWord() {
@@ -92,10 +107,12 @@ public class User {
 		this.email = email;
 	}
 
+	
+	// toString
 	@Override
 	public String toString() {
 		return "User Id=" + id + ", fName=" + fName + ", lNAme=" + lName + ", addressId=" + addressId + ", userName="
-				+ userName + ", passWord=" + passWord + ", phone=" + phone + ", email=" + email;
+				+ username + ", passWord=" + passWord + ", phone=" + phone + ", email=" + email;
 	}
 	  
 }
