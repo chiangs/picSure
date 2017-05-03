@@ -21,7 +21,8 @@ public class Reservation {
 	  
 	  
 	private Date createdDate;
-	
+
+
 	@OneToOne
 	@JoinColumn(name="userId")
 	private User user;
@@ -30,33 +31,44 @@ public class Reservation {
 	private List<ReservationItem> reservationItems;
 
 
+	// gets and set
+
+
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
+
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
+
 	public User getUser() {
 		return user;
 	}
+
 
 	public void setUser(User user) {
 		this.user = user;
 	}
 
+
 	public List<ReservationItem> getReservationItems() {
 		return reservationItems;
 	}
 
-	public void setReservationItems(List<ReservationItem> reservation) {
-		this.reservationItems = reservation;
+
+	public void setReservationItems(List<ReservationItem> reservationItems) {
+		this.reservationItems = reservationItems;
 	}
+
 
 	public int getId() {
 		return id;
 	}
+
 
 	// toString
 	@Override
