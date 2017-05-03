@@ -33,9 +33,15 @@ public class InventoryItemTest {
 		emf.close();
 	}
 	
-	  @Test
-	  public void test_inventory_map() {
+	@Test
+    public void test() {
+      boolean pass = true;
+      assertEquals(pass, true);
+    }
+	
+	@Test
+	public void test_inventory_map() {
 		 assertEquals("Bob", inventory.getActive());
-	  }
+	}
 }
 

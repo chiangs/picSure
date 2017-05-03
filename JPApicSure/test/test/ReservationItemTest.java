@@ -31,6 +31,12 @@ public class ReservationItemTest {
 		emf.close();
 	}
 	
+	@Test
+    public void test() {
+      boolean pass = true;
+      assertEquals(pass, true);
+    }
+	
 	  @Test
 	  public void test_address_map() {
 		 assertEquals(1, reservation.getId());

@@ -33,9 +33,15 @@ public class InventoryTest {
 		emf.close();
 	}
 	
-	  @Test
-	  public void test_cart_map() {
-		 assertEquals(1, inventory.getId());
-	  }
+	@Test
+    public void test() {
+      boolean pass = true;
+      assertEquals(pass, true);
+    }
+	
+	@Test
+	public void test_cart_map() {
+		assertEquals(1, inventory.getId());
+	}
 }
 
