@@ -1,38 +1,37 @@
 package entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Equipment {
-	 
-	
+
+	// fields
 	@Id
-	  @GeneratedValue(strategy = GenerationType.IDENTITY)
-	  private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-	  private String model;
-	  
-	  private String type;
-	  
-	  private String description;
-	  
-	  private String image;
-	  
-	  private double rate;
-	  
-	  private String make;
+	private String model;
 
-	public int getId() {
-		return id;
-	}
+	private String type;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+	private String description;
 
+	private String image;
+
+	private double rate;
+
+	private String make;
+	
+	@OneToMany(mappedBy="equipment")
+	private List<InventoryItem> inventoryItems;
+
+	// gets and sets
 	public String getModel() {
 		return model;
 	}
@@ -81,17 +80,22 @@ public class Equipment {
 		this.make = make;
 	}
 
+	public List<InventoryItem> getInventoryItems() {
+		return inventoryItems;
+	}
+
+	public void setInventoryItems(List<InventoryItem> inventoryItems) {
+		this.inventoryItems = inventoryItems;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	// toString
 	@Override
 	public String toString() {
-		return "Equipment id=" + id + ", model=" + model + ", type=" + type + ", description=" + description
-				+ ", image=" + image + ", rate=" + rate + ", make=" + make;
+		return "Equipment [id=" + id + ", model=" + model + ", type=" + type + ", description=" + description
+				+ ", image=" + image + ", rate=" + rate + ", make=" + make + ", inventoryItems=" + inventoryItems + "]";
 	}
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
 }

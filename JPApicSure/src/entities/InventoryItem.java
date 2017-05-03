@@ -1,34 +1,43 @@
 package entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class InventoryItem {
 
+	// fields
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	private boolean active;
+	  
+	@ManyToOne
+	@JoinColumn(name="equipmentId")
+	private Equipment equipment;
 	
-	  @Id
-	  @GeneratedValue(strategy = GenerationType.IDENTITY)
-	  private int id;
+	@ManyToOne
+	@JoinColumn(name="inventoryId")
+	private Inventory inventory;
+	
+	@OneToMany(mappedBy="inventoryItem")
+	private ReservationItem reservationItems;
+	
+	@ManyToMany(mappedBy="inventoryItem")
+	private List<Cart> cart;
 
-	  private boolean active;
-	  
-	  private int equipmentId;
-	  
-	  private int inventoryId;
-	  
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public boolean getActive() {
+	
+	// gets and sets
+	public boolean isActive() {
 		return active;
 	}
 
@@ -36,28 +45,46 @@ public class InventoryItem {
 		this.active = active;
 	}
 
-	public int getEquipmentId() {
-		return equipmentId;
+	public Equipment getEquipment() {
+		return equipment;
 	}
 
-	public void setEquipmentId(int equipmentId) {
-		this.equipmentId = equipmentId;
+	public void setEquipment(Equipment equipment) {
+		this.equipment = equipment;
 	}
 
-	public int getInventoryId() {
-		return inventoryId;
+	public Inventory getInventory() {
+		return inventory;
 	}
 
-	public void setInventoryId(int inventoryId) {
-		this.inventoryId = inventoryId;
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
 	}
 
+	public ReservationItem getReservationItems() {
+		return reservationItems;
+	}
+
+	public void setReservationItems(ReservationItem reservationItems) {
+		this.reservationItems = reservationItems;
+	}
+
+	public List<Cart> getCart() {
+		return cart;
+	}
+
+	public void setCart(List<Cart> cart) {
+		this.cart = cart;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	// toString
 	@Override
 	public String toString() {
-		return "InventoryItem id=" + id + ", active=" + active + ", equipmentId=" + equipmentId + ", inventoryId="
-				+ inventoryId;
-	}
-
-	  
-	  
+		return "InventoryItem [id=" + id + ", active=" + active + ", equipment=" + equipment + ", inventory="
+				+ inventory + ", reservationItems=" + reservationItems + ", cart=" + cart + "]";
+	}   
 }

@@ -1,47 +1,49 @@
 package entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Store {
 	
-	  @Id
-	  @GeneratedValue(strategy = GenerationType.IDENTITY)
-	  private int id;
+	// fields
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	  
-	  private String name;
+	private String name;
+	  	  
+	private String phone;
 	  
-	  private int addressId;
-	  
-	  private String phone;
-	  
-	  private String email;
+	private String email;
 
-	public int getId() {
-		return id;
-	}
+	@OneToOne
+	@JoinColumn(name="addressId")
+	private Address address;
+	  
+	@OneToOne(mappedBy="store")
+	private Inventory inventory; 
+	  
+	@ManyToMany
+	@JoinTable(name = "lister", joinColumns = @JoinColumn(name = "storeId"), inverseJoinColumns = @JoinColumn(name = "userId"))
+	private List<User> users;
 
-	public void setId(int id) {
-		id = id;
-	}
-
+	// gets and sets
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public int getAddressId() {
-		return addressId;
-	}
-
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
 	}
 
 	public String getPhone() {
@@ -60,12 +62,38 @@ public class Store {
 		this.email = email;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Inventory getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	// fields
 	@Override
 	public String toString() {
-		return "Store Id= " + id + ", name=" + name + ", addressId=" + addressId + ", phone=" + phone + ", email="
-				+ email;
+		return "Store [id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + ", address=" + address
+				+ ", inventory=" + inventory + ", users=" + users + "]";
 	}
-	  
-	  
-
 }
