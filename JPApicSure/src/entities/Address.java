@@ -16,7 +16,7 @@ public class Address {
 
 	private String street;
 
-	private String streetTwo;
+	private String street2;
 
 	private String city;
 
@@ -45,12 +45,12 @@ public class Address {
 		this.street = street;
 	}
 
-	public String getStreetTwo() {
-		return streetTwo;
+	public String getStreet2() {
+		return street2;
 	}
 
-	public void setStreetTwo(String streetTwo) {
-		this.streetTwo = streetTwo;
+	public void setStreet2(String streetTwo) {
+		this.street2 = streetTwo;
 	}
 
 	public String getCity() {
@@ -124,7 +124,7 @@ public class Address {
 	// toString
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", street=" + street + ", streetTwo=" + streetTwo + ", city=" + city + ", state="
+		return "Address [id=" + id + ", street=" + street + ", streetTwo=" + street2 + ", city=" + city + ", state="
 				+ state + ", zip=" + zip + ", country=" + country + ", latitude=" + latitude + ", longitude="
 				+ longitude + ", store=" + store + ", user=" + user + "]";
 	}

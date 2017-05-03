@@ -19,7 +19,6 @@ public class Reservation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	  
-	private int userId;
 	  
 	private Date createdDate;
 
@@ -28,31 +27,11 @@ public class Reservation {
 	@JoinColumn(name="userId")
 	private User user;
 
-	@OneToMany(mappedBy="reservation")
-	private List<ReservationItem> reservation;
+	@OneToMany(mappedBy="reservations")
+	private List<ReservationItem> reservationItems;
+
+
 	// gets and set
-
-	public int getId() {
-		return id;
-	}
-
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
-
-	public int getUserId() {
-		return userId;
-	}
-
-
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 
 
 
@@ -61,11 +40,9 @@ public class Reservation {
 	}
 
 
-
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-
 
 
 	public User getUser() {
@@ -73,29 +50,30 @@ public class Reservation {
 	}
 
 
-
 	public void setUser(User user) {
 		this.user = user;
 	}
 
 
-
-	public List<ReservationItem> getReservation() {
-		return reservation;
+	public List<ReservationItem> getReservationItems() {
+		return reservationItems;
 	}
 
 
-
-	public void setReservation(List<ReservationItem> reservation) {
-		this.reservation = reservation;
+	public void setReservationItems(List<ReservationItem> reservationItems) {
+		this.reservationItems = reservationItems;
 	}
 
+
+	public int getId() {
+		return id;
+	}
 
 
 	// toString
 	@Override
 	public String toString() {
-		return "Reservation [id=" + id + ", userId=" + userId + ", createdDate=" + createdDate + ", user=" + user
-				+ ", reservation=" + reservation + "]";
+		return "Reservation [id=" + id + ","+ ", createdDate=" + createdDate + ", user=" + user
+				+ ", reservation=" + reservationItems + "]";
 	}
 }

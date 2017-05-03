@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `address` ;
 CREATE TABLE IF NOT EXISTS `address` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(150) NOT NULL,
-  `street2` VARCHAR(150) NULL,
+  `streetTwo` VARCHAR(150) NULL,
   `city` VARCHAR(150) NOT NULL,
   `state` VARCHAR(2) NOT NULL,
   `zip` INT(5) NOT NULL,
@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` VARCHAR(45) NOT NULL,
   `admin` TINYINT(1) NOT NULL DEFAULT 0,
   `addressId` INT NOT NULL,
+  `picSureEmp` TINYINT(1) NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_user_address1`
     FOREIGN KEY (`addressId`)
@@ -180,12 +181,12 @@ DROP TABLE IF EXISTS `inventoryItem` ;
 
 CREATE TABLE IF NOT EXISTS `inventoryItem` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `equpimentId` INT NOT NULL,
+  `equipmentId` INT NOT NULL,
   `inventoryId` INT NOT NULL,
   `active` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_inventoryItem_equpiment1`
-    FOREIGN KEY (`equpimentId`)
+    FOREIGN KEY (`equipmentId`)
     REFERENCES `equipment` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -196,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `inventoryItem` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_inventoryItem_equpiment1_idx` ON `inventoryItem` (`equpimentId` ASC);
+CREATE INDEX `fk_inventoryItem_equpiment1_idx` ON `inventoryItem` (`equipmentId` ASC);
 
 CREATE INDEX `fk_inventoryItem_inventory1_idx` ON `inventoryItem` (`inventoryId` ASC);
 
@@ -242,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `cartItem` (
   `inventoryItemId` INT NOT NULL,
   `timeOut` DATETIME NOT NULL,
   `timeIn` DATETIME NOT NULL,
-  `total` DOUBLE NOT NULL,
+  `total` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_cartItems_cart1`
     FOREIGN KEY (`cartId`)
@@ -267,25 +268,24 @@ CREATE INDEX `fk_cartItems_inventoryItem1_idx` ON `cartItem` (`inventoryItemId` 
 DROP TABLE IF EXISTS `lister` ;
 
 CREATE TABLE IF NOT EXISTS `lister` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `userId` INT NOT NULL,
   `storeId` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_lister_user1`
-    FOREIGN KEY (`userId`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_lister_store1`
+  `userId` INT NOT NULL,
+  PRIMARY KEY (`storeId`, `userId`),
+  CONSTRAINT `fk_store_has_user_store1`
     FOREIGN KEY (`storeId`)
     REFERENCES `store` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_store_has_user_user1`
+    FOREIGN KEY (`userId`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_lister_user1_idx` ON `lister` (`userId` ASC);
+CREATE INDEX `fk_store_has_user_user1_idx` ON `lister` (`userId` ASC);
 
-CREATE INDEX `fk_lister_store1_idx` ON `lister` (`storeId` ASC);
+CREATE INDEX `fk_store_has_user_store1_idx` ON `lister` (`storeId` ASC);
 
 SET SQL_MODE = '';
 GRANT USAGE ON *.* TO picSureAdmin;
@@ -305,11 +305,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (1, '1701 Wynkoop', NULL, 'Denver', 'CO', 80202, 'USA', 39.7391536, -104.9847034
+INSERT INTO `address` (`id`, `street`, `streetTwo`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (1, '1701 Wynkoop', NULL, 'Denver', 'CO', 80202, 'USA', 39.7391536, -104.9847034
 -104.9847034
 -104.9847034);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (2, '1935 North Logan St', 'ph 1', 'Denver', 'CO', 80203, 'USA', 39.746910, -104.982303);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (3, '4380 S. Monaco St', 'Unit 2105', 'Denver', 'CO', 80237, 'USA', 39.634528, -104.911013);
+INSERT INTO `address` (`id`, `street`, `streetTwo`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (2, '1935 North Logan St', 'ph 1', 'Denver', 'CO', 80203, 'USA', 39.746910, -104.982303);
+INSERT INTO `address` (`id`, `street`, `streetTwo`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (3, '4380 S. Monaco St', 'Unit 2105', 'Denver', 'CO', 80237, 'USA', 39.634528, -104.911013);
 
 COMMIT;
 
@@ -329,8 +329,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `user` (`id`, `fName`, `lName`, `username`, `password`, `phone`, `email`, `admin`, `addressId`) VALUES (1, 'Seth', 'Thomas', 'admin', 'p', '555-555-5555', 'swthomas@gmail.com', 1, 2);
-INSERT INTO `user` (`id`, `fName`, `lName`, `username`, `password`, `phone`, `email`, `admin`, `addressId`) VALUES (2, 'Daniel', 'Balarezo', 'danrezo', 'password', '305-484-8911', 'drezo@me.com', 0, 3);
+INSERT INTO `user` (`id`, `fName`, `lName`, `username`, `password`, `phone`, `email`, `admin`, `addressId`, `picSureEmp`) VALUES (1, 'Seth', 'Thomas', 'admin', 'p', '555-555-5555', 'swthomas@gmail.com', 1, 2, NULL);
+INSERT INTO `user` (`id`, `fName`, `lName`, `username`, `password`, `phone`, `email`, `admin`, `addressId`, `picSureEmp`) VALUES (2, 'Daniel', 'Balarezo', 'danrezo', 'password', '305-484-8911', 'drezo@me.com', 0, 3, NULL);
 
 COMMIT;
 
@@ -437,67 +437,67 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (1, 1, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (2, 2, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (3, 3, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (4, 4, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (5, 5, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (6, 6, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (7, 7, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (8, 8, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (9, 9, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (10, 10, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (11, 11, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (12, 12, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (13, 13, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (14, 14, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (15, 15, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (16, 16, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (17, 17, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (18, 18, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (19, 19, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (20, 20, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (21, 21, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (22, 22, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (23, 23, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (24, 24, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (25, 25, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (26, 26, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (27, 27, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (28, 28, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (29, 29, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (30, 30, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (31, 31, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (32, 32, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (33, 33, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (34, 34, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (35, 35, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (36, 36, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (37, 37, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (38, 38, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (39, 39, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (40, 40, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (41, 41, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (42, 42, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (43, 43, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (44, 44, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (45, 45, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (46, 46, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (47, 47, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (48, 48, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (49, 49, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (50, 50, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (51, 51, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (52, 52, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (53, 53, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (54, 54, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (55, 55, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (56, 56, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (57, 57, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (58, 4, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (59, 7, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (60, 12, 1, 1);
-INSERT INTO `inventoryItem` (`id`, `equpimentId`, `inventoryId`, `active`) VALUES (61, 15, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (1, 1, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (2, 2, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (3, 3, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (4, 4, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (5, 5, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (6, 6, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (7, 7, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (8, 8, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (9, 9, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (10, 10, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (11, 11, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (12, 12, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (13, 13, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (14, 14, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (15, 15, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (16, 16, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (17, 17, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (18, 18, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (19, 19, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (20, 20, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (21, 21, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (22, 22, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (23, 23, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (24, 24, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (25, 25, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (26, 26, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (27, 27, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (28, 28, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (29, 29, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (30, 30, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (31, 31, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (32, 32, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (33, 33, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (34, 34, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (35, 35, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (36, 36, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (37, 37, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (38, 38, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (39, 39, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (40, 40, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (41, 41, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (42, 42, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (43, 43, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (44, 44, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (45, 45, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (46, 46, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (47, 47, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (48, 48, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (49, 49, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (50, 50, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (51, 51, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (52, 52, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (53, 53, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (54, 54, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (55, 55, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (56, 56, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (57, 57, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (58, 4, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (59, 7, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (60, 12, 1, 1);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`) VALUES (61, 15, 1, 1);
 
 COMMIT;
 
@@ -518,8 +518,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `cartItem` (`id`, `cartId`, `inventoryItemId`, `timeOut`, `timeIn`, `total`) VALUES (1, 1, 1, '2017-05-02 13:20:00', '2017-05-02 14:18:16', 8.00);
-INSERT INTO `cartItem` (`id`, `cartId`, `inventoryItemId`, `timeOut`, `timeIn`, `total`) VALUES (2, 1, 41, '2017-05-02 13:20:00', '2017-05-02 14:18:16', 3.00);
+INSERT INTO `cartItem` (`id`, `cartId`, `inventoryItemId`, `timeOut`, `timeIn`, `total`) VALUES (1, 1, 1, '2017-05-02 13:20:00', '2017-05-02 14:18:16', NULL);
+INSERT INTO `cartItem` (`id`, `cartId`, `inventoryItemId`, `timeOut`, `timeIn`, `total`) VALUES (2, 1, 41, '2017-05-02 13:20:00', '2017-05-02 14:18:16', NULL);
 
 COMMIT;
 
@@ -529,7 +529,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `lister` (`id`, `userId`, `storeId`) VALUES (1, 1, 1);
+INSERT INTO `lister` (`storeId`, `userId`) VALUES (1, 1);
 
 COMMIT;
 

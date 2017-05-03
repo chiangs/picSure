@@ -39,6 +39,6 @@ public class ReservationItemTest {
 	
 	  @Test
 	  public void test_address_map() {
-		 assertEquals(1, reservation.getId());
+		 assertEquals(1, reservation.getInventoryitems().getCartItems().size());
 	  }  
 }

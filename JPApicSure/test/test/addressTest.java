@@ -23,7 +23,7 @@ public class addressTest {
 	public void setUp() throws Exception {
 		emf = Persistence.createEntityManagerFactory("picSure");
 		em = emf.createEntityManager();
-		address = em.find(Address.class, 1);		
+		address = em.find(Address.class, 2);		
 	}
 
 	@After
