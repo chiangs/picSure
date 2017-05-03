@@ -39,6 +39,6 @@ public class EquipmentTest {
 	
 	 @Test
 	 public void test_cart_map() {
-		assertEquals("Nikon", equipment.getMake());
+		assertEquals("Canon", equipment.getMake());
 	 }
 }
