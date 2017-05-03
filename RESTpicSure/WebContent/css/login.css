@@ -1,10 +1,17 @@
 .modal-content {
-    background-color: rgba(0, 0, 0, 0.70);
+	background: #222222;
+    text-align: left;
+    position: fixed;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	width: 30vw;
+  	height: 40vh;
+  	border-radius:0;
 }
 
-.modal-content a {
-	font-weight:  bold;
-	color: #fff;
+.modal-content h2 {
+	text-align: center;
 }
 	
 .modal-content a:hover {
@@ -23,4 +30,54 @@
 .errors {
 	color: red;
 	text-align: center;
+}
+
+#listerLogin {
+	text-align: right;
+	top:0;
+}
+
+.btn {
+	border-radius:40px;
+	background: none;
+}
+
+.btn:hover {
+	border-radius:40px;
+}
+
+#listerLogin .btn-danger {
+	color:#222222;
+}
+
+#listerLogin .btn-danger:hover {
+	color:#fff;
+}
+
+#listerLogin .btn-primary {
+	color:#222222;
+}
+
+#listerLogin .btn-primary:hover {
+	color:#fff;
+}
+
+input {
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+input:focus {
+    border-color:#333;
+}
+
+input[type=submit] {
+    padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
 }

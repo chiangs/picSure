@@ -3,11 +3,11 @@ angular.module('authModule')
     var service = {};
     
     var saveToken = function(user) {
-    	$cookies.put('username', user.userName);
+    	$cookies.put('username', user.username);
     	$cookies.put('id', user.id);
     } 
     
-	var BASE_URL = 'http://localhost:8080/RESTTodo/api/auth/';
+	var BASE_URL = 'http://localhost:8080/RESTpicSure/rest/auth/';
     
     service.getToken = function() {
       // TODO : Return an object with id and email properties, 

@@ -3,12 +3,12 @@
 		<div class="modal-heading">
 			<h2 class="text-center">Join picSure!</h2>
 			<div class="modal-body">
-				<form class="form" id="create">
+				<form class="form" id="createLister">
 				
 				<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-user"></span>
+								class="fa fa-user"></span>
 							</span> <input type="text" class="form-control"
 								placeholder="First Name" ng-model="user.fname">
 						</div>
@@ -17,7 +17,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-user"></span>
+								class="fa fa-user"></span>
 							</span> <input type="text" class="form-control"
 								placeholder="Last Name" ng-model="user.lname">
 						</div>
@@ -26,7 +26,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-user"></span>
+								class="fa fa-home"></span>
 							</span> <input type="text" class="form-control"
 								placeholder="Street Address 1" ng-model="user.street">
 						</div>
@@ -35,7 +35,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-user"></span>
+								class="fa fa-home"></span>
 							</span> <input type="text" class="form-control"
 								placeholder="Street Address 2" ng-model="user.streetTwo">
 						</div>
@@ -44,7 +44,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-user"></span>
+								class="fa fa-home"></span>
 							</span> <input type="text" class="form-control"
 								placeholder="City" ng-model="user.city">
 						</div>
@@ -53,7 +53,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-user"></span>
+								class="fa fa-home"></span>
 							</span> <input type="text" class="form-control"
 								placeholder="State" ng-model="user.state">
 						</div>
@@ -63,7 +63,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-user"></span>
+								class="fa fa-home"></span>
 							</span> <input type="number" class="form-control"
 								placeholder="Zip" ng-model="user.zip">
 						</div>
@@ -72,7 +72,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-user"></span>
+								class="fa fa-envelope"></span>
 							</span> <input type="email" class="form-control"
 								placeholder="Email" ng-model="user.email">
 						</div>
@@ -81,7 +81,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-user"></span>
+								class="fa fa-phone"></span>
 							</span> <input type="text" class="form-control"
 								placeholder="Phone Number (###-###-####)" ng-model="user.phone">
 						</div>
@@ -90,7 +90,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-user"></span>
+								class="fa fa-user"></span>
 							</span> <input type="text" class="form-control"
 								placeholder="Username" ng-model="user.username">
 						</div>
@@ -99,16 +99,16 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="glyphicon glyphicon-user"></span>
+								class="fa fa-lock"></span>
 							</span> <input type="text" class="form-control" placeholder="Password"ng-model="user.password">
 						</div>
 					</div>
 					
-					<input type="hidden" ng-init="United States of America" ng-model="user.country">
+					<input type="hidden" ng-init="user.country=vm.initialCountry" ng-model="user.country">
 				
 
 					<div class="form-group text-center">
-						<button type="submit" class="btn btn-success btn-lg" ng-click="vm.register(user)">Submit</button>
+						<button type="submit" class="btn btn-success btn-lg" ng-click="vm.registerUser(user)">Submit</button>
 					</div>
 				</form>
 			</div>
