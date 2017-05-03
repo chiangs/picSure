@@ -243,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `cartItem` (
   `inventoryItemId` INT NOT NULL,
   `timeOut` DATETIME NOT NULL,
   `timeIn` DATETIME NOT NULL,
-  `total` DOUBLE NOT NULL,
+  `total` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_cartItems_cart1`
     FOREIGN KEY (`cartId`)
@@ -518,8 +518,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `cartItem` (`id`, `cartId`, `inventoryItemId`, `timeOut`, `timeIn`, `total`) VALUES (1, 1, 1, '2017-05-02 13:20:00', '2017-05-02 14:18:16', 8.00);
-INSERT INTO `cartItem` (`id`, `cartId`, `inventoryItemId`, `timeOut`, `timeIn`, `total`) VALUES (2, 1, 41, '2017-05-02 13:20:00', '2017-05-02 14:18:16', 3.00);
+INSERT INTO `cartItem` (`id`, `cartId`, `inventoryItemId`, `timeOut`, `timeIn`, `total`) VALUES (1, 1, 1, '2017-05-02 13:20:00', '2017-05-02 14:18:16', NULL);
+INSERT INTO `cartItem` (`id`, `cartId`, `inventoryItemId`, `timeOut`, `timeIn`, `total`) VALUES (2, 1, 41, '2017-05-02 13:20:00', '2017-05-02 14:18:16', NULL);
 
 COMMIT;
 

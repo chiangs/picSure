@@ -31,6 +31,10 @@ public class User {
 	  private String phone;
 
 	  private String email;
+	  
+	  private int admin;
+	  
+	  private int picSureEmp;
 
 	  @OneToOne
 	  @JoinColumn(name="addressId")
@@ -40,7 +44,7 @@ public class User {
 	  private Cart cart;
 
 	  @OneToMany(mappedBy="user")
-	  private List<Reservation> rservations;
+	  private List<Reservation> reservations;
 
 	  @ManyToMany(mappedBy="users")
 	  private List<Store> store;
@@ -104,6 +108,45 @@ public class User {
 		this.email = email;
 	}
 
+	public int getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(int admin) {
+		this.admin = admin;
+	}
+
+	public int getPicSureEmp() {
+		return picSureEmp;
+	}
+
+	public void setPicSureEmp(int picSureEmp) {
+		this.picSureEmp = picSureEmp;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
+	public List<Store> getStore() {
+		return store;
+	}
+
+	public void setStore(List<Store> store) {
+		this.store = store;
+	}
 
 	// toString
 	@Override
