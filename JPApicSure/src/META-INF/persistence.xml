@@ -12,6 +12,9 @@
 			<class>entities.ReservationItem</class>
 			<class>entities.Store</class>
 			<class>entities.User</class>
+			<class>entities.Inventory</class>
+			<class>entities.Reservation</class>
+			
 
 		<properties>
 			<!-- Make connection to DB -->

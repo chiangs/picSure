@@ -32,6 +32,12 @@ public class addressTest {
 		emf.close();
 	}
 	
+	@Test
+    public void test() {
+      boolean pass = true;
+      assertEquals(pass, true);
+    }
+	
 	  @Test
 	  public void test_address_map() {
 		 assertEquals("Denver", address.getCity());

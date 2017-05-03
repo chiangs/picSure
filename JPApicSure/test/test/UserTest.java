@@ -31,6 +31,12 @@ public class UserTest {
 		emf.close();
 	}
 	
+	@Test
+    public void test() {
+      boolean pass = true;
+      assertEquals(pass, true);
+    }
+	
 	  @Test
 	  public void test_user_address_map() {
 		 assertEquals(1, user.getAddressId());
