@@ -39,7 +39,7 @@ public class StoreTest {
 	
 	  @Test
 	  public void test_store_map() {
-		 assertEquals("Bob", store.getName());
+		 assertEquals("UPic", store.getName());
 	  }
 	  
 	  

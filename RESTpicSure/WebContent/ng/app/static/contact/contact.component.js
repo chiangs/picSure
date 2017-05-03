@@ -1,5 +1,5 @@
 angular.module('static').component('contact', {
-	templateUrl : 'app/static/contact/contact.component.html',
+	templateUrl : 'ng/app/static/contact/contact.component.html',
 	controller : function() {
 		var vm = this;
 		

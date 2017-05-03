@@ -23,7 +23,6 @@ public class User {
 
 	  private String lName;
 
-	  private int addressId;
 
 	  private String username;
 
@@ -43,7 +42,7 @@ public class User {
 	  @OneToMany(mappedBy="user")
 	  private List<Reservation> rservations;
 
-	  @ManyToMany(mappedBy="user")
+	  @ManyToMany(mappedBy="users")
 	  private List<Store> store;
 
 	// gets and sets
@@ -67,13 +66,6 @@ public class User {
 		this.lName = lName;
 	}
 
-	public int getAddressId() {
-		return addressId;
-	}
-
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
-	}
 
 
 	public String getUsername() {
@@ -117,9 +109,17 @@ public class User {
 	@Override
 	public String toString() {
 
-		return "User Id=" + id + ", fName=" + fName + ", lNAme=" + lName + ", addressId=" + addressId + ", username="
+		return "User Id=" + id + ", fName=" + fName + ", lNAme=" + lName + "," +  ", username="
 				+ username + ", password=" + password + ", phone=" + phone + ", email=" + email;
 
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 }

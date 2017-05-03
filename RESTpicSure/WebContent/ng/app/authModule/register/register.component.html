@@ -4,11 +4,94 @@
 			<h2 class="text-center">Join picSure!</h2>
 			<div class="modal-body">
 				<form class="form" id="create">
+				
+				<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-user"></span>
+							</span> <input type="text" class="form-control"
+								placeholder="First Name" ng-model="user.fname">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-user"></span>
+							</span> <input type="text" class="form-control"
+								placeholder="Last Name" ng-model="user.lname">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-user"></span>
+							</span> <input type="text" class="form-control"
+								placeholder="Street Address 1" ng-model="user.street">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-user"></span>
+							</span> <input type="text" class="form-control"
+								placeholder="Street Address 2" ng-model="user.streetTwo">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-user"></span>
+							</span> <input type="text" class="form-control"
+								placeholder="City" ng-model="user.city">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-user"></span>
+							</span> <input type="text" class="form-control"
+								placeholder="State" ng-model="user.state">
+						</div>
+					</div>
+				
+					
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-user"></span>
+							</span> <input type="number" class="form-control"
+								placeholder="Zip" ng-model="user.zip">
+						</div>
+					</div>
+					
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
 								class="glyphicon glyphicon-user"></span>
 							</span> <input type="email" class="form-control"
+								placeholder="Email" ng-model="user.email">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-user"></span>
+							</span> <input type="text" class="form-control"
+								placeholder="Phone Number (###-###-####)" ng-model="user.phone">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="glyphicon glyphicon-user"></span>
+							</span> <input type="text" class="form-control"
 								placeholder="Username" ng-model="user.username">
 						</div>
 					</div>
@@ -20,6 +103,9 @@
 							</span> <input type="text" class="form-control" placeholder="Password"ng-model="user.password">
 						</div>
 					</div>
+					
+					<input type="hidden" ng-init="United States of America" ng-model="user.country">
+				
 
 					<div class="form-group text-center">
 						<button type="submit" class="btn btn-success btn-lg" ng-click="vm.register(user)">Submit</button>

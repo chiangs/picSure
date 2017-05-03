@@ -20,9 +20,8 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private int inventoryId;
+//	private int inventoryId;
 
-	private double total;
 
 	@OneToOne
 	@JoinColumn(name = "userId")
@@ -31,24 +30,8 @@ public class Cart {
 	@OneToMany(mappedBy="cart")
 	private List<CartItem> cartItems;
 	
-	private List<InventoryItem> inventoryItems;
+	
 
-	// gets and sets
-	public int getInventoryId() {
-		return inventoryId;
-	}
-
-	public void setInventoryId(int inventoryId) {
-		this.inventoryId = inventoryId;
-	}
-
-	public double getTotal() {
-		return total;
-	}
-
-	public void setTotal(double total) {
-		this.total = total;
-	}
 
 	public User getUser() {
 		return user;
@@ -58,22 +41,14 @@ public class Cart {
 		this.user = user;
 	}
 
-	public List<InventoryItem> getInventoryItems() {
-		return inventoryItems;
-	}
-
-	public void setInventoryItems(List<InventoryItem> inventoryItems) {
-		this.inventoryItems = inventoryItems;
-	}
 
 	public int getId() {
 		return id;
 	}
 
-	// toString
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", inventoryId=" + inventoryId + ", total=" + total + ", user=" + user
-				+ ", inventoryItems=" + inventoryItems + "]";
+		return "Cart [id=" + id + "," + ", " + ", user=" + user
+				+ "]";
 	}	
 }

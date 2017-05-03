@@ -1,5 +1,5 @@
 angular.module('authModule').component('register', {
-	templateUrl : 'app/authModule/register/register.component.html',
+	templateUrl : 'ng/app/authModule/register/register.component.html',
 	controller : function(authService){
 		var vm = this;
 
