@@ -10,21 +10,19 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.InventoryItem;
-import entities.Store;
+import entities.ReservationItem;
 
-public class InventoryItemTest {
-
+public class ReservationItemTest {
 	
 	private EntityManagerFactory emf;
 	private EntityManager em;
-	private InventoryItem inventory;
+	private ReservationItem reservation;
 	
 	@Before
 	public void setUp() throws Exception {
 		emf = Persistence.createEntityManagerFactory("picSure");
 		em = emf.createEntityManager();
-		inventory = em.find(InventoryItem.class, 1);		
+		reservation = em.find(ReservationItem.class, 1);		
 	}
 
 	@After
@@ -39,9 +37,8 @@ public class InventoryItemTest {
       assertEquals(pass, true);
     }
 	
-	@Test
-	public void test_inventory_map() {
-		 assertEquals("Bob", inventory.getActive());
-	}
+	  @Test
+	  public void test_address_map() {
+		 assertEquals(1, reservation.getId());
+	  }  
 }
-
