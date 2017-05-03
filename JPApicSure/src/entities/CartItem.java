@@ -20,9 +20,7 @@ public class CartItem {
 	private Date timeOut;
 	
 	private Date timeIn;
-	
-	private Double total;
-	
+		
 	@ManyToOne
 	@JoinColumn(name="cartId")
 	private Cart cart;
@@ -48,14 +46,6 @@ public class CartItem {
 		this.timeIn = timeIn;
 	}
 
-	public Double getTotal() {
-		return total;
-	}
-
-	public void setTotal(Double total) {
-		this.total = total;
-	}
-
 	public Cart getCart() {
 		return cart;
 	}
@@ -79,7 +69,7 @@ public class CartItem {
 	// toString
 	@Override
 	public String toString() {
-		return "CartItem [id=" + id + ", timeOut=" + timeOut + ", timeIn=" + timeIn + ", total=" + total + ", cart="
+		return "CartItem [id=" + id + ", timeOut=" + timeOut + ", timeIn=" + timeIn + ", cart="
 				+ cart + ", iventoryItem=" + inventoryItem + "]";
 	}
 }
