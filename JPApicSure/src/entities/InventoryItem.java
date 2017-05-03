@@ -30,10 +30,10 @@ public class InventoryItem {
 	private Inventory inventory;
 	
 	@OneToMany(mappedBy="inventoryItem")
-	private ReservationItem reservationItems;
+	private List<ReservationItem> reservationItems;
 	
-	@ManyToMany(mappedBy="inventoryItem")
-	private List<Cart> cart;
+	@OneToMany(mappedBy="inventoryItem")
+	private List<CartItem> cartItems;
 
 	
 	// gets and sets
@@ -61,30 +61,30 @@ public class InventoryItem {
 		this.inventory = inventory;
 	}
 
-	public ReservationItem getReservationItems() {
+	public List<ReservationItem> getReservationItems() {
 		return reservationItems;
 	}
 
-	public void setReservationItems(ReservationItem reservationItems) {
+	public void setReservationItems(List<ReservationItem> reservationItems) {
 		this.reservationItems = reservationItems;
 	}
 
-	public List<Cart> getCart() {
-		return cart;
+	public List<CartItem> getCartItems() {
+		return cartItems;
 	}
 
-	public void setCart(List<Cart> cart) {
-		this.cart = cart;
+	public void setCartItems(List<CartItem> cartItems) {
+		this.cartItems = cartItems;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getId() {
+		return id;
 	}
 
 	// toString
 	@Override
 	public String toString() {
 		return "InventoryItem [id=" + id + ", active=" + active + ", equipment=" + equipment + ", inventory="
-				+ inventory + ", reservationItems=" + reservationItems + ", cart=" + cart + "]";
-	}   
+				+ inventory + ", reservationItems=" + reservationItems + ", cartItems=" + cartItems + "]";
+	}
 }
