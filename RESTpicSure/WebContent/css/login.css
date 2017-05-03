@@ -1,0 +1,26 @@
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.70);
+}
+
+.modal-content a {
+	font-weight:  bold;
+	color: #fff;
+}
+	
+.modal-content a:hover {
+    color: #a5d1ee;
+    text-decoration: none;
+}
+
+.btn-link {
+    color: white;
+}
+
+.modal-heading h2 {
+    color: #fff;
+}
+
+.errors {
+	color: red;
+	text-align: center;
+}

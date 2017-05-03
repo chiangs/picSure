@@ -25,6 +25,13 @@ body {
 	max-height: 50px;
 }
 
+
+
+#logout {
+	height: 50px;
+	border-radius: 0;
+}
+
 /* Footer */
 
 footer {

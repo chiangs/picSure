@@ -10,6 +10,8 @@
 	<context:component-scan base-package="controllers, data" />
 	<mvc:annotation-driven />
 	<tx:annotation-driven transaction-manager="myTransactionManager" />
+	
+	<bean id="AuthenticationDAO" class="data.AuthenticationDAOImpl"/>
 
 	<bean id="myEntityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
