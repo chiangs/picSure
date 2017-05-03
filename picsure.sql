@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `city` VARCHAR(150) NOT NULL,
   `state` VARCHAR(2) NOT NULL,
   `zip` INT(5) NOT NULL,
-  `country` VARCHAR(45) NOT NULL DEFAULT 'United State of America',
+  `country` VARCHAR(45) NOT NULL DEFAULT '\"United State of America\"',
   `latitude` DOUBLE NOT NULL,
   `longitude` DOUBLE NOT NULL,
   PRIMARY KEY (`id`))
@@ -122,12 +122,12 @@ DROP TABLE IF EXISTS `equpiment` ;
 
 CREATE TABLE IF NOT EXISTS `equpiment` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `make` VARCHAR(45) NULL,
   `model` VARCHAR(150) NOT NULL,
   `type` VARCHAR(150) NOT NULL,
   `description` LONGTEXT NOT NULL,
   `image` VARCHAR(255) NOT NULL,
   `rate` DOUBLE NOT NULL,
-  `make` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
