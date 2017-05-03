@@ -18,9 +18,9 @@ public class User {
 	  
 	  private int addressId;
 	  
-	  private String userName;
+	  private String username;
 	  
-	  private String passWord;
+	  private String password;
 	  
 	  private String phone;
 	  
@@ -60,20 +60,20 @@ public class User {
 		this.addressId = addressId;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getPassWord() {
-		return passWord;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPassWord(String passWord) {
-		this.passWord = passWord;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getPhone() {
@@ -94,8 +94,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User Id=" + id + ", fName=" + fName + ", lNAme=" + lName + ", addressId=" + addressId + ", userName="
-				+ userName + ", passWord=" + passWord + ", phone=" + phone + ", email=" + email;
+		return "User Id=" + id + ", fName=" + fName + ", lNAme=" + lName + ", addressId=" + addressId + ", username="
+				+ username + ", password=" + password + ", phone=" + phone + ", email=" + email;
 	}
 	  
 }
