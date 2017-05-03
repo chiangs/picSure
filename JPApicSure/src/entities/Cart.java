@@ -7,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -20,19 +18,14 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-//	private int inventoryId;
-
-
 	@OneToOne
 	@JoinColumn(name = "userId")
 	private User user;
 
 	@OneToMany(mappedBy="cart")
 	private List<CartItem> cartItems;
-	
-	
 
-
+	// gets and sets
 	public User getUser() {
 		return user;
 	}
@@ -41,14 +34,23 @@ public class Cart {
 		this.user = user;
 	}
 
+	public List<CartItem> getCartItems() {
+		return cartItems;
+	}
+
+	public void setCartItems(List<CartItem> cartItems) {
+		this.cartItems = cartItems;
+	}
 
 	public int getId() {
 		return id;
 	}
 
+	// toString
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + "," + ", " + ", user=" + user
-				+ "]";
-	}	
+		return "Cart [id=" + id + ", user=" + user + ", cartItems=" + cartItems + "]";
+	}
+
+
 }

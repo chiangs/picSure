@@ -1,5 +1,7 @@
 package data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,6 +17,12 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Override
+	public List<Equipment> index() {
+		String q = "SELECT e FROM EQUIPMENT e";
+		return em.createQuery(q, Equipment.class).getResultList();
+	}
 	
 	@Override
 	public Equipment show(Integer id) {

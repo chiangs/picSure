@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Cart;
-import entities.InventoryItem;
+import entities.CartItem;
 import entities.User;
 
 @Transactional
@@ -28,15 +28,15 @@ public class CartDAOImpl implements CartDAO {
 	@Override
 	public Cart update(Integer id, Cart c) {
 		Cart cart = em.find(Cart.class, id);
-		cart.setInventoryItems(c.getInventoryItems());
+		cart.setCartItems(c.getCartItems());
 		return cart;
 	}
 
 	@Override
 	public Cart create(Integer id, Cart c) {
-		List<InventoryItem> items = new ArrayList<>();
+		List<CartItem> items = new ArrayList<>();
 		User u = em.find(User.class, id);
-		c.setInventoryItems(items);
+		c.setCartItems(items);
 		c.setUser(u);
 		em.persist(c);
 		em.flush();

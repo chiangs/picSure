@@ -33,7 +33,7 @@ public class CartItemDAOImpl implements CartItemDAO {
 	@Override
 	public CartItem create(Integer cartId, Integer inventoryItemId, CartItem c) {
 		c.setCart(em.find(Cart.class, cartId));
-		c.setIventoryItem(em.find(InventoryItem.class, inventoryItemId));
+		c.setInventoryItem(c.getInventoryItem());
 		c.setTimeIn(c.getTimeIn());
 		c.setTimeOut(c.getTimeOut());
 		return null;
