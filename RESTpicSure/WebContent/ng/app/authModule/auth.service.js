@@ -72,6 +72,23 @@ angular.module('authModule')
 		})
     }
     
+    service.registerLister = function(lister) {
+        // TODO : Use the auth/register route to create and authenticate the user
+        // On success, use saveToken to store the users id/email
+      	user.admin = true;
+      	return $http({
+  			method : 'POST',
+  			url : BASE_URL + 'registerLister',
+  			headers : {
+  				'Content-Type' : 'application/json'
+  			},
+  			data : user
+  		}).then(function(res){
+  			saveToken(res.data);
+  			$location.path('/contact');
+  		})
+      }
+    
     service.logout = function() {
       // TODO : Use the auth/logout route to remove the users session
       // On success, use removeToken to remove the id and email cookies
