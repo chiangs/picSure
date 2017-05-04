@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `address` ;
 CREATE TABLE IF NOT EXISTS `address` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(150) NOT NULL,
-  `street2` VARCHAR(150) NULL DEFAULT NULL,
+  `street2` VARCHAR(150) NULL,
   `city` VARCHAR(150) NOT NULL,
   `state` VARCHAR(2) NOT NULL,
   `zip` INT(5) NOT NULL,
@@ -78,16 +78,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `phone` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `admin` TINYINT(1) NOT NULL DEFAULT 0,
-  `addressId` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_user_address1`
-    FOREIGN KEY (`addressId`)
-    REFERENCES `address` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_user_address1_idx` ON `user` (`addressId` ASC);
 
 CREATE UNIQUE INDEX `username_UNIQUE` ON `user` (`username` ASC);
 
@@ -327,8 +319,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `user` (`id`, `fName`, `lName`, `username`, `password`, `phone`, `email`, `admin`, `addressId`) VALUES (1, 'Seth', 'Thomas', 'admin', 'p', '555-555-5555', 'swthomas@gmail.com', 1, 2);
-INSERT INTO `user` (`id`, `fName`, `lName`, `username`, `password`, `phone`, `email`, `admin`, `addressId`) VALUES (2, 'Daniel', 'Balarezo', 'danrezo', 'password', '305-484-8911', 'drezo@me.com', 0, 3);
+INSERT INTO `user` (`id`, `fName`, `lName`, `username`, `password`, `phone`, `email`, `admin`) VALUES (1, 'Seth', 'Thomas', 'admin', 'p', '555-555-5555', 'swthomas@gmail.com', 1);
+INSERT INTO `user` (`id`, `fName`, `lName`, `username`, `password`, `phone`, `email`, `admin`) VALUES (2, 'Daniel', 'Balarezo', 'danrezo', 'password', '305-484-8911', 'drezo@me.com', 0);
 
 COMMIT;
 

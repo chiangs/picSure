@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Store {
 	
@@ -26,6 +28,7 @@ public class Store {
 	  
 	private String email;
 
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="addressId")
 	private Address address;
