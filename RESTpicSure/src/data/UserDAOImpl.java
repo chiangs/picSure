@@ -27,7 +27,6 @@ public class UserDAOImpl implements UserDAO {
 		User user = em.find(User.class, id);
 		user.setfName(u.getfName());
 		user.setlName(u.getlName());
-		user.setAddress(u.getAddress());
 		user.setPassword(u.getPassword());
 		user.setEmail(u.getEmail());
 
@@ -37,12 +36,12 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 		
 	public User create(User u) {
-	 Cart cart = new Cart();
-	 
-	 	em.persist(cart);
-	 	em.flush();
-	 
-	 	u.setCart(cart);
+//	 Cart cart = new Cart();
+//	 
+//	 	em.persist(cart);
+//	 	em.flush();
+//	 
+//	 	u.setCart(cart);
 		em.persist(u);
 		em.flush();
 		

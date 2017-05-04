@@ -37,12 +37,8 @@ public class User {
 	  private Boolean admin;
 	  
 	  @JsonIgnore
-	  @OneToOne(cascade = CascadeType.PERSIST)
-	  @JoinColumn(name="addressId")
-	  private Address address;
+	  @OneToOne(mappedBy="user", cascade = CascadeType.PERSIST)
 
-	  @JsonIgnore
-	  @OneToOne(mappedBy="user")
 	  private Cart cart;
 
 	  @JsonIgnore
@@ -108,14 +104,6 @@ public class User {
 
 	public void setAdmin(Boolean admin) {
 		this.admin = admin;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
 	}
 
 	public Cart getCart() {
