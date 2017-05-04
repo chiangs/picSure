@@ -19,8 +19,9 @@ public class AuthController {
 	@Autowired
 	private AuthenticationDAO authDAO;
 	
-	@RequestMapping(path="/register", method=RequestMethod.POST)
+	@RequestMapping(path="/registerUser", method=RequestMethod.POST)
 	public User register(HttpSession session, @RequestBody User user) {
+		System.out.println("in register controller");
 		User newUser = authDAO.register(user);
 		session.setAttribute("sessionUser", newUser);
 		return newUser;

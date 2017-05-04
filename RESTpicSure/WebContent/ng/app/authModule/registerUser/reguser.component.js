@@ -5,7 +5,7 @@ angular.module('authModule').component('registerUser', {
 		
 		vm.initialCountry = 'United States of America';
 
-		vm.register = function(user) {
+		vm.registerUser = function(user) {
 			return authService.register(user);
 		}
 

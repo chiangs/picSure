@@ -60,7 +60,7 @@ angular.module('authModule')
       // On success, use saveToken to store the users id/email
     	return $http({
 			method : 'POST',
-			url : BASE_URL + 'register',
+			url : BASE_URL + 'registerUser',
 			headers : {
 				'Content-Type' : 'application/json'
 			},
