@@ -20,12 +20,40 @@ body {
 
 /* NavBar */
 
-#navIcon {
-	border-radius: 50%;
-	max-height: 50px;
+.navbar-default {
+    background-color: #222222;
+    border: none;.
+    -webkit-box-shadow: 0 1.5px 1px -1px #817d7d;
+    -moz-box-shadow: 0 1.5px 1px -1px #817d7d;
+    box-shadow: 0 1.5px 1px -1px #817d7d;
 }
 
+#logo {
+    padding: 0;
+    height: 30px;
+    border-radius: 50%;
+}
 
+#myNavbar {
+    padding: 0;
+}
+
+#myNavbar a {
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0 0 0 8px;
+    text-align: center;
+}
+
+#myNavbar a:hover {
+    text-align: center;
+}
+
+.active a {
+    color: #fff !important;
+    background-color: #2f7a94 !important;
+    font-style: italic;
+}
 
 #logout {
 	height: 50px;
