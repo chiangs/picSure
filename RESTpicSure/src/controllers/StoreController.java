@@ -14,7 +14,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.StoreDAO;
 import entities.Store;
-import entities.User;
 
 @RestController
 public class StoreController {
@@ -25,14 +24,14 @@ public class StoreController {
 	@RequestMapping(value = "store/{id}", method = RequestMethod.GET)
 	public Store index(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer id) {
 		return storeDAO.show(id);
-	};
+	}
 
-	@RequestMapping(value = "store/", method = RequestMethod.POST)
-	public Store create(@RequestBody String jsonUser) {
+	@RequestMapping(value = "store/{userId}/user", method = RequestMethod.POST)
+	public Store create(HttpServletRequest req, HttpServletResponse res, @RequestBody String jsonStore, @PathVariable Integer userId) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			User mappedUser = mapper.readValue(jsonUser, User.class);
-			return storeDAO.create(mappedUser);
+			Store mappedStore = mapper.readValue(jsonStore, Store.class);
+			return storeDAO.create(userId, mappedStore);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -40,11 +39,11 @@ public class StoreController {
 	}
 
 	@RequestMapping(value = "store/{id}", method = RequestMethod.PUT)
-	public Store update(@PathVariable Integer id, @RequestBody String jsonUser) {
+	public Store update(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer id, @RequestBody String jsonStore) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			User mappedUser = mapper.readValue(jsonUser, User.class);
-			return storeDAO.update(id, mappedUser);
+			Store mappedStore = mapper.readValue(jsonStore, Store.class);
+			return storeDAO.update(id, mappedStore);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -52,7 +51,7 @@ public class StoreController {
 	}
 
 	@RequestMapping(value = "store/{id}", method = RequestMethod.DELETE)
-	public Boolean destroy(@PathVariable Integer id) {
+	public Boolean destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer id) {
 		return storeDAO.destroy(id);
 	}
 

@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -35,18 +37,20 @@ public class User {
 	  
 	  private Boolean admin;
 	  
-	  private Boolean picSureEmp;
-	  
+	  @JsonIgnore
 	  @OneToOne(cascade = CascadeType.PERSIST)
 	  @JoinColumn(name="addressId")
 	  private Address address;
 
+	  @JsonIgnore
 	  @OneToOne(mappedBy="user")
 	  private Cart cart;
 
+	  @JsonIgnore
 	  @OneToMany(mappedBy="user")
 	  private List<Reservation> reservations;
 
+	  @JsonIgnore
 	  @ManyToMany(mappedBy="users")
 	  private List<Store> store;
 
@@ -113,14 +117,6 @@ public class User {
 
 	public void setAdmin(Boolean admin) {
 		this.admin = admin;
-	}
-
-	public Boolean getPicSureEmp() {
-		return picSureEmp;
-	}
-
-	public void setPicSureEmp(Boolean picSureEmp) {
-		this.picSureEmp = picSureEmp;
 	}
 
 	public Cart getCart() {

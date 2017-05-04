@@ -22,7 +22,6 @@ public class ReservationItem {
 	
 	private Date timeOut;
 	
-	private double total;
 	
 	@ManyToOne
 	@JoinColumn(name="reservationId")
@@ -50,14 +49,6 @@ public class ReservationItem {
 		this.timeOut = timeOut;
 	}
 
-	public double getTotal() {
-		return total;
-	}
-
-	public void setTotal(double total) {
-		this.total = total;
-	}
-
 	public Reservation getReservations() {
 		return reservations;
 	}
@@ -82,8 +73,7 @@ public class ReservationItem {
 	// toString()
 	@Override
 	public String toString() {
-		return "ReservationItem [id=" + id + ", timeIn=" + timeIn + ", timeOut=" + timeOut + ", total=" + total
-				+ ", reservations=" + reservations + ", inventoryitems=" + inventoryitems + "]";
+		return "ReservationItem [id=" + id + ", timeIn=" + timeIn + ", timeOut=" + timeOut + ", reservations=" + reservations + ", inventoryitems=" + inventoryitems + "]";
 	}
 
 	

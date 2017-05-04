@@ -1,30 +1,57 @@
+body {
+	background-image: url('../images/landing.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#loginButton {
+	color: #025AA5;
+}
+
+#loginButton:hover {
+	color: #fff;
+}
+
 .modal-content {
-	background: #222222;
-    text-align: left;
-    position: fixed;
-  	top: 50%;
-  	left: 50%;
-  	transform: translate(-50%, -50%);
-  	width: 30vw;
-  	height: 40vh;
-  	border-radius:0;
+	background: rgba(255, 255, 255, 0.55);
+	text-align: left;
+	position:;
+	border-radius: 1px;
+}
+
+#login {
+	position: fixed;
+	top: 50%;
+	left: 30%;
+	transform: translate(-50%, -50%);
+	width: 30vw;
+	height: 40vh;
+}
+
+#login a {
+	color: #222222;
+}
+
+#login a:hover {
+	font-weight: bold;
+	color: white;
 }
 
 .modal-content h2 {
 	text-align: center;
 }
-	
+
 .modal-content a:hover {
-    color: #a5d1ee;
-    text-decoration: none;
+	color: red;
+	text-decoration: none;
 }
 
 .btn-link {
-    color: white;
+	color: white;
 }
 
 .modal-heading h2 {
-    color: #fff;
+	color: #222222;
 }
 
 .errors {
@@ -34,50 +61,54 @@
 
 #listerLogin {
 	text-align: right;
-	top:0;
+	top: 0;
 }
 
 .btn {
-	border-radius:40px;
+	border-radius: 40px;
 	background: none;
 }
 
+.btn-primary {
+	color: #025AA5;
+}
+
 .btn:hover {
-	border-radius:40px;
+	border-radius: 40px;
 }
 
 #listerLogin .btn-danger {
-	color:#222222;
+	color: #fff;
 }
 
 #listerLogin .btn-danger:hover {
-	color:#fff;
+	color: #fff;
 }
 
 #listerLogin .btn-primary {
-	color:#222222;
+	color: #fff;
 }
 
 #listerLogin .btn-primary:hover {
-	color:#fff;
+	color: #fff;
 }
 
 input {
-    padding:5px; 
-    border:2px solid #ccc; 
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+	padding: 5px;
+	border: 2px solid #ccc;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 
 input:focus {
-    border-color:#333;
+	border-color: #333;
 }
 
 input[type=submit] {
-    padding:5px 15px; 
-    background:#ccc; 
-    border:0 none;
-    cursor:pointer;
-    -webkit-border-radius: 5px;
-    border-radius: 5px; 
+	padding: 5px 15px;
+	background: #ccc;
+	border: 0 none;
+	cursor: pointer;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
