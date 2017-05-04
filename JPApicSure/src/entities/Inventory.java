@@ -46,12 +46,4 @@ public class Inventory {
 		return id;
 	}
 
-	// toString
-	@Override
-	public String toString() {
-		return "Inventory [id=" + id + ", " + ", store=" + store + ", iventoryItems=" + iventoryItems
-				+ "]";
-	}
-	
-
 }

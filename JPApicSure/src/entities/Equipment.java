@@ -92,10 +92,4 @@ public class Equipment {
 		return id;
 	}
 
-	// toString
-	@Override
-	public String toString() {
-		return "Equipment [id=" + id + ", model=" + model + ", type=" + type + ", description=" + description
-				+ ", image=" + image + ", rate=" + rate + ", make=" + make + ", inventoryItems=" + inventoryItems + "]";
-	}
 }

@@ -89,11 +89,4 @@ public class Store {
 	public int getId() {
 		return id;
 	}
-
-	// fields
-	@Override
-	public String toString() {
-		return "Store [id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + ", address=" + address
-				+ ", inventory=" + inventory + ", users=" + users + "]";
-	}
 }

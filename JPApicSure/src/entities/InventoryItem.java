@@ -96,11 +96,4 @@ public class InventoryItem {
 	public void setCartItems(List<CartItem> cartItems) {
 		this.cartItems = cartItems;
 	}
-
-	// toString
-	@Override
-	public String toString() {
-		return "InventoryItem [id=" + id + ", active=" + active + ", equipment=" + equipment + ", inventory=";
-
-	}
 }
