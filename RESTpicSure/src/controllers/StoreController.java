@@ -21,9 +21,9 @@ public class StoreController {
 	@Autowired
 	private StoreDAO storeDAO;
 
-	@RequestMapping(value = "store/{id}", method = RequestMethod.GET)
-	public Store index(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer id) {
-		return storeDAO.show(id);
+	@RequestMapping(value = "store/{storeId}", method = RequestMethod.GET)
+	public Store index(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer storeId) {
+		return storeDAO.show(storeId);
 	}
 
 	@RequestMapping(value = "store/{userId}/user", method = RequestMethod.POST)
@@ -38,21 +38,21 @@ public class StoreController {
 		}
 	}
 
-	@RequestMapping(value = "store/{id}", method = RequestMethod.PUT)
-	public Store update(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer id, @RequestBody String jsonStore) {
+	@RequestMapping(value = "store/{storeId}", method = RequestMethod.PUT)
+	public Store update(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer storeId, @RequestBody String jsonStore) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			Store mappedStore = mapper.readValue(jsonStore, Store.class);
-			return storeDAO.update(id, mappedStore);
+			return storeDAO.update(storeId, mappedStore);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
-	@RequestMapping(value = "store/{id}", method = RequestMethod.DELETE)
-	public Boolean destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer id) {
-		return storeDAO.destroy(id);
+	@RequestMapping(value = "store/{storeId}", method = RequestMethod.DELETE)
+	public Boolean destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer storeId) {
+		return storeDAO.destroy(storeId);
 	}
 
 }

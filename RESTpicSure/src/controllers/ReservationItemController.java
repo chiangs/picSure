@@ -21,9 +21,9 @@ public class ReservationItemController {
 		@Autowired
 		private ReservationItemDAO resItemDAO;
 
-		@RequestMapping(value = "reservationItem/{id}", method = RequestMethod.GET)
-		public ReservationItem index(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer id) {
-			return resItemDAO.show(id);
+		@RequestMapping(value = "reservationItem/{resItemId}/reservation", method = RequestMethod.GET)
+		public ReservationItem index(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer resItemId) {
+			return resItemDAO.show(resItemId);
 		}
 
 		@RequestMapping(value = "reservationItem/{userId}/user", method = RequestMethod.POST)
@@ -38,20 +38,20 @@ public class ReservationItemController {
 			}
 		}
 
-		@RequestMapping(value = "reservationItem/{id}", method = RequestMethod.PUT)
-		public ReservationItem update(@PathVariable Integer id, @RequestBody String jsonResItem) {
+		@RequestMapping(value = "reservationItem/{resItemId}", method = RequestMethod.PUT)
+		public ReservationItem update(@PathVariable Integer resItemId, @RequestBody String jsonResItem) {
 			try {
 				ObjectMapper mapper = new ObjectMapper();
 				ReservationItem mappedResItem = mapper.readValue(jsonResItem, ReservationItem.class);
-				return resItemDAO.update(id, mappedResItem);
+				return resItemDAO.update(resItemId, mappedResItem);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return null;
 			}
 		}
 
-		@RequestMapping(value = "store/{id}", method = RequestMethod.DELETE)
-		public Boolean destroy(@PathVariable Integer id) {
-			return resItemDAO.destroy(id);
+		@RequestMapping(value = "reservationItem/{resItemId}", method = RequestMethod.DELETE)
+		public Boolean destroy(@PathVariable Integer resItemId) {
+			return resItemDAO.destroy(resItemId);
 		}
 }
