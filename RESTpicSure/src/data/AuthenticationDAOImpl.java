@@ -39,9 +39,6 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 			managedUser = em.createQuery(query, User.class).setParameter("username", u.getUsername().trim()).getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
-//			String q = "SELECT u from User u WHERE u.email = :email";
-//			managedUser = em.createQuery(q, User.class).setParameter("email", u.getEmail()).getSingleResult();
-//			managedUser.setTodos(new HashSet<Todo>());
         }
 		System.out.println(managedUser);
         return managedUser;
