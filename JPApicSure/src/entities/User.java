@@ -34,9 +34,7 @@ public class User {
 	  private String email;
 	  
 	  private Boolean admin;
-	  
-	  private Boolean picSureEmp;
-	  
+	  	  
 	  @OneToOne(cascade = CascadeType.PERSIST)
 	  @JoinColumn(name="addressId")
 	  private Address address;
@@ -70,8 +68,6 @@ public class User {
 	public void setlName(String lName) {
 		this.lName = lName;
 	}
-
-
 
 	public String getUsername() {
 		return username;
@@ -117,13 +113,6 @@ public class User {
 		this.admin = admin;
 	}
 
-	public Boolean getPicSureEmp() {
-		return picSureEmp;
-	}
-
-	public void setPicSureEmp(Boolean picSureEmp) {
-		this.picSureEmp = picSureEmp;
-	}
 
 	public Cart getCart() {
 		return cart;

@@ -1,5 +1,6 @@
 package data;
 
+import entities.Address;
 import entities.User;
 
 public interface UserDAO {

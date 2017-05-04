@@ -1,11 +1,15 @@
 package data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.Address;
 import entities.User;
 
 @Transactional
@@ -33,6 +37,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+		
 	public User create(User u) {
 		return null;
 	}
