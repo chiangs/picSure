@@ -22,7 +22,6 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User update(Integer id, User u) {
-		// TODO Auto-generated method stub
 		User user = em.find(User.class, id);
 		user.setfName(u.getfName());
 		user.setlName(u.getlName());
@@ -35,13 +34,11 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User create(Integer id, User u) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Boolean destroy(Integer id) {
-		// TODO Auto-generated method stub
 		try {
 			em.remove(em.find(User.class, id));
 			return true;
