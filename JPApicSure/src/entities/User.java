@@ -26,7 +26,6 @@ public class User {
 
 	  private String lName;
 
-
 	  private String username;
 
 	  private String password;
@@ -54,11 +53,7 @@ public class User {
 	  @ManyToMany(mappedBy="users")
 	  private List<Store> store;
 
-	// gets and sets
-	  public int getId() {
-		return id;
-	}
-
+	  // gets and sets
 	public String getfName() {
 		return fName;
 	}
@@ -81,10 +76,6 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getUserName() {
-		return username;
 	}
 
 	public String getPassword() {
@@ -119,6 +110,14 @@ public class User {
 		this.admin = admin;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	public Cart getCart() {
 		return cart;
 	}
@@ -143,21 +142,18 @@ public class User {
 		this.store = store;
 	}
 
-	// toString
+	public int getId() {
+		return id;
+	}
+
+	//toString()
 	@Override
 	public String toString() {
-
-		return "User Id=" + id + ", fName=" + fName + ", lNAme=" + lName + "," +  ", username="
-				+ username + ", password=" + password + ", phone=" + phone + ", email=" + email;
-
+		return "User [id=" + id + ", fName=" + fName + ", lName=" + lName + ", username=" + username + ", password="
+				+ password + ", phone=" + phone + ", email=" + email + ", admin=" + admin + ", address=" + address
+				+ ", cart=" + cart + ", reservations=" + reservations + ", store=" + store + "]";
 	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
+	
+	
+	
 }
