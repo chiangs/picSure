@@ -2,6 +2,7 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,11 +33,11 @@ public class User {
 
 	  private String email;
 	  
-	  private int admin;
+	  private Boolean admin;
 	  
 	  private Boolean picSureEmp;
-
-	  @OneToOne
+	  
+	  @OneToOne(cascade = CascadeType.PERSIST)
 	  @JoinColumn(name="addressId")
 	  private Address address;
 
@@ -69,8 +70,6 @@ public class User {
 	public void setlName(String lName) {
 		this.lName = lName;
 	}
-
-
 
 	public String getUsername() {
 		return username;
@@ -108,19 +107,19 @@ public class User {
 		this.email = email;
 	}
 
-	public int getAdmin() {
+	public Boolean getAdmin() {
 		return admin;
 	}
 
-	public void setAdmin(int admin) {
+	public void setAdmin(Boolean admin) {
 		this.admin = admin;
 	}
 
-	public int getPicSureEmp() {
+	public Boolean getPicSureEmp() {
 		return picSureEmp;
 	}
 
-	public void setPicSureEmp(int picSureEmp) {
+	public void setPicSureEmp(Boolean picSureEmp) {
 		this.picSureEmp = picSureEmp;
 	}
 

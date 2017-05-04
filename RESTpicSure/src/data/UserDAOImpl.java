@@ -37,8 +37,8 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User create(Integer id, User u, Address a) {
 		
+	public User create(User u) {
 		return null;
 	}
 
