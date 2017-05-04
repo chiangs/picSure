@@ -33,6 +33,18 @@ public class AuthController {
 		return sessionUser;
 	}
 	
+	@RequestMapping(path="/listerlogin", method=RequestMethod.POST)
+	public User loginLister(HttpSession session, HttpServletResponse response, @RequestBody User lister) {
+		User sessionUser = authDAO.authenticateUser(lister);
+		if (sessionUser.getAdmin() == true) {
+			session.setAttribute("sessionUser", sessionUser);
+		} else {
+			response.setStatus(401);
+			sessionUser = null;
+		}
+		return sessionUser;
+	}
+	
 	@RequestMapping(path="/logout", method=RequestMethod.POST)
 	public Boolean logout(HttpSession session, HttpServletResponse response) {
 		session.removeAttribute("sessionUser");

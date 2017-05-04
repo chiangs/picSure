@@ -5,6 +5,7 @@ angular.module('navbar').component('navbar', {
 		
 		vm.isLoggedIn = function() {
 			if (authService.getToken().id) {
+				vm.name=authService.getToken().username;
 				return true;
 			}
 			return false;

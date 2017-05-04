@@ -14,6 +14,14 @@ angular.module('authModule').component('login', {
 			})
 		}
 		
+		vm.loginLister = function(lister) {
+			authService.loginLister(lister).then(function(res){
+				$location.path('/contact');
+			}).catch(function(){
+				vm.error = "Something went wrong";
+			})
+		}
+		
 		vm.displayListerLogin = function() {
 			vm.showListerLogin = true;
 			vm.showListerLoginButton = false;
