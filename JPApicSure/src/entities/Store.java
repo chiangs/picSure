@@ -29,7 +29,7 @@ public class Store {
 	private String email;
 
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name="addressId")
 	private Address address;
 	  

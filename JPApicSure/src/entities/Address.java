@@ -36,10 +36,6 @@ public class Address {
 	@OneToOne(mappedBy = "address")
 	private Store store;
 	
-	@JsonIgnore
-	@OneToOne(mappedBy = "address")
-	private User user;
-
 	// gets and sets
 	public String getStreet() {
 		return street;
@@ -111,14 +107,6 @@ public class Address {
 
 	public void setStore(Store store) {
 		this.store = store;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public int getId() {
