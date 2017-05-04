@@ -1,1 +1,1 @@
-angular.Module('listerModule', [])
+angular.module('listerModule', [])
