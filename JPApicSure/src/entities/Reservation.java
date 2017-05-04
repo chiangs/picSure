@@ -58,10 +58,4 @@ public class Reservation {
 		return id;
 	}
 
-	// toString
-	@Override
-	public String toString() {
-		return "Reservation [id=" + id + ","+ ", createdDate=" + createdDate + ", user=" + user
-				+ ", reservation=" + reservationItems + "]";
-	}
 }

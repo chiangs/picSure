@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Address {
 
@@ -32,7 +34,8 @@ public class Address {
 
 	@OneToOne(mappedBy = "address")
 	private Store store;
-
+	
+	@JsonIgnore
 	@OneToOne(mappedBy = "address")
 	private User user;
 
@@ -119,14 +122,6 @@ public class Address {
 
 	public int getId() {
 		return id;
-	}
-
-	// toString
-	@Override
-	public String toString() {
-		return "Address [id=" + id + ", street=" + street + ", streetTwo=" + street2 + ", city=" + city + ", state="
-				+ state + ", zip=" + zip + ", country=" + country + ", latitude=" + latitude + ", longitude="
-				+ longitude + ", store=" + store + ", user=" + user + "]";
 	}
 
 }

@@ -69,12 +69,4 @@ public class ReservationItem {
 		return id;
 	}
 
-	
-	// toString()
-	@Override
-	public String toString() {
-		return "ReservationItem [id=" + id + ", timeIn=" + timeIn + ", timeOut=" + timeOut + ", reservations=" + reservations + ", inventoryitems=" + inventoryitems + "]";
-	}
-
-	
 }

@@ -146,14 +146,4 @@ public class User {
 		return id;
 	}
 
-	//toString()
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", fName=" + fName + ", lName=" + lName + ", username=" + username + ", password="
-				+ password + ", phone=" + phone + ", email=" + email + ", admin=" + admin + ", address=" + address
-				+ ", cart=" + cart + ", reservations=" + reservations + ", store=" + store + "]";
-	}
-	
-	
-	
 }

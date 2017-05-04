@@ -66,10 +66,4 @@ public class CartItem {
 		return id;
 	}
 
-	// toString
-	@Override
-	public String toString() {
-		return "CartItem [id=" + id + ", timeOut=" + timeOut + ", timeIn=" + timeIn + ", cart="
-				+ cart + ", iventoryItem=" + inventoryItem + "]";
-	}
 }
