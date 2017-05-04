@@ -22,7 +22,6 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@JsonBackReference
 	@OneToOne
 	@JoinColumn(name = "userId")
 	private User user;

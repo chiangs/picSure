@@ -38,7 +38,7 @@ public class User {
 	  
 	  private Boolean admin;
 	  
-	  @JsonManagedReference
+	  @JsonIgnore
 	  @OneToOne(mappedBy="user", cascade = CascadeType.PERSIST)
 	  private Cart cart;
 
