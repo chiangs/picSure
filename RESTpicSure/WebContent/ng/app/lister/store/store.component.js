@@ -1,11 +1,11 @@
 angular.module('listerModule')
-	.component('listerMain', {
-		
-		templateUrl: 'ng/app/lister/listerMain/listerMain.component.html',
-		
+	.component('store', {
+		templateUrl: 'ng/app/lister/store/store.component.html',
 		controller : function(){
-			
+		
 			var vm = this;
+			vm.inventory = [];
+			
 			
 			
 			

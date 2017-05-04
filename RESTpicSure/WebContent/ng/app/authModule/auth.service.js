@@ -5,6 +5,8 @@ angular.module('authModule')
     var saveToken = function(user) {
     	$cookies.put('username', user.username);
     	$cookies.put('id', user.id);
+    	$cookies.put('admin', user.admin);
+    	$cookies.put('fName', user.fName);
     } 
     
 	var BASE_URL = 'http://localhost:8080/RESTpicSure/rest/auth/';
@@ -14,7 +16,9 @@ angular.module('authModule')
       // the values are the values of the cookies
     	var user = {
     			'username' : $cookies.get('username'),
-    			'id' : $cookies.get('id')
+    			'id' : $cookies.get('id'),
+    			'admin' : $cookies.get('admin'),
+    			'fName' : $cookies.get('fName'),
     	}
     	return user;
     }
@@ -23,6 +27,8 @@ angular.module('authModule')
       // TODO : Remove both the id and email cookies
     	$cookies.remove('id');
     	$cookies.remove('username');
+    	$cookies.remove('admin');
+    	$cookies.remove('fName');
     }
 
     service.login = function(user) {

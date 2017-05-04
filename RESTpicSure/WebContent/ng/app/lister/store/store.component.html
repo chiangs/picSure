@@ -1,0 +1,23 @@
+<h1 id="inventoryCount">Inventory Items:
+	{{vm.countInventoryItems()}}</h1>
+
+<table class="table" id="inventoryTable">
+	<thead>
+		<tr scope="row">
+			<th>Make</th>
+			<th>Model</th>
+			<th>Type</th>
+			<th>Description</th>
+			<th>Rate</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="eq in vm.inventory">
+			<td>{{eq.make}}</td>
+			<td>{{eq.model}}</td>
+			<td>{{eq.type}}</td>
+			<td>{{eq.description}}</td>
+			<td>{{eq.rate}}</td>
+		</tr>
+	</tbody>
+</table>

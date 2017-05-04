@@ -8,11 +8,11 @@
 				Welcome, {{vm.name}}
 		</div>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="bold" href="X">Home</a></li>
-				<li><a class="bold" href="#">Business Stats</a></li>
+				<li><a class="bold" href="#contact">Home</a></li>
+				<li ng-show="vm.isAdmin()"><a class="bold" href="#">Business Stats</a></li>
 				<li><a class="bold" href="#">Reservations</a></li>
-				<li><a class="bold" id="about" href="#">Profile</a></li>
-				<li><a class="bold" href="#">Contact</a></li>
+				<li><a class="bold" id="about" ng-click="vm.profileRoute()">Profile</a></li>
+				<li><a class="bold" href="#contact">Contact</a></li>
 				<logout ng-show="vm.isLoggedIn()"></logout>
 			</ul>
 		</div>
