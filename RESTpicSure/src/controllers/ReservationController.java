@@ -23,9 +23,9 @@ public class ReservationController {
 	@Autowired
 	private ReservationDAO reservationDAO;
 
-	@RequestMapping(value = "reservation/{resId}", method = RequestMethod.GET)
-	public Reservation show(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer resId) {
-		return reservationDAO.show(resId);
+	@RequestMapping(value = "reservation/{reservationId}", method = RequestMethod.GET)
+	public Reservation show(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer reservationId) {
+		return reservationDAO.show(reservationId);
 	}
 
 	@RequestMapping(value = "user/{userId}/reservation", method = RequestMethod.GET)
@@ -38,6 +38,18 @@ public class ReservationController {
 		return reservationDAO.storeIndex(storeId);
 	}
 
+	@RequestMapping(value = "reservation/{reservationId}", method = RequestMethod.PUT)
+	public Reservation update(@PathVariable Integer reservationId, @RequestBody String jsonReservation) {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			Reservation mappedReservation = mapper.readValue(jsonReservation, Reservation.class);
+			return reservationDAO.update(reservationId, mappedReservation);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	@RequestMapping(value = "user/{userId}/reservation", method = RequestMethod.POST)
 	public Reservation create(@PathVariable Integer userId, @RequestBody String jsonReservation) {
 		try {
@@ -50,20 +62,8 @@ public class ReservationController {
 		}
 	}
 
-	@RequestMapping(value = "reservation/{resId}", method = RequestMethod.PUT)
-	public Reservation update(@PathVariable Integer resId, @RequestBody String jsonReservation) {
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			Reservation mappedReservation = mapper.readValue(jsonReservation, Reservation.class);
-			return reservationDAO.update(resId, mappedReservation);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	@RequestMapping(value = "reservation/{resId}", method = RequestMethod.DELETE)
-	public Boolean destroy(@PathVariable Integer resId) {
-		return reservationDAO.destroy(resId);
+	@RequestMapping(value = "reservation/{reservationId}", method = RequestMethod.DELETE)
+	public Boolean destroy(@PathVariable Integer reservationId) {
+		return reservationDAO.destroy(reservationId);
 	}
 }

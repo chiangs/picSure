@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.CartItemDAO;
-import entities.Address;
 import entities.CartItem;
 
 @RestController
@@ -22,39 +21,39 @@ public class CartItemController {
 	@Autowired
 	private CartItemDAO cartItem;
 
-	@RequestMapping(path = "cartItem/{cid}", method = RequestMethod.GET)
-	public CartItem show(@PathVariable int cid, HttpServletRequest request, HttpServletResponse response) {
-		return cartItem.show(cid);
+	@RequestMapping(path = "cartItem/{cartItemId}", method = RequestMethod.GET)
+	public CartItem show(@PathVariable int cartItemId, HttpServletRequest request, HttpServletResponse response) {
+		return cartItem.show(cartItemId);
 	}
 
-	@RequestMapping(path = "cartItem/{cid}", method = RequestMethod.PUT)
-	public CartItem update(@PathVariable int cid, @RequestBody String jsonCartItem, HttpServletRequest request,
+	@RequestMapping(path = "cartItem/{cartItemId}", method = RequestMethod.PUT)
+	public CartItem update(@PathVariable int cartItemId, @RequestBody String jsonCartItem, HttpServletRequest request,
 			HttpServletResponse response) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			CartItem mappedCartItem = mapper.readValue(jsonCartItem, CartItem.class);
-			return cartItem.update(cid, mappedCartItem);
+			return cartItem.update(cartItemId, mappedCartItem);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
-	@RequestMapping(path = "user/{id}/cartItem/{iid}", method = RequestMethod.POST)
-	public CartItem createCartItem(@PathVariable int id, @PathVariable int iid, @RequestBody String jsonCartItem,
+	@RequestMapping(path = "user/{userId}/cartItem/{inventoryId}", method = RequestMethod.POST)
+	public CartItem createCartItem(@PathVariable int userId, @PathVariable int inventoryId, @RequestBody String jsonCartItem,
 			HttpServletRequest request, HttpServletResponse response) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			CartItem mappedCartItem = mapper.readValue(jsonCartItem, CartItem.class);
-			return cartItem.create(id, iid, mappedCartItem);
+			return cartItem.create(userId, inventoryId, mappedCartItem);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
-	@RequestMapping(path = "cartItem/{cid}", method = RequestMethod.DELETE)
-	public Boolean destroy(@PathVariable int cid, HttpServletRequest request, HttpServletResponse response) {
-		return cartItem.destroy(cid);
+	@RequestMapping(path = "cartItem/{cartItemId}", method = RequestMethod.DELETE)
+	public Boolean destroy(@PathVariable int cartItemId, HttpServletRequest request, HttpServletResponse response) {
+		return cartItem.destroy(cartItemId);
 	}
 }

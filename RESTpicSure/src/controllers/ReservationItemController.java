@@ -20,38 +20,38 @@ public class ReservationItemController {
 
 		@Autowired
 		private ReservationItemDAO resItemDAO;
-
-		@RequestMapping(value = "reservationItem/{resItemId}/reservation", method = RequestMethod.GET)
-		public ReservationItem index(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer resItemId) {
-			return resItemDAO.show(resItemId);
+		
+		@RequestMapping(value = "reservation/{reservationItemId}/reservationitem", method = RequestMethod.GET)
+		public ReservationItem index(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer reservationItemId) {
+			return resItemDAO.show(reservationItemId);
 		}
 
-		@RequestMapping(value = "reservationItem/{userId}/user", method = RequestMethod.POST)
-		public ReservationItem create(@PathVariable Integer resId, @PathVariable Integer inventoryId, @RequestBody String jsonResItem) {
+		@RequestMapping(value = "reservationitem/{reservationItemId}", method = RequestMethod.PUT)
+		public ReservationItem update(@PathVariable Integer reservationItemId, @RequestBody String jsonResItem) {
 			try {
 				ObjectMapper mapper = new ObjectMapper();
 				ReservationItem mappedResItem = mapper.readValue(jsonResItem, ReservationItem.class);
-				return resItemDAO.create(resId, inventoryId, mappedResItem);
+				return resItemDAO.update(reservationItemId, mappedResItem);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+		
+		@RequestMapping(value = "reservation/{reservationId}/inventoryItem/{inventoryItemId}/reservationItem", method = RequestMethod.POST)
+		public ReservationItem create(@PathVariable Integer reservationId, @PathVariable Integer inventoryItemId, @RequestBody String jsonResItem) {
+			try {
+				ObjectMapper mapper = new ObjectMapper();
+				ReservationItem mappedResItem = mapper.readValue(jsonResItem, ReservationItem.class);
+				return resItemDAO.create(reservationId, inventoryItemId, mappedResItem);
 			} catch (Exception e) {
 				e.printStackTrace();
 				return null;
 			}
 		}
 
-		@RequestMapping(value = "reservationItem/{resItemId}", method = RequestMethod.PUT)
-		public ReservationItem update(@PathVariable Integer resItemId, @RequestBody String jsonResItem) {
-			try {
-				ObjectMapper mapper = new ObjectMapper();
-				ReservationItem mappedResItem = mapper.readValue(jsonResItem, ReservationItem.class);
-				return resItemDAO.update(resItemId, mappedResItem);
-			} catch (Exception e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
-
-		@RequestMapping(value = "reservationItem/{resItemId}", method = RequestMethod.DELETE)
-		public Boolean destroy(@PathVariable Integer resItemId) {
-			return resItemDAO.destroy(resItemId);
+		@RequestMapping(value = "reservationitem/{reservationItemId}", method = RequestMethod.DELETE)
+		public Boolean destroy(@PathVariable Integer reservationItemId) {
+			return resItemDAO.destroy(reservationItemId);
 		}
 }

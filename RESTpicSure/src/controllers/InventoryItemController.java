@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.InventoryItemDAO;
-import entities.Address;
-import entities.Inventory;
 import entities.InventoryItem;
 
 @RestController
@@ -24,30 +22,30 @@ public class InventoryItemController {
 	@Autowired
 	private InventoryItemDAO invItem;
 
-	@RequestMapping(path = "inventoryitem/{iiid}", method = RequestMethod.GET)
-	public InventoryItem show(@PathVariable int iiid, HttpServletRequest request, HttpServletResponse response) {
-		return invItem.show(iiid);
+	@RequestMapping(path = "inventoryItem/{inventoryItemId}", method = RequestMethod.GET)
+	public InventoryItem show(@PathVariable int inventoryItemId, HttpServletRequest request, HttpServletResponse response) {
+		return invItem.show(inventoryItemId);
 	}
 
-	@RequestMapping(path = "inventoryitem/{iiid}", method = RequestMethod.PUT)
-	public InventoryItem update(@PathVariable int iiid, @RequestBody String jsonInvItem, HttpServletRequest request,
+	@RequestMapping(path = "inventoryItem/{inventoryItemId}", method = RequestMethod.PUT)
+	public InventoryItem update(@PathVariable int inventoryItemId, @RequestBody String jsonInvItem, HttpServletRequest request,
 			HttpServletResponse response) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			InventoryItem mappedInvItem = mapper.readValue(jsonInvItem, InventoryItem.class);
-			return invItem.update(iiid, mappedInvItem);
+			return invItem.update(inventoryItemId, mappedInvItem);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 
-	@RequestMapping(path = "inventoryitem/{iid}/{eid}", method = RequestMethod.POST)
-	public InventoryItem createInventoryItem(@PathVariable int eid,@PathVariable int iid, @RequestBody String jsonInvItem, HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(path = "inventory/{inventoryid}/inventoryItem/{equipmentId}", method = RequestMethod.POST)
+	public InventoryItem createInventoryItem(@PathVariable int equipmentId,@PathVariable int inventoryid, @RequestBody String jsonInvItem, HttpServletRequest request, HttpServletResponse response) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			InventoryItem mappedInventoryItem = mapper.readValue(jsonInvItem, InventoryItem.class);
-			return invItem.create(iid, eid, mappedInventoryItem);
+			return invItem.create(inventoryid, equipmentId, mappedInventoryItem);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -55,8 +53,8 @@ public class InventoryItemController {
 	}
 	
 	
-	@RequestMapping(path="inventoryitem/{iiid}", method=RequestMethod.DELETE)
-	public Boolean destroy(@PathVariable int iiid, HttpServletRequest request, HttpServletResponse response){
-		return invItem.destroy(iiid);
+	@RequestMapping(path="inventoryItem/{inventoryItemId}", method=RequestMethod.DELETE)
+	public Boolean destroy(@PathVariable int inventoryItemId, HttpServletRequest request, HttpServletResponse response){
+		return invItem.destroy(inventoryItemId);
 	}
 }

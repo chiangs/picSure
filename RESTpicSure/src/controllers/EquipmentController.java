@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.EquipmentDAO;
-import entities.Address;
 import entities.Equipment;
 
 @RestController
@@ -24,43 +23,43 @@ public class EquipmentController {
 	@Autowired
 	private EquipmentDAO equip;
 
-	@RequestMapping(path = "equipment", method = RequestMethod.GET)
+	@RequestMapping(path = "equipment/", method = RequestMethod.GET)
 	public List<Equipment> show(HttpServletRequest request, HttpServletResponse response) {
 		return equip.index();
 	}
 	
-	@RequestMapping(path="equipment/{eid}", method=RequestMethod.GET)
-	public Equipment show(@PathVariable int eid, HttpServletRequest request, HttpServletResponse response){
-		return equip.show(eid);
+	@RequestMapping(path="equipment/{equipmentId}", method=RequestMethod.GET)
+	public Equipment show(@PathVariable int equipmentid, HttpServletRequest request, HttpServletResponse response){
+		return equip.show(equipmentid);
 	}
 	
-	@RequestMapping(path="equipment/{eid}", method=RequestMethod.PUT)
-	public Equipment update(@PathVariable int eid, @RequestBody String jsonEquip, HttpServletRequest request, HttpServletResponse response){
+	@RequestMapping(path="equipment/{equipmentId}", method=RequestMethod.PUT)
+	public Equipment update(@PathVariable int equipmentId, @RequestBody String jsonEquip, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Equipment mappedEquip = mapper.readValue(jsonEquip, Equipment.class);
-			return equip.update(eid, mappedEquip);
+			return equip.update(equipmentId, mappedEquip);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	@RequestMapping(path="user/{id}/equipment", method=RequestMethod.POST)
-	public Equipment createEquipment(@PathVariable int id,@RequestBody String jsonEquip, HttpServletRequest request, HttpServletResponse response){
+	@RequestMapping(path="user/{userid}/equipment", method=RequestMethod.POST)
+	public Equipment createEquipment(@PathVariable int userid,@RequestBody String jsonEquip, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Equipment mappedEquip = mapper.readValue(jsonEquip, Equipment.class);
-			return equip.create(id, mappedEquip);
+			return equip.create(userid, mappedEquip);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	@RequestMapping(path="equipment/{eid}", method=RequestMethod.DELETE)
-	public Boolean destroy(@PathVariable int eid, HttpServletRequest request, HttpServletResponse response){
-		return equip.destroy(eid);
+	@RequestMapping(path="equipment/{equipmentId}", method=RequestMethod.DELETE)
+	public Boolean destroy(@PathVariable int equipmentId, HttpServletRequest request, HttpServletResponse response){
+		return equip.destroy(equipmentId);
 	}
 
 }

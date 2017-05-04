@@ -1,7 +1,5 @@
 package controllers;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,17 +27,17 @@ public class AddressController {
 		return "pong";
 	}
 	
-	@RequestMapping(path="address/{aid}", method=RequestMethod.GET)
-	public Address show(@PathVariable int aid, HttpServletRequest request, HttpServletResponse response){
-		return add.show(aid);
+	@RequestMapping(path="address/{addressId}", method=RequestMethod.GET)
+	public Address show(@PathVariable int addressId, HttpServletRequest request, HttpServletResponse response){
+		return add.show(addressId);
 	}
 	
-	@RequestMapping(path="address/{aid}", method=RequestMethod.PUT)
-	public Address update(@PathVariable int aid, @RequestBody String jsonAddress, HttpServletRequest request, HttpServletResponse response){
+	@RequestMapping(path="address/{addressId}", method=RequestMethod.PUT)
+	public Address update(@PathVariable int addressId, @RequestBody String jsonAddress, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Address mappedAddress = mapper.readValue(jsonAddress, Address.class);
-			return add.update(aid, mappedAddress);
+			return add.update(addressId, mappedAddress);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -58,9 +56,9 @@ public class AddressController {
 		}
 	}
 	
-	@RequestMapping(path="address/{aid}", method=RequestMethod.DELETE)
-	public Boolean destroy(@PathVariable int aid, HttpServletRequest request, HttpServletResponse response){
-		return add.destroy(aid);
+	@RequestMapping(path="address/{addressId}", method=RequestMethod.DELETE)
+	public Boolean destroy(@PathVariable int addressId, HttpServletRequest request, HttpServletResponse response){
+		return add.destroy(addressId);
 	}
 }
 

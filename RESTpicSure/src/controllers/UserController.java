@@ -21,10 +21,22 @@ public class UserController {
 	@Autowired
 	private UserDAO userDAO;
 	
-	@RequestMapping(value = "user/{id}", method = RequestMethod.GET)
-    public User index(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer id) {
-    	return userDAO.show(id);
-    };
+	@RequestMapping(value = "user/{userId}", method = RequestMethod.GET)
+    public User index(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer userId) {
+    	return userDAO.show(userId);
+    }
+	
+	@RequestMapping(value="user/{userId}", method=RequestMethod.PUT)
+	public User update(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer userId, @RequestBody String jsonUser) {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			User mappedUser = mapper.readValue(jsonUser, User.class);
+			return userDAO.update(userId, mappedUser);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	@RequestMapping(value = "user/", method = RequestMethod.POST)
 	public User create(HttpServletRequest req, HttpServletResponse res, @RequestBody String jsonUser) {
@@ -38,20 +50,8 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value="user/{id}", method=RequestMethod.PUT)
-	public User update(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer id, @RequestBody String jsonUser) {
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			User mappedUser = mapper.readValue(jsonUser, User.class);
-			return userDAO.update(id, mappedUser);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	@RequestMapping(value="user/{id}", method= RequestMethod.DELETE)
-	public Boolean destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer id) {
-		return userDAO.destroy(id);
+	@RequestMapping(value="user/{userId}", method= RequestMethod.DELETE)
+	public Boolean destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer userId) {
+		return userDAO.destroy(userId);
 	}
 }

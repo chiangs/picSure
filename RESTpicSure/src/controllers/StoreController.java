@@ -26,24 +26,24 @@ public class StoreController {
 		return storeDAO.show(storeId);
 	}
 
-	@RequestMapping(value = "store/{userId}/user", method = RequestMethod.POST)
-	public Store create(HttpServletRequest req, HttpServletResponse res, @RequestBody String jsonStore, @PathVariable Integer userId) {
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			Store mappedStore = mapper.readValue(jsonStore, Store.class);
-			return storeDAO.create(userId, mappedStore);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
 	@RequestMapping(value = "store/{storeId}", method = RequestMethod.PUT)
 	public Store update(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer storeId, @RequestBody String jsonStore) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			Store mappedStore = mapper.readValue(jsonStore, Store.class);
 			return storeDAO.update(storeId, mappedStore);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@RequestMapping(value = "user/{userId}/store", method = RequestMethod.POST)
+	public Store create(HttpServletRequest req, HttpServletResponse res, @RequestBody String jsonStore, @PathVariable Integer userId) {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			Store mappedStore = mapper.readValue(jsonStore, Store.class);
+			return storeDAO.create(userId, mappedStore);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
