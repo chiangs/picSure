@@ -32,20 +32,9 @@ public class AddressDAOImpl implements AddressDAO {
 		address.setZip(a.getZip());
 		return address;
 	}
-
-	@Override
-	public Address createUserAddress(Integer id, Address a) {
-		User u = em.find(User.class, id);
-		a.setUser(u);
-		em.persist(a);
-		em.flush();
-		return a;
-	}
 	
 	@Override
-	public Address createStoreAddress(Integer id, Address a) {
-		Store s = em.find(Store.class, id);
-		a.setStore(s);
+	public Address createAddress(Address a) {
 		em.persist(a);
 		em.flush();
 		return a;
