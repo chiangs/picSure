@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -31,6 +32,11 @@ public class Reservation {
 	@JsonIgnore
 	@OneToMany(mappedBy="reservations")
 	private List<ReservationItem> reservationItems;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="storeId")
+	private Store store;
 
 
 	// gets and set
@@ -60,6 +66,14 @@ public class Reservation {
 
 	public int getId() {
 		return id;
+	}
+
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
 	}
 
 }
