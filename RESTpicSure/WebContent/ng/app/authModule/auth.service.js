@@ -75,14 +75,14 @@ angular.module('authModule')
     service.registerLister = function(lister) {
         // TODO : Use the auth/register route to create and authenticate the user
         // On success, use saveToken to store the users id/email
-      	user.admin = true;
+      	lister.admin = true;
       	return $http({
   			method : 'POST',
   			url : BASE_URL + 'registerLister',
   			headers : {
   				'Content-Type' : 'application/json'
   			},
-  			data : user
+  			data : lister
   		}).then(function(res){
   			saveToken(res.data);
   			$location.path('/contact');
