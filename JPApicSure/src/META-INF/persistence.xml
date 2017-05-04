@@ -8,12 +8,12 @@
 			<class>entities.Address</class>
 			<class>entities.Cart</class>
 			<class>entities.Equipment</class>
+			<class>entities.Inventory</class>
 			<class>entities.InventoryItem</class>
+			<class>entities.Reservation</class>
 			<class>entities.ReservationItem</class>
 			<class>entities.Store</class>
 			<class>entities.User</class>
-			<class>entities.Inventory</class>
-			<class>entities.Reservation</class>
 			
 
 		<properties>
