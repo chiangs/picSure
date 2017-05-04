@@ -50,7 +50,7 @@ public class ReservationItemController {
 			}
 		}
 
-		@RequestMapping(value = "store/{id}", method = RequestMethod.DELETE)
+		@RequestMapping(value = "reservationItem/{id}", method = RequestMethod.DELETE)
 		public Boolean destroy(@PathVariable Integer id) {
 			return resItemDAO.destroy(id);
 		}
