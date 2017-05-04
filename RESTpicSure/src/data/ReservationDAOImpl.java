@@ -29,13 +29,13 @@ public class ReservationDAOImpl implements ReservationDAO {
 	
 	@Override
 	public List<Reservation> userIndex(Integer id) {
-		String q = "SELECT r FROM Reservation r WHERE r.userId = :id";
+		String q = "SELECT r FROM Reservation r WHERE r.user.id = :id";
 		return em.createQuery(q, Reservation.class).setParameter("id", id).getResultList();
 	}
 
 	@Override
 	public List<Reservation> storeIndex(Integer id) {
-		String q = "SELECT r FROM Reservation r WHERE r.store.Id = :id";
+		String q = "SELECT r FROM Reservation r WHERE r.store.id = :id";
 		return em.createQuery(q, Reservation.class).setParameter("id", id).getResultList();
 	}
 

@@ -27,7 +27,7 @@ public class AddressController {
 		return "pong";
 	}
 	
-	@RequestMapping(path="store/{storeId}/address/", method=RequestMethod.GET)
+	@RequestMapping(path="store/{storeId}/address", method=RequestMethod.GET)
 	public Address show(@PathVariable int storeId, HttpServletRequest request, HttpServletResponse response){
 		return add.show(storeId);
 	}
