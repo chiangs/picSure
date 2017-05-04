@@ -26,6 +26,8 @@ angular.module('authModule')
     }
 
     service.login = function(user) {
+    	console.log(user)
+    	console.log('in service.login')
       // TODO : Use the auth/login route to authenticate the user
       // On success, use saveToken to store the users id/email
     	return $http({

@@ -11,8 +11,6 @@
 	<mvc:annotation-driven />
 	<tx:annotation-driven transaction-manager="myTransactionManager" />
 	
-	<bean id="AuthenticationDAO" class="data.AuthenticationDAOImpl"/>
-
 	<bean id="myEntityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="picSure" />
