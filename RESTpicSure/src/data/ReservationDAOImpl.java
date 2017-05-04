@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.Inventory;
 import entities.Reservation;
 import entities.ReservationItem;
 import entities.User;
@@ -50,8 +51,6 @@ public class ReservationDAOImpl implements ReservationDAO {
 		r.setReservationItems(resItems);
 		r.setCreatedDate(r.getCreatedDate());
 		r.setUser(em.find(User.class, userId));
-		
-		
 		em.persist(r);
 		em.flush();
 		return r;
@@ -59,7 +58,11 @@ public class ReservationDAOImpl implements ReservationDAO {
 
 	@Override
 	public Boolean destroy(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			em.remove(em.find(Reservation.class, id));
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }

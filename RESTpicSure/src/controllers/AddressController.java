@@ -37,10 +37,28 @@ public class AddressController {
 		try {
 			Address mappedAddress = mapper.readValue(jsonAddress, Address.class);
 			return add.update(id, mappedAddress);
-		
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
+	
+	@RequestMapping(path="rest/address", method=RequestMethod.POST)
+	public Address createAddress(@RequestBody String jsonAddress){
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			Address mappedAddress = mapper.readValue(jsonAddress, Address.class);
+			return add.createAddress(mappedAddress);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@RequestMapping(path="rest/address/{id}", method=RequestMethod.DELETE)
+	public Boolean destroy(@PathVariable int id){
+		return add.destroy(id);
+	}
 }
+
+

@@ -19,9 +19,7 @@ public class Reservation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	  
-	  
 	private Date createdDate;
-
 
 	@OneToOne
 	@JoinColumn(name="userId")
@@ -32,43 +30,33 @@ public class Reservation {
 
 
 	// gets and set
-
-
-
 	public Date getCreatedDate() {
 		return createdDate;
 	}
-
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
-
 	public User getUser() {
 		return user;
 	}
-
 
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-
 	public List<ReservationItem> getReservationItems() {
 		return reservationItems;
 	}
-
 
 	public void setReservationItems(List<ReservationItem> reservationItems) {
 		this.reservationItems = reservationItems;
 	}
 
-
 	public int getId() {
 		return id;
 	}
-
 
 	// toString
 	@Override
