@@ -1,0 +1,18 @@
+<nav ng-show="vm.isLoggedIn()" class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			<a class="navbar-brand" href="contact.html"><img id="logo"
+				src="./images/icon.png" alt="picSure"></a>
+		</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a class="bold" href="X">Home</a></li>
+				<li><a class="bold" href="#">Business Stats</a></li>
+				<li><a class="bold" href="#">Reservations</a></li>
+				<li><a class="bold" id="about" href="#">Profile</a></li>
+				<li><a class="bold" href="#">Contact</a></li>
+				<logout ng-show="vm.isLoggedIn()"></logout>
+			</ul>
+		</div>
+</nav>

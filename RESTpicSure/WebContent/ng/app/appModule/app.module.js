@@ -1,4 +1,4 @@
-angular.module('appModule', [ 'ngRoute', 'static', 'navUser', 'navLister', 'authModule' ]).config(
+angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule' ]).config(
 		function($routeProvider) {
 			$routeProvider.when('/', {
 				template : '<home></home>'
