@@ -2,6 +2,9 @@ package controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,25 +29,25 @@ public class AddressController {
 		return "pong";
 	}
 	
-	@RequestMapping(path="rest/address/{id}", method=RequestMethod.GET)
-	public Address show(@PathVariable int id){
-		return add.show(id);
+	@RequestMapping(path="rest/{id}/address/{aid}", method=RequestMethod.GET)
+	public Address show(@PathVariable int aid, HttpServletRequest request, HttpServletResponse response){
+		return add.show(aid);
 	}
 	
-	@RequestMapping(path="rest/address/{id}", method=RequestMethod.PUT)
-	public Address update(@PathVariable int id, @RequestBody String jsonAddress){
+	@RequestMapping(path="rest/{id}/address/{aid}", method=RequestMethod.PUT)
+	public Address update(@PathVariable int aid, @RequestBody String jsonAddress, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Address mappedAddress = mapper.readValue(jsonAddress, Address.class);
-			return add.update(id, mappedAddress);
+			return add.update(aid, mappedAddress);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	@RequestMapping(path="rest/address", method=RequestMethod.POST)
-	public Address createAddress(@RequestBody String jsonAddress){
+	@RequestMapping(path="rest/{id}/address", method=RequestMethod.POST)
+	public Address createAddress(@RequestBody String jsonAddress, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Address mappedAddress = mapper.readValue(jsonAddress, Address.class);
@@ -55,9 +58,9 @@ public class AddressController {
 		}
 	}
 	
-	@RequestMapping(path="rest/address/{id}", method=RequestMethod.DELETE)
-	public Boolean destroy(@PathVariable int id){
-		return add.destroy(id);
+	@RequestMapping(path="rest/{id}/address/{aid}", method=RequestMethod.DELETE)
+	public Boolean destroy(@PathVariable int aid, HttpServletRequest request, HttpServletResponse response){
+		return add.destroy(aid);
 	}
 }
 
