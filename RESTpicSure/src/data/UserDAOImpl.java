@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import entities.Address;
+import entities.Reservation;
 import entities.User;
 
 @Transactional
@@ -39,7 +39,14 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 		
 	public User create(User u) {
-		return null;
+	 List<Reservation> res = new ArrayList<>();
+	 u.setReservations(res);
+	 
+		em.persist(u);
+		em.flush();
+		
+		
+		return u;
 	}
 
 	@Override

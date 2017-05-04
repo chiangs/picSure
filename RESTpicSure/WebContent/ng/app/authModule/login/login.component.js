@@ -8,7 +8,6 @@ angular.module('authModule').component('login', {
 		
 		vm.loginUser = function(user) {
 			authService.login(user).then(function(){
-				console.log('in auth loginUser')
 				$location.path('/contact');
 			}).catch(function(){
 				vm.error = "Something went wrong";
