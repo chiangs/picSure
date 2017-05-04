@@ -24,8 +24,7 @@ public class AddressDAOImpl implements AddressDAO {
 
 	@Override
 	public Address update(Integer id, Address a) {
-		User u = em.find(User.class, id);
-		Address address = em.find(Address.class, u.getAddress().getId());
+		Address address = em.find(Address.class, id);
 		address.setStreet(a.getStreet());
 		address.setStreet2(a.getStreet2());
 		address.setCity(a.getCity());
@@ -43,8 +42,7 @@ public class AddressDAOImpl implements AddressDAO {
 
 	@Override
 	public Boolean destroy(Integer id) {
-		User u = em.find(User.class, id);
-		Address a = em.find(Address.class, u.getAddress().getId());
+		Address a = em.find(Address.class, id);
 		try {
 			em.remove(a);
 			return true;

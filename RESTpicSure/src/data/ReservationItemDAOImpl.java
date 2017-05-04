@@ -1,5 +1,7 @@
 package data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -20,6 +22,13 @@ public class ReservationItemDAOImpl implements ReservationItemDAO{
 	@Override
 	public ReservationItem show(Integer id) {
 		return em.find(ReservationItem.class, id);
+	}
+	
+	@Override
+	public List<ReservationItem> index(Integer id) {
+		Reservation r = em.find(Reservation.class, id);
+		String q = "SELECT r FROM ReservationItem r WHERE r.reservation.id = :id";
+		return em.createQuery(q, ReservationItem.class).setParameter("id", id).getResultList();
 	}
 
 	@Override
