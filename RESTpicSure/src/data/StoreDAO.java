@@ -1,10 +1,10 @@
 package data;
 
-import entities.Equipment;
+import entities.Store;
 
 public interface StoreDAO {
-	public Equipment show(Integer id);
-	public Equipment update(Integer id, Equipment c);
-	public Equipment create(Integer id, Equipment c);
-	public Equipment destroy(Integer id);
+	public Store show(Integer id);
+	public Store update(Integer id, Store s);
+	public Store create(Integer id, Store s);
+	public Boolean destroy(Integer id);
 }
