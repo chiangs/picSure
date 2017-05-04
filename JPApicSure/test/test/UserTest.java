@@ -39,7 +39,7 @@ public class UserTest {
 	
 	  @Test
 	  public void test_user_address_map() {
-		 assertEquals(2, user.getAddress().getId());
+		 assertEquals("Seth", user.getfName());
 	  }
 	  
 
