@@ -58,6 +58,7 @@ angular.module('authModule')
     service.register = function(user) {
       // TODO : Use the auth/register route to create and authenticate the user
       // On success, use saveToken to store the users id/email
+    	user.admin = false;
     	return $http({
 			method : 'POST',
 			url : BASE_URL + 'registerUser',
@@ -67,7 +68,7 @@ angular.module('authModule')
 			data : user
 		}).then(function(res){
 			saveToken(res.data);
-			$location.path('/picSure');
+			$location.path('/contact');
 		})
     }
     
