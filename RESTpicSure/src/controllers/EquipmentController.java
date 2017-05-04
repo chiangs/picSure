@@ -24,8 +24,13 @@ public class EquipmentController {
 	private EquipmentDAO equip;
 
 	@RequestMapping(path = "equipment/", method = RequestMethod.GET)
-	public List<Equipment> show(HttpServletRequest request, HttpServletResponse response) {
+	public List<Equipment> index(HttpServletRequest request, HttpServletResponse response) {
 		return equip.index();
+	}
+	
+	@RequestMapping(path = "store/{storeId}/equipment/", method = RequestMethod.GET)
+	public List<Equipment> indexStore(@PathVariable Integer storeId, HttpServletRequest request, HttpServletResponse response) {
+		return equip.indexStore(storeId);
 	}
 	
 	@RequestMapping(path="equipment/{equipmentId}", method=RequestMethod.GET)

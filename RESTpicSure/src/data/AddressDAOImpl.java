@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Address;
-import entities.Store;
 import entities.User;
 
 @Transactional
@@ -19,12 +18,14 @@ public class AddressDAOImpl implements AddressDAO {
 
 	@Override
 	public Address show(Integer id) {
-		return em.find(Address.class, id);
+		String q = "SELECT a FROM Address a WHERE a.user.id = :id";
+		return em.createQuery(q, Address.class).setParameter("id", id).getSingleResult();
 	}
 
 	@Override
 	public Address update(Integer id, Address a) {
-		Address address = em.find(Address.class, id);
+		User u = em.find(User.class, id);
+		Address address = em.find(Address.class, u.getAddress().getId());
 		address.setStreet(a.getStreet());
 		address.setStreet2(a.getStreet2());
 		address.setCity(a.getCity());
@@ -42,8 +43,10 @@ public class AddressDAOImpl implements AddressDAO {
 
 	@Override
 	public Boolean destroy(Integer id) {
+		User u = em.find(User.class, id);
+		Address a = em.find(Address.class, u.getAddress().getId());
 		try {
-			em.remove(em.find(Address.class, id));
+			em.remove(a);
 			return true;
 		} catch (Exception e) {
 			return false;

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entities.Cart;
 import entities.CartItem;
+import entities.Reservation;
 import entities.User;
 
 @Transactional
@@ -22,12 +23,14 @@ public class CartDAOImpl implements CartDAO {
 	
 	@Override
 	public Cart show(Integer id) {
-		return em.find(Cart.class, id);
+		String q = "SELECT c FROM Cart c WHERE c.user.id = :id";
+		return em.createQuery(q, Cart.class).setParameter("id", id).getSingleResult();
 	}
 
 	@Override
-	public Cart update(Integer id, Cart c) {
-		Cart cart = em.find(Cart.class, id);
+	public Cart update(Integer userId, Cart c) {
+		User u = em.find(User.class, userId);
+		Cart cart = em.find(Cart.class, u.getCart().getId());
 		cart.setCartItems(c.getCartItems());
 		return cart;
 	}

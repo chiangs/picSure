@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entities.CartItem;
 import entities.Equipment;
+import entities.Reservation;
 
 @Transactional
 @Repository
@@ -22,6 +23,12 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 	public List<Equipment> index() {
 		String q = "SELECT e FROM EQUIPMENT e";
 		return em.createQuery(q, Equipment.class).getResultList();
+	}
+	
+	@Override 
+	public List<Equipment> indexStore(Integer id) {
+		String q = "SELECT e FROM Equipment e WHERE e.store.id = :id";
+		return em.createQuery(q, Equipment.class).setParameter("id", id).getResultList();
 	}
 	
 	@Override

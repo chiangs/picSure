@@ -21,29 +21,29 @@ public class InventoryController {
 	@Autowired
 	private InventoryDAO inv;
 
-	@RequestMapping(path="inventory/{inventoryId}", method=RequestMethod.GET)
-	public Inventory show(@PathVariable int inventoryId, HttpServletRequest request, HttpServletResponse response){
-		return inv.show(inventoryId);
+	@RequestMapping(path="store/{storeId}/inventory", method=RequestMethod.GET)
+	public Inventory show(@PathVariable int storeId, HttpServletRequest request, HttpServletResponse response){
+		return inv.show(storeId);
 	}
 	
-	@RequestMapping(path="inventory/{inventoryId}", method=RequestMethod.PUT)
-	public Inventory update(@PathVariable int inventoryId, @RequestBody String jsonInventory, HttpServletRequest request, HttpServletResponse response){
+	@RequestMapping(path="store/{storeId}/inventory", method=RequestMethod.PUT)
+	public Inventory update(@PathVariable int storeId, @RequestBody String jsonInventory, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Inventory mappedInventory = mapper.readValue(jsonInventory, Inventory.class);
-			return inv.update(inventoryId, mappedInventory);
+			return inv.update(storeId, mappedInventory);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	@RequestMapping(path="user/{userId}/inventory", method=RequestMethod.POST)
-	public Inventory createInventory(@PathVariable int userId, @RequestBody String jsonInventory, HttpServletRequest request, HttpServletResponse response){
+	@RequestMapping(path="store/{storeId}/inventory", method=RequestMethod.POST)
+	public Inventory createInventory(@PathVariable int storeId, @RequestBody String jsonInventory, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Inventory mappedInventory = mapper.readValue(jsonInventory, Inventory.class);
-			return inv.create(userId, mappedInventory);
+			return inv.create(storeId, mappedInventory);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
