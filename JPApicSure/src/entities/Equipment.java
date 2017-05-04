@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Equipment {
 
@@ -27,6 +29,7 @@ public class Equipment {
 	private double rate;
 
 	private String make;
+	
 	
 	@OneToMany(mappedBy="equipment")
 	private List<InventoryItem> inventoryItems;

@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `fName` VARCHAR(45) NOT NULL,
   `lName` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
   `phone` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `admin` TINYINT(1) NOT NULL DEFAULT 0,
