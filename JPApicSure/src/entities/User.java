@@ -113,13 +113,6 @@ public class User {
 		this.admin = admin;
 	}
 
-	public Boolean getPicSureEmp() {
-		return picSureEmp;
-	}
-
-	public void setPicSureEmp(Boolean picSureEmp) {
-		this.picSureEmp = picSureEmp;
-	}
 
 	public Cart getCart() {
 		return cart;
