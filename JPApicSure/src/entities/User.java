@@ -34,9 +34,7 @@ public class User {
 	  private String email;
 	  
 	  private Boolean admin;
-	  
-	  private Boolean picSureEmp;
-	  
+	  	  
 	  @OneToOne(cascade = CascadeType.PERSIST)
 	  @JoinColumn(name="addressId")
 	  private Address address;
