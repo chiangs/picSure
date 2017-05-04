@@ -34,7 +34,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 
 	@Override
 	public List<Reservation> storeIndex(Integer id) {
-		String q = "SELECT r FROM Reservation r WHERE r.reservationItem.inventoryItem.inventory.storeId = :id";
+		String q = "SELECT r FROM Reservation r WHERE r.reservationItem.inventoryItem.inventory.store.Id = :id";
 		return em.createQuery(q, Reservation.class).setParameter("id", id).getResultList();
 	}
 
