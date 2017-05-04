@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Store {
@@ -28,18 +29,23 @@ public class Store {
 	  
 	private String email;
 
-	@JsonIgnore
+	
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name="addressId")
 	private Address address;
-	  
+	 
+	@JsonManagedReference
 	@OneToOne(mappedBy="store")
 	private Inventory inventory; 
-	  
+	 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "lister", joinColumns = @JoinColumn(name = "storeId"), inverseJoinColumns = @JoinColumn(name = "userId"))
 	private List<User> users;
 
+	
+	
+	
 	// gets and sets
 	public String getName() {
 		return name;

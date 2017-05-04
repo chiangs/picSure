@@ -3,6 +3,7 @@ package entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Inventory {
@@ -20,15 +22,19 @@ public class Inventory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-
+	@JsonBackReference
 	@OneToOne
 	@JoinColumn(name="storeId")
 	private Store store;
 	
-	@JsonBackReference
-	@OneToMany(mappedBy="inventory")
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy="inventory", fetch= FetchType.EAGER)
 	private List<InventoryItem> iventoryItems;
 
+	
+	
+	// gets and sets
 	public Store getStore() {
 		return store;
 	}

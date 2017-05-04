@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Reservation {
 	
@@ -20,11 +22,13 @@ public class Reservation {
 	private int id;
 	  
 	private Date createdDate;
-
+	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="userId")
 	private User user;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="reservations")
 	private List<ReservationItem> reservationItems;
 
