@@ -22,12 +22,12 @@ public class InventoryController {
 	@Autowired
 	private InventoryDAO inv;
 
-	@RequestMapping(path="rest/{id}/inventory/{iid}", method=RequestMethod.GET)
+	@RequestMapping(path="inventory/{iid}", method=RequestMethod.GET)
 	public Inventory show(@PathVariable int iid, HttpServletRequest request, HttpServletResponse response){
 		return inv.show(iid);
 	}
 	
-	@RequestMapping(path="rest/{id}/inventory/{iid}", method=RequestMethod.PUT)
+	@RequestMapping(path="inventory/{iid}", method=RequestMethod.PUT)
 	public Inventory update(@PathVariable int iid, @RequestBody String jsonInventory, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -39,7 +39,7 @@ public class InventoryController {
 		}
 	}
 	
-	@RequestMapping(path="rest/{id}/inventory", method=RequestMethod.POST)
+	@RequestMapping(path="user/{id}/inventory", method=RequestMethod.POST)
 	public Inventory createInventory(@PathVariable int id,@RequestBody String jsonInventory, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -51,7 +51,7 @@ public class InventoryController {
 		}
 	}
 	
-	@RequestMapping(path="rest/{id}/invnentory/{iid}", method=RequestMethod.DELETE)
+	@RequestMapping(path="invnentory/{iid}", method=RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable int iid, HttpServletRequest request, HttpServletResponse response){
 		return inv.destroy(iid);
 	}

@@ -19,23 +19,22 @@ import entities.Address;
 import entities.Equipment;
 
 @RestController
-@RequestMapping("/equipment")
 public class EquipmentController {
 
 	@Autowired
 	private EquipmentDAO equip;
 
-	@RequestMapping(path = "rest/{id}/equipment", method = RequestMethod.GET)
+	@RequestMapping(path = "equipment", method = RequestMethod.GET)
 	public List<Equipment> show(HttpServletRequest request, HttpServletResponse response) {
 		return equip.index();
 	}
 	
-	@RequestMapping(path="rest/{id}/equipment/{eid}", method=RequestMethod.GET)
+	@RequestMapping(path="equipment/{eid}", method=RequestMethod.GET)
 	public Equipment show(@PathVariable int eid, HttpServletRequest request, HttpServletResponse response){
 		return equip.show(eid);
 	}
 	
-	@RequestMapping(path="rest/{id}/equipment/{eid}", method=RequestMethod.PUT)
+	@RequestMapping(path="equipment/{eid}", method=RequestMethod.PUT)
 	public Equipment update(@PathVariable int eid, @RequestBody String jsonEquip, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -47,7 +46,7 @@ public class EquipmentController {
 		}
 	}
 	
-	@RequestMapping(path="rest/{id}/equipment", method=RequestMethod.POST)
+	@RequestMapping(path="user/{id}/equipment", method=RequestMethod.POST)
 	public Equipment createEquipment(@PathVariable int id,@RequestBody String jsonEquip, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -59,7 +58,7 @@ public class EquipmentController {
 		}
 	}
 	
-	@RequestMapping(path="rest/{id}/equipment/{eid}", method=RequestMethod.DELETE)
+	@RequestMapping(path="equipment/{eid}", method=RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable int eid, HttpServletRequest request, HttpServletResponse response){
 		return equip.destroy(eid);
 	}

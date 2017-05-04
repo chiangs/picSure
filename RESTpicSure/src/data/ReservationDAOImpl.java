@@ -22,6 +22,11 @@ public class ReservationDAOImpl implements ReservationDAO {
 	private EntityManager em;
 	
 	@Override
+	public Reservation show(Integer id) {
+		return em.find(Reservation.class, id);
+	}
+	
+	@Override
 	public List<Reservation> userIndex(Integer id) {
 		String q = "SELECT r FROM Reservation r WHERE r.userId = :id";
 		return em.createQuery(q, Reservation.class).setParameter("id", id).getResultList();
@@ -31,11 +36,6 @@ public class ReservationDAOImpl implements ReservationDAO {
 	public List<Reservation> storeIndex(Integer id) {
 		String q = "SELECT r FROM Reservation r WHERE r.reservationItem.inventoryItem.inventory.storeId = :id";
 		return em.createQuery(q, Reservation.class).setParameter("id", id).getResultList();
-	}
-
-	@Override
-	public Reservation show(Integer id) {
-		return em.find(Reservation.class, id);
 	}
 
 	@Override
