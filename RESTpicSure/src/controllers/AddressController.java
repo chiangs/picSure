@@ -18,7 +18,7 @@ import data.AddressDAO;
 import entities.Address;
 
 @RestController
-@RequestMapping("/address")
+
 public class AddressController {
 	
 	@Autowired
@@ -29,12 +29,12 @@ public class AddressController {
 		return "pong";
 	}
 	
-	@RequestMapping(path="rest/{id}/address/{aid}", method=RequestMethod.GET)
+	@RequestMapping(path="address/{aid}", method=RequestMethod.GET)
 	public Address show(@PathVariable int aid, HttpServletRequest request, HttpServletResponse response){
 		return add.show(aid);
 	}
 	
-	@RequestMapping(path="rest/{id}/address/{aid}", method=RequestMethod.PUT)
+	@RequestMapping(path="address/{aid}", method=RequestMethod.PUT)
 	public Address update(@PathVariable int aid, @RequestBody String jsonAddress, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -46,7 +46,7 @@ public class AddressController {
 		}
 	}
 	
-	@RequestMapping(path="rest/{id}/address", method=RequestMethod.POST)
+	@RequestMapping(path="address", method=RequestMethod.POST)
 	public Address createAddress(@RequestBody String jsonAddress, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -58,7 +58,7 @@ public class AddressController {
 		}
 	}
 	
-	@RequestMapping(path="rest/{id}/address/{aid}", method=RequestMethod.DELETE)
+	@RequestMapping(path="address/{aid}", method=RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable int aid, HttpServletRequest request, HttpServletResponse response){
 		return add.destroy(aid);
 	}

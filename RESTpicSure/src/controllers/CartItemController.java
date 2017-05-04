@@ -17,18 +17,17 @@ import entities.Address;
 import entities.CartItem;
 
 @RestController
-@RequestMapping("/cartItem")
 public class CartItemController {
 
 	@Autowired
 	private CartItemDAO cartItem;
 
-	@RequestMapping(path = "rest/{id}/cartItem/{cid}", method = RequestMethod.GET)
+	@RequestMapping(path = "cartItem/{cid}", method = RequestMethod.GET)
 	public CartItem show(@PathVariable int cid, HttpServletRequest request, HttpServletResponse response) {
 		return cartItem.show(cid);
 	}
 
-	@RequestMapping(path = "rest/{id}/cartItem/{cid}", method = RequestMethod.PUT)
+	@RequestMapping(path = "cartItem/{cid}", method = RequestMethod.PUT)
 	public CartItem update(@PathVariable int cid, @RequestBody String jsonCartItem, HttpServletRequest request,
 			HttpServletResponse response) {
 		ObjectMapper mapper = new ObjectMapper();
@@ -41,7 +40,7 @@ public class CartItemController {
 		}
 	}
 
-	@RequestMapping(path = "rest/{id}/cartItem/{iid}", method = RequestMethod.POST)
+	@RequestMapping(path = "user/{id}/cartItem/{iid}", method = RequestMethod.POST)
 	public CartItem createCartItem(@PathVariable int id, @PathVariable int iid, @RequestBody String jsonCartItem,
 			HttpServletRequest request, HttpServletResponse response) {
 		ObjectMapper mapper = new ObjectMapper();
@@ -54,7 +53,7 @@ public class CartItemController {
 		}
 	}
 
-	@RequestMapping(path = "rest/{id}/cartItem/{cid", method = RequestMethod.DELETE)
+	@RequestMapping(path = "cartItem/{cid}", method = RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable int cid, HttpServletRequest request, HttpServletResponse response) {
 		return cartItem.destroy(cid);
 	}

@@ -17,18 +17,17 @@ import entities.Address;
 import entities.Cart;
 
 @RestController
-@RequestMapping("/cart")
 public class CartController {
 	
 	@Autowired
 	private CartDAO cart;
 
-	@RequestMapping(path="rest/{id}/cart/{cid}", method=RequestMethod.GET)
+	@RequestMapping(path="cart/{cid}", method=RequestMethod.GET)
 	public Cart show(@PathVariable int cid, HttpServletRequest request, HttpServletResponse response){
 		return cart.show(cid);
 	}
 	
-	@RequestMapping(path="rest/{id}/cart/{cid}", method=RequestMethod.PUT)
+	@RequestMapping(path="cart/{cid}", method=RequestMethod.PUT)
 	public Cart update(@PathVariable int cid, @RequestBody String jsonCart, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -40,7 +39,7 @@ public class CartController {
 		}
 	}
 	
-	@RequestMapping(path="rest/{id}/cart/{cid}", method=RequestMethod.POST)
+	@RequestMapping(path="cart/{cid}", method=RequestMethod.POST)
 	public Cart create(@PathVariable int cid, @RequestBody String jsonCart, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
