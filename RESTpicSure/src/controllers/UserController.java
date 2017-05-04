@@ -27,7 +27,7 @@ public class UserController {
     };
 	
 	@RequestMapping(value = "user/", method = RequestMethod.POST)
-	public User create(@RequestBody String jsonUser) {
+	public User create(HttpServletRequest req, HttpServletResponse res, @RequestBody String jsonUser) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			User mappedUser = mapper.readValue(jsonUser, User.class);
@@ -39,7 +39,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="user/{id}", method=RequestMethod.PUT)
-	public User update(@PathVariable Integer id, @RequestBody String jsonUser) {
+	public User update(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer id, @RequestBody String jsonUser) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			User mappedUser = mapper.readValue(jsonUser, User.class);
@@ -51,7 +51,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="user/{id}", method= RequestMethod.DELETE)
-	public Boolean destroy(@PathVariable Integer id) {
+	public Boolean destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer id) {
 		return userDAO.destroy(id);
 	}
 }
