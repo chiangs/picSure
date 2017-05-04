@@ -6,7 +6,7 @@ angular.module('authModule').component('login', {
 		vm.showListerLogin = false;
 		vm.showListerLoginButton = true;
 		
-		vm.login = function(user) {
+		vm.loginUser = function(user) {
 			authService.login(user).then(function(){
 				$location.path('/user/');
 			}).catch(function(){
