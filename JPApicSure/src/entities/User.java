@@ -34,7 +34,7 @@ public class User {
 	  
 	  private int admin;
 	  
-	  private int picSureEmp;
+	  private Boolean picSureEmp;
 
 	  @OneToOne
 	  @JoinColumn(name="addressId")
