@@ -31,7 +31,8 @@ public class Address {
 	private double latitude;
 
 	private double longitude;
-
+	
+	@JsonIgnore
 	@OneToOne(mappedBy = "address")
 	private Store store;
 	

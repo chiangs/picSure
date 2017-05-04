@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.Cart;
 import entities.User;
 
 @Transactional
@@ -36,7 +37,12 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 		
 	public User create(User u) {
+	 Cart cart = new Cart();
 	 
+	 	em.persist(cart);
+	 	em.flush();
+	 
+	 	u.setCart(cart);
 		em.persist(u);
 		em.flush();
 		

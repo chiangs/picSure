@@ -3,6 +3,7 @@ package entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class Cart {
 	@JoinColumn(name = "userId")
 	private User user;
 
-	@OneToMany(mappedBy="cart")
+	@OneToMany(mappedBy="cart", fetch= FetchType.EAGER)
 	private List<CartItem> cartItems;
 
 	// gets and sets
