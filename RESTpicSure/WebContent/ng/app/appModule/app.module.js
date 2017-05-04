@@ -4,8 +4,10 @@ angular.module('appModule', [ 'ngRoute', 'static', 'navUser', 'navLister', 'auth
 				template : '<home></home>'
 			}).when('/contact', {
 				template : '<contact></contact>'
-			}).when('/register', {
-				template : '<register></register>'
+			}).when('/registerUser', {
+				template : '<register-user></register-user>'
+			}).when('/registerLister', {
+				template : '<register-lister></register-lister>'
 			}).when('/login', {
 				template : '<login></login>'
 			}).otherwise({

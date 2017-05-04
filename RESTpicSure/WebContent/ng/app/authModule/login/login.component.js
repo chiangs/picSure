@@ -3,13 +3,20 @@ angular.module('authModule').component('login', {
 	controller : function(authService, $location) {
 		var vm = this;
 		vm.error = null;
+		vm.showListerLogin = false;
+		vm.showListerLoginButton = true;
 		
 		vm.login = function(user) {
 			authService.login(user).then(function(){
-				$location.path('/todo');
+				$location.path('/user/');
 			}).catch(function(){
 				vm.error = "Something went wrong";
 			})
+		}
+		
+		vm.displayListerLogin = function() {
+			vm.showListerLogin = true;
+			vm.showListerLoginButton = false;
 		}
 		
 	},
