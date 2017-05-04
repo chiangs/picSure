@@ -1,0 +1,1 @@
+angular.Module('listerModule', [])
