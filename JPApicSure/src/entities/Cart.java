@@ -3,12 +3,16 @@ package entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Cart {
@@ -18,11 +22,13 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "userId")
 	private User user;
-
-	@OneToMany(mappedBy="cart")
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy="cart", fetch= FetchType.EAGER)
 	private List<CartItem> cartItems;
 
 	// gets and sets

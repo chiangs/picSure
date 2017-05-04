@@ -40,7 +40,6 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
         }
-		System.out.println(managedUser);
         return managedUser;
 	}
 

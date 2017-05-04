@@ -26,16 +26,13 @@ body {
     -webkit-box-shadow: 0 1.5px 1px -1px #817d7d;
     -moz-box-shadow: 0 1.5px 1px -1px #817d7d;
     box-shadow: 0 1.5px 1px -1px #817d7d;
+    color: #fff;
 }
 
 #logo {
     padding: 0;
     height: 30px;
     border-radius: 50%;
-}
-
-#myNavbar {
-    padding: 0;
 }
 
 #myNavbar a {
@@ -46,6 +43,7 @@ body {
 }
 
 #myNavbar a:hover {
+	color: #fff;
     text-align: center;
 }
 

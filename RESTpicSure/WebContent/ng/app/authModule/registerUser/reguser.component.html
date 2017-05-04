@@ -10,7 +10,7 @@
 							<span class="input-group-addon"> <span
 								class="fa fa-user"></span>
 							</span> <input type="text" class="form-control"
-								placeholder="First Name" ng-model="user.fname">
+								placeholder="First Name" ng-model="user.fName">
 						</div>
 					</div>
 					
@@ -19,11 +19,11 @@
 							<span class="input-group-addon"> <span
 								class="fa fa-user"></span>
 							</span> <input type="text" class="form-control"
-								placeholder="Last Name" ng-model="user.lname">
+								placeholder="Last Name" ng-model="user.lName">
 						</div>
 					</div>
 					
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
 								class="fa fa-home"></span>
@@ -67,7 +67,7 @@
 							</span> <input type="number" class="form-control"
 								placeholder="Zip" ng-model="user.zip">
 						</div>
-					</div>
+					</div> -->
 					
 					<div class="form-group">
 						<div class="input-group">
@@ -100,12 +100,12 @@
 						<div class="input-group">
 							<span class="input-group-addon"> <span
 								class="fa fa-lock"></span>
-							</span> <input type="text" class="form-control" placeholder="Password"ng-model="user.password">
+							</span> <input type="password" class="form-control" placeholder="Password"ng-model="user.password">
 						</div>
 					</div>
 					
-					<input type="hidden" ng-init="user.country=vm.initialCountry" ng-model="user.country">
-				
+<!-- 					<input type="hidden" ng-init="user.country=vm.initialCountry" ng-model="user.country">
+ -->				
 
 					<div class="form-group text-center">
 						<button type="submit" class="btn btn-primary btn-lg" ng-click="vm.registerUser(user)">Submit</button>

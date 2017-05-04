@@ -19,17 +19,37 @@ public class AuthController {
 	@Autowired
 	private AuthenticationDAO authDAO;
 	
-	@RequestMapping(path="/register", method=RequestMethod.POST)
+	@RequestMapping(path="/registerUser", method=RequestMethod.POST)
 	public User register(HttpSession session, @RequestBody User user) {
 		User newUser = authDAO.register(user);
 		session.setAttribute("sessionUser", newUser);
 		return newUser;
 	}
 	
+	@RequestMapping(path="/registerLister", method=RequestMethod.POST)
+	public User registerLister(HttpSession session, @RequestBody User lister) {
+		System.out.println("in register controller");
+		User newLister = authDAO.register(lister);
+		session.setAttribute("sessionUser", newLister);
+		return newLister;
+	}
+	
 	@RequestMapping(path="/login", method=RequestMethod.POST)
 	public User login(HttpSession session, @RequestBody User user) {
 		User sessionUser = authDAO.authenticateUser(user);
 		session.setAttribute("sessionUser", sessionUser);
+		return sessionUser;
+	}
+	
+	@RequestMapping(path="/listerlogin", method=RequestMethod.POST)
+	public User loginLister(HttpSession session, HttpServletResponse response, @RequestBody User lister) {
+		User sessionUser = authDAO.authenticateUser(lister);
+		if (sessionUser.getAdmin() == true) {
+			session.setAttribute("sessionUser", sessionUser);
+		} else {
+			response.setStatus(401);
+			sessionUser = null;
+		}
 		return sessionUser;
 	}
 	

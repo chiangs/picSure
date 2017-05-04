@@ -11,6 +11,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class InventoryItem {
 
@@ -21,17 +25,21 @@ public class InventoryItem {
 
 	private boolean active;
 
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="equipmentId")
 	private Equipment equipment;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="inventoryId")
 	private Inventory inventory;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="inventoryitems")
 	private List<ReservationItem> reservationItems;
 
+	@JsonBackReference
 	@OneToMany(mappedBy="inventoryItem")
 	private List<CartItem> cartItems;
 

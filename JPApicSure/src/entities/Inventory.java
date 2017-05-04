@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Inventory {
 	
@@ -23,6 +25,7 @@ public class Inventory {
 	@JoinColumn(name="storeId")
 	private Store store;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy="inventory")
 	private List<InventoryItem> iventoryItems;
 

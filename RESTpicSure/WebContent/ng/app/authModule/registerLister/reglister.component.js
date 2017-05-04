@@ -5,8 +5,8 @@ angular.module('authModule').component('registerLister', {
 		
 		vm.initialCountry = 'United States of America';
 
-		vm.register = function(user) {
-			return authService.register(user);
+		vm.registerLister = function(lister) {
+			return authService.registerLister(lister);
 		}
 
 	},
