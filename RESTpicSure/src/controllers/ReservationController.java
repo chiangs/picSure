@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.ReservationDAO;
+import entities.Cart;
 import entities.Reservation;
 
 @RestController
@@ -37,25 +38,13 @@ public class ReservationController {
 	public List<Reservation> storeIndex(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer storeId) {
 		return reservationDAO.storeIndex(storeId);
 	}
-
-	@RequestMapping(value = "reservation/{reservationId}", method = RequestMethod.PUT)
-	public Reservation update(@PathVariable Integer reservationId, @RequestBody String jsonReservation) {
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			Reservation mappedReservation = mapper.readValue(jsonReservation, Reservation.class);
-			return reservationDAO.update(reservationId, mappedReservation);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
 	
-	@RequestMapping(value = "user/{userId}/reservation", method = RequestMethod.POST)
-	public Reservation create(@PathVariable Integer userId, @RequestBody String jsonReservation) {
+	@RequestMapping(value = "user/{userId}/store/{storeId}/reservation", method = RequestMethod.POST)
+	public Reservation create(@PathVariable Integer userId, @PathVariable Integer storeId, @RequestBody String jsonCart) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			Reservation mappedReservation = mapper.readValue(jsonReservation, Reservation.class);
-			return reservationDAO.create(userId, mappedReservation);
+			Cart mappedCart = mapper.readValue(jsonCart, Cart.class);
+			return reservationDAO.create(userId, storeId, mappedCart);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

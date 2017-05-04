@@ -27,17 +27,17 @@ public class AddressController {
 		return "pong";
 	}
 	
-	@RequestMapping(path="address/{addressId}", method=RequestMethod.GET)
-	public Address show(@PathVariable int addressId, HttpServletRequest request, HttpServletResponse response){
-		return add.show(addressId);
+	@RequestMapping(path="store/{storeId}/address", method=RequestMethod.GET)
+	public Address show(@PathVariable int storeId, HttpServletRequest request, HttpServletResponse response){
+		return add.show(storeId);
 	}
 	
-	@RequestMapping(path="address/{addressId}", method=RequestMethod.PUT)
-	public Address update(@PathVariable int addressId, @RequestBody String jsonAddress, HttpServletRequest request, HttpServletResponse response){
+	@RequestMapping(path="store/{storeId}/address", method=RequestMethod.PUT)
+	public Address update(@PathVariable int storeId, @RequestBody String jsonAddress, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Address mappedAddress = mapper.readValue(jsonAddress, Address.class);
-			return add.update(addressId, mappedAddress);
+			return add.update(storeId, mappedAddress);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

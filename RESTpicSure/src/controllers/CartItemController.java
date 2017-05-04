@@ -21,31 +21,18 @@ public class CartItemController {
 	@Autowired
 	private CartItemDAO cartItem;
 
-	@RequestMapping(path = "cartItem/{cartItemId}", method = RequestMethod.GET)
+	@RequestMapping(path = "cartItem/{cartItemId}/", method = RequestMethod.GET)
 	public CartItem show(@PathVariable int cartItemId, HttpServletRequest request, HttpServletResponse response) {
 		return cartItem.show(cartItemId);
 	}
 
-	@RequestMapping(path = "cartItem/{cartItemId}", method = RequestMethod.PUT)
-	public CartItem update(@PathVariable int cartItemId, @RequestBody String jsonCartItem, HttpServletRequest request,
-			HttpServletResponse response) {
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			CartItem mappedCartItem = mapper.readValue(jsonCartItem, CartItem.class);
-			return cartItem.update(cartItemId, mappedCartItem);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	@RequestMapping(path = "user/{userId}/cartItem/{inventoryId}", method = RequestMethod.POST)
-	public CartItem createCartItem(@PathVariable int userId, @PathVariable int inventoryId, @RequestBody String jsonCartItem,
+	@RequestMapping(path = "user/{userId}/inventoryItem/{inventoryItemId}/cartItem", method = RequestMethod.POST)
+	public CartItem createCartItem(@PathVariable int userId, @PathVariable int inventoryItemId, @RequestBody String jsonCartItem,
 			HttpServletRequest request, HttpServletResponse response) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			CartItem mappedCartItem = mapper.readValue(jsonCartItem, CartItem.class);
-			return cartItem.create(userId, inventoryId, mappedCartItem);
+			return cartItem.create(userId, inventoryItemId, mappedCartItem);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

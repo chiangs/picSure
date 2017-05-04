@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import entities.Address;
 import entities.Inventory;
 import entities.InventoryItem;
 import entities.Store;
@@ -29,6 +28,18 @@ public class StoreDAOImpl implements StoreDAO {
 	@Override
 	public Store show(Integer id) {
 		return em.find(Store.class, id);
+	}
+	
+	@Override
+	public List<Store> index() {
+		String q = "SELECT s FROM Store";
+		return em.createQuery(q, Store.class).getResultList();
+	}
+	
+	@Override 
+	public Inventory showInventory(Integer storeId) {
+		String q = "SELECT i FROM Inventory";
+		return em.createQuery(q, Inventory.class).getSingleResult();
 	}
 
 	@Override

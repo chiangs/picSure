@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Store {
@@ -28,18 +30,25 @@ public class Store {
 	  
 	private String email;
 
-	@JsonIgnore
+	
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name="addressId")
 	private Address address;
-	  
+	 
+	@JsonManagedReference
 	@OneToOne(mappedBy="store")
 	private Inventory inventory; 
-	  
+	 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "lister", joinColumns = @JoinColumn(name = "storeId"), inverseJoinColumns = @JoinColumn(name = "userId"))
 	private List<User> users;
 
+	@JsonIgnore
+	@OneToMany(mappedBy="store")
+	private List<Reservation> reservations;
+	
+	
 	// gets and sets
 	public String getName() {
 		return name;
@@ -91,5 +100,13 @@ public class Store {
 
 	public int getId() {
 		return id;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import entities.Cart;
 import entities.CartItem;
 import entities.InventoryItem;
+import entities.User;
 
 @Transactional
 @Repository
@@ -23,19 +24,14 @@ public class CartItemDAOImpl implements CartItemDAO {
 	}
 
 	@Override
-	public CartItem update(Integer id, CartItem c) {
-		CartItem item = em.find(CartItem.class, id);
-		item.setTimeIn(c.getTimeIn());
-		item.setTimeOut(c.getTimeOut());
-		return item;
-	}
-
-	@Override
-	public CartItem create(Integer cartId, Integer inventoryItemId, CartItem c) {
-		c.setCart(em.find(Cart.class, cartId));
-		c.setInventoryItem(c.getInventoryItem());
+	public CartItem create(Integer userId, Integer inventoryItemId, CartItem c) {
+		User u = em.find(User.class, userId);
+		c.setCart(em.find(Cart.class, u.getCart()));
+		c.setInventoryItem(em.find(InventoryItem.class, inventoryItemId));
 		c.setTimeIn(c.getTimeIn());
 		c.setTimeOut(c.getTimeOut());
+		em.persist(c);
+		em.flush();
 		return null;
 	}
 

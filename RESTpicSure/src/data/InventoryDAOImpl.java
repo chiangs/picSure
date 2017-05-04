@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entities.CartItem;
 import entities.Inventory;
+import entities.Reservation;
 import entities.Store;
 
 @Transactional
@@ -19,33 +20,16 @@ public class InventoryDAOImpl implements InventoryDAO {
 	
 	@Override
 	public Inventory show(Integer id) {
-		return em.find(Inventory.class, id);
+		String q = "SELECT i FROM Inventory i WHERE i.store.id = :id";
+		return em.createQuery(q, Inventory.class).setParameter("id", id).getSingleResult();
 	}
 
 	@Override
-	public Inventory update(Integer id, Inventory i) {
-		Inventory inventory = em.find(Inventory.class, id);
-		inventory.setIventoryItems(i.getIventoryItems());
-		return inventory;
-	}
-
-	@Override
-	public Inventory create(Integer id, Inventory i) {
-		Store store = em.find(Store.class, id);
+	public Inventory create(Integer storeId, Inventory i) {
+		Store store = em.find(Store.class, storeId);
 		i.setStore(store);
 		em.persist(i);
 		em.flush();
 		return i;
 	}
-
-	@Override
-	public Boolean destroy(Integer id) {
-		try {
-			em.remove(em.find(Inventory.class, id));
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-	}
-
 }
