@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `address` ;
 CREATE TABLE IF NOT EXISTS `address` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(150) NOT NULL,
-  `streetTwo` VARCHAR(150) NULL,
+  `street2` VARCHAR(150) NULL DEFAULT NULL,
   `city` VARCHAR(150) NOT NULL,
   `state` VARCHAR(2) NOT NULL,
   `zip` INT(5) NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` VARCHAR(45) NOT NULL,
   `admin` TINYINT(1) NOT NULL DEFAULT 0,
   `addressId` INT NOT NULL,
-  `picSureEmp` TINYINT(1) NULL DEFAULT 0,
+  `picSureEmp` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_user_address1`
     FOREIGN KEY (`addressId`)
@@ -213,7 +213,6 @@ CREATE TABLE IF NOT EXISTS `reservationItem` (
   `reservationId` INT NOT NULL,
   `timeOut` DATETIME NOT NULL,
   `timeIn` DATETIME NOT NULL,
-  `total` DOUBLE NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_reservationItems_inventoryItem1`
     FOREIGN KEY (`inventoryItemId`)
@@ -243,7 +242,6 @@ CREATE TABLE IF NOT EXISTS `cartItem` (
   `inventoryItemId` INT NOT NULL,
   `timeOut` DATETIME NOT NULL,
   `timeIn` DATETIME NOT NULL,
-  `total` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_cartItems_cart1`
     FOREIGN KEY (`cartId`)
@@ -268,24 +266,25 @@ CREATE INDEX `fk_cartItems_inventoryItem1_idx` ON `cartItem` (`inventoryItemId` 
 DROP TABLE IF EXISTS `lister` ;
 
 CREATE TABLE IF NOT EXISTS `lister` (
-  `storeId` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `userId` INT NOT NULL,
-  PRIMARY KEY (`storeId`, `userId`),
-  CONSTRAINT `fk_store_has_user_store1`
-    FOREIGN KEY (`storeId`)
-    REFERENCES `store` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_store_has_user_user1`
+  `storeId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_lister_user1`
     FOREIGN KEY (`userId`)
     REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_lister_store1`
+    FOREIGN KEY (`storeId`)
+    REFERENCES `store` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_store_has_user_user1_idx` ON `lister` (`userId` ASC);
+CREATE INDEX `fk_lister_user1_idx` ON `lister` (`userId` ASC);
 
-CREATE INDEX `fk_store_has_user_store1_idx` ON `lister` (`storeId` ASC);
+CREATE INDEX `fk_lister_store1_idx` ON `lister` (`storeId` ASC);
 
 SET SQL_MODE = '';
 GRANT USAGE ON *.* TO picSureAdmin;
@@ -305,11 +304,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `address` (`id`, `street`, `streetTwo`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (1, '1701 Wynkoop', NULL, 'Denver', 'CO', 80202, 'USA', 39.7391536, -104.9847034
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (1, '1701 Wynkoop', NULL, 'Denver', 'CO', 80202, 'USA', 39.7391536, -104.9847034
 -104.9847034
 -104.9847034);
-INSERT INTO `address` (`id`, `street`, `streetTwo`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (2, '1935 North Logan St', 'ph 1', 'Denver', 'CO', 80203, 'USA', 39.746910, -104.982303);
-INSERT INTO `address` (`id`, `street`, `streetTwo`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (3, '4380 S. Monaco St', 'Unit 2105', 'Denver', 'CO', 80237, 'USA', 39.634528, -104.911013);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (2, '1935 North Logan St', 'Ph 1', 'Denver', 'CO', 80203, 'USA', 39.746910, -104.982303);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (3, '4380 S. Monaco St', 'Unit 2105', 'Denver', 'CO', 80237, 'USA', 39.634528, -104.911013);
 
 COMMIT;
 
@@ -329,8 +328,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `user` (`id`, `fName`, `lName`, `username`, `password`, `phone`, `email`, `admin`, `addressId`, `picSureEmp`) VALUES (1, 'Seth', 'Thomas', 'admin', 'p', '555-555-5555', 'swthomas@gmail.com', 1, 2, NULL);
-INSERT INTO `user` (`id`, `fName`, `lName`, `username`, `password`, `phone`, `email`, `admin`, `addressId`, `picSureEmp`) VALUES (2, 'Daniel', 'Balarezo', 'danrezo', 'password', '305-484-8911', 'drezo@me.com', 0, 3, NULL);
+INSERT INTO `user` (`id`, `fName`, `lName`, `username`, `password`, `phone`, `email`, `admin`, `addressId`, `picSureEmp`) VALUES (1, 'Seth', 'Thomas', 'admin', 'p', '555-555-5555', 'swthomas@gmail.com', 1, 2, DEFAULT);
+INSERT INTO `user` (`id`, `fName`, `lName`, `username`, `password`, `phone`, `email`, `admin`, `addressId`, `picSureEmp`) VALUES (2, 'Daniel', 'Balarezo', 'danrezo', 'password', '305-484-8911', 'drezo@me.com', 0, 3, DEFAULT);
 
 COMMIT;
 
@@ -507,8 +506,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `reservationItem` (`id`, `inventoryItemId`, `reservationId`, `timeOut`, `timeIn`, `total`) VALUES (1, 1, 1, '2017-05-02 13:20:00', '2017-05-02 14:18:16', 8.00);
-INSERT INTO `reservationItem` (`id`, `inventoryItemId`, `reservationId`, `timeOut`, `timeIn`, `total`) VALUES (2, 41, 1, '2017-05-02 13:20:00', '2017-05-02 14:18:16', 3.00);
+INSERT INTO `reservationItem` (`id`, `inventoryItemId`, `reservationId`, `timeOut`, `timeIn`) VALUES (1, 1, 1, '2017-05-02 13:20:00', '2017-05-02 14:18:16');
+INSERT INTO `reservationItem` (`id`, `inventoryItemId`, `reservationId`, `timeOut`, `timeIn`) VALUES (2, 41, 1, '2017-05-02 13:20:00', '2017-05-02 14:18:16');
 
 COMMIT;
 
@@ -518,8 +517,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `cartItem` (`id`, `cartId`, `inventoryItemId`, `timeOut`, `timeIn`, `total`) VALUES (1, 1, 1, '2017-05-02 13:20:00', '2017-05-02 14:18:16', NULL);
-INSERT INTO `cartItem` (`id`, `cartId`, `inventoryItemId`, `timeOut`, `timeIn`, `total`) VALUES (2, 1, 41, '2017-05-02 13:20:00', '2017-05-02 14:18:16', NULL);
+INSERT INTO `cartItem` (`id`, `cartId`, `inventoryItemId`, `timeOut`, `timeIn`) VALUES (1, 1, 1, '2017-05-02 13:20:00', '2017-05-02 14:18:16');
+INSERT INTO `cartItem` (`id`, `cartId`, `inventoryItemId`, `timeOut`, `timeIn`) VALUES (2, 1, 41, '2017-05-02 13:20:00', '2017-05-02 14:18:16');
 
 COMMIT;
 
@@ -529,7 +528,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `lister` (`storeId`, `userId`) VALUES (1, 1);
+INSERT INTO `lister` (`id`, `userId`, `storeId`) VALUES (1, 1, 1);
 
 COMMIT;
 
