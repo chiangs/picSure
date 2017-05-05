@@ -39,16 +39,10 @@ public class ReservationController {
 		return reservationDAO.storeIndex(storeId);
 	}
 	
-	@RequestMapping(value = "user/{userId}/store/{storeId}/reservation", method = RequestMethod.POST)
-	public Reservation create(@PathVariable Integer userId, @PathVariable Integer storeId, @RequestBody String jsonCart) {
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			Cart mappedCart = mapper.readValue(jsonCart, Cart.class);
-			return reservationDAO.create(userId, storeId, mappedCart);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	@RequestMapping(value = "user/{userId}/store/{storeId}/cart/{cartId}/reservation", method = RequestMethod.POST)
+	public Reservation create(@PathVariable Integer userId, @PathVariable Integer storeId, @PathVariable Integer cartId) {
+			return reservationDAO.create(userId, storeId, cartId);
+		
 	}
 
 	@RequestMapping(value = "reservation/{reservationId}", method = RequestMethod.DELETE)

@@ -49,6 +49,7 @@ public class StoreDAOImpl implements StoreDAO {
 		store.setName(s.getName());
 		store.setPhone(s.getPhone());
 		store.setInventory(s.getInventory());
+		store.setActive(s.getActive());
 
 		em.persist(store);
 		em.flush();

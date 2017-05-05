@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `store` (
   `phone` VARCHAR(10) NOT NULL,
   `email` VARCHAR(150) NOT NULL,
   `addressId` INT NOT NULL,
+  `active` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_store_address1`
     FOREIGN KEY (`addressId`)
@@ -135,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `userId` INT NOT NULL,
   `createdDate` DATETIME NOT NULL,
-  `storeId` INT NOT NULL,
+  `store_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_reservation_user1`
     FOREIGN KEY (`userId`)
@@ -143,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_reservation_store1`
-    FOREIGN KEY (`storeId`)
+    FOREIGN KEY (`store_id`)
     REFERENCES `store` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -151,7 +152,7 @@ ENGINE = InnoDB;
 
 CREATE INDEX `fk_reservation_user1_idx` ON `reservation` (`userId` ASC);
 
-CREATE INDEX `fk_reservation_store1_idx` ON `reservation` (`storeId` ASC);
+CREATE INDEX `fk_reservation_store1_idx` ON `reservation` (`store_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -317,7 +318,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `store` (`id`, `name`, `phone`, `email`, `addressId`) VALUES (1, 'UPic', '303-555-0137', 'BigRob@ilovecameras.com', 1);
+INSERT INTO `store` (`id`, `name`, `phone`, `email`, `addressId`, `active`) VALUES (1, 'UPic', '303-555-0137', 'BigRob@ilovecameras.com', 1, 1);
 
 COMMIT;
 
@@ -415,7 +416,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `reservation` (`id`, `userId`, `createdDate`, `storeId`) VALUES (1, 2, '2017-05-02 12:20:00', 1);
+INSERT INTO `reservation` (`id`, `userId`, `createdDate`, `store_id`) VALUES (1, 2, '2017-05-02 12:20:00', 1);
 
 COMMIT;
 
