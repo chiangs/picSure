@@ -51,6 +51,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 		reservation.setStore(em.find(Store.class, storeId));
 		reservation.setUser(em.find(User.class, userId));
 		reservation.setCreatedDate(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
+		
 		List<CartItem> items = em.find(Cart.class, cartId).getCartItems();
 		
 		for(int i = 0; i < items.size(); i++) {
