@@ -25,7 +25,7 @@ public class InventoryItem {
 
 	private Boolean active;
 
-	@JsonBackReference(value="equipmentToinvItem")
+	@JsonManagedReference(value="equipmentToinvItem")
 	@ManyToOne
 	@JoinColumn(name="equipmentId")
 	private Equipment equipment;
