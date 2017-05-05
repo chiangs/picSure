@@ -1,0 +1,53 @@
+<h1>User Main Map and Listings</h1>
+
+<div id="tabNav">
+	<ul id="tablist">
+		<li ng-click="vm.showMapButton()">Map&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+		<li ng-click="vm.showLocList()">Location List&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+		<li ng-click="vm.showEquipList()">Equip List</li>
+	</ul>
+</div>
+
+<div ng-show="vm.showTable">
+<div id="map" map-lazy-load="https://maps.google.com/maps/api/js"
+	map-lazy-load-params="{{googleMapsUrl}}">
+	<ng-map center="41,-87" zoom="3"> <map /></ng-map>
+</div>
+</div>
+
+<div id="listLocations" ng-show="vm.showLocations">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Store Name</th>
+				<th>Street</th>
+				<th>City</th>
+				<th>State</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="equpimentGlobal" ng-show="vm.showEquipment">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Make</th>
+				<th>Model</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Rate</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</div>

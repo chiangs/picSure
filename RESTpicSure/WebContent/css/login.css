@@ -98,6 +98,7 @@ input {
 	border: 2px solid #ccc;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
+	color: black;
 }
 
 input:focus {
