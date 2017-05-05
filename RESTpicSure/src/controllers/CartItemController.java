@@ -21,7 +21,7 @@ public class CartItemController {
 	@Autowired
 	private CartItemDAO cartItem;
 
-	@RequestMapping(path = "cartItem/{cartItemId}/", method = RequestMethod.GET)
+	@RequestMapping(path = "cartItem/{cartItemId}", method = RequestMethod.GET)
 	public CartItem show(@PathVariable int cartItemId, HttpServletRequest request, HttpServletResponse response) {
 		return cartItem.show(cartItemId);
 	}
