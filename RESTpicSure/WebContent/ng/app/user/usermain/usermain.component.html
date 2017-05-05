@@ -10,8 +10,14 @@
 
 <div ng-show="vm.showTable">
 <div id="map" map-lazy-load="https://maps.google.com/maps/api/js"
-	map-lazy-load-params="{{googleMapsUrl}}">
-	<ng-map center="41,-87" zoom="3"> <map /></ng-map>
+	map-lazy-load-params="{{vm.googleMapsUrl}}">
+	<ng-map center="41,-87" zoom="3" ng-repeat="mk in vm.markers">
+		<marker position="{{mk}}" on-click"showStore()">
+		<!-- <marker position="[40.74, -74.18]" on-click="showStore()">
+		<marker position="[39.55, -104.88]" on-click="showStore()"> -->
+		</div>
+	
+	</ng-map>
 </div>
 </div>
 
