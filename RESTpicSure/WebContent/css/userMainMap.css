@@ -1,0 +1,30 @@
+#map {
+	height: 100%;
+	margin: 0 auto;
+}
+
+#tabNav ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-weight: bold;
+	color: #0a76d3;
+	text-align:left;
+	padding-left: 30px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	background: #fff;
+}
+
+#tabNav li {
+	display: inline;
+}
+
+.table {
+	background:#fff;
+	color:black;
+}
+
+.table th {
+	text-align:center;
+}

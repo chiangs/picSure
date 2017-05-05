@@ -14,13 +14,20 @@ angular.module('navbar').component('navbar', {
 		vm.isAdmin = function() {
 			return (authService.getToken().admin === "true");
 		}
-		
+
 		vm.profileRoute = function() {
 			if (authService.getToken().admin === "true") {
 				$location.path('/lister/listerProfile');
-			} 
-			else {
-				$location.path('/user/userProfile');				
+			} else {
+				$location.path('/user/userProfile');
+			}
+		}
+
+		vm.homeRoute = function() {
+			if (authService.getToken().admin === "true") {
+				$location.path('/contact');
+			} else {
+				$location.path('/user/userMain');
 			}
 		}
 

@@ -7,8 +7,8 @@
 			<a class="navbar-brand" href="#contact"><img id="logo" src="./images/icon.png" alt="picSure"></a>
 			
 		</div>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a class="bold" href="#contact">Home</a></li>
+			<ul class="nav navbar-nav navbar-right">				
+				<li><a class="bold" id="about" ng-click="vm.homeRoute()">Home</a></li>
 				<li ng-show="vm.isAdmin()"><a class="bold" href="#inventory">Inventory</a></li>
 				<li ng-show="vm.isAdmin()"><a class="bold" href="#">Business Stats</a></li>
 				<li><a class="bold" href="#">Reservations</a></li>
