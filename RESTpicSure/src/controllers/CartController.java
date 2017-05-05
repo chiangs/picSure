@@ -25,9 +25,4 @@ public class CartController {
 	public Cart show(@PathVariable Integer userId, HttpServletRequest request, HttpServletResponse response) {
 		return cart.show(userId);
 	}
-
-	@RequestMapping(path = "user/{userId}/cart", method = RequestMethod.POST)
-	public Cart create(@PathVariable Integer userId, HttpServletRequest request, HttpServletResponse response) {
-		return cart.create(userId);
-	}
 }

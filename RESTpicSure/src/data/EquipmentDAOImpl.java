@@ -43,7 +43,7 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 	}
 
 	@Override
-	public Equipment create(Integer id, Equipment e) {
+	public Equipment create(Equipment e) {
 		em.persist(e);
 		em.flush();
 		return e;

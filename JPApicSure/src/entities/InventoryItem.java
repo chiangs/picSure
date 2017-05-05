@@ -25,12 +25,12 @@ public class InventoryItem {
 
 	private Boolean active;
 
-	@JsonBackReference
+	@JsonBackReference(value="equipmentToinvItem")
 	@ManyToOne
 	@JoinColumn(name="equipmentId")
 	private Equipment equipment;
 
-	@JsonBackReference
+	@JsonBackReference(value="inventoryToinvItem")
 	@ManyToOne
 	@JoinColumn(name="inventoryId")
 	private Inventory inventory;
@@ -39,7 +39,7 @@ public class InventoryItem {
 	@ManyToMany(mappedBy="inventoryitems")
 	private List<ReservationItem> reservationItems;
 
-	@JsonBackReference
+	@JsonBackReference(value="cartItemsToinvItem")
 	@OneToMany(mappedBy="inventoryItem")
 	private List<CartItem> cartItems;
 

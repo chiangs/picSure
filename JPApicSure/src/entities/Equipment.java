@@ -31,8 +31,7 @@ public class Equipment {
 
 	private String make;
 	
-	
-	@JsonManagedReference
+	@JsonManagedReference(value="equipmentToinvItem")
 	@OneToMany(mappedBy="equipment", fetch= FetchType.EAGER)
 	private List<InventoryItem> inventoryItems;
 

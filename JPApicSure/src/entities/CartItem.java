@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -23,12 +24,12 @@ public class CartItem {
 	
 	private Date timeIn;
 	
-	@JsonIgnore
+	@JsonBackReference(value="cartTocartItem")
 	@ManyToOne
 	@JoinColumn(name="cartId")
 	private Cart cart;
 	
-	@JsonIgnore
+	@JsonBackReference(value="cartItemsToinvItem")
 	@ManyToOne
 	@JoinColumn(name="inventoryItemId")
 	private InventoryItem inventoryItem;

@@ -32,14 +32,14 @@ public class StoreDAOImpl implements StoreDAO {
 	
 	@Override
 	public List<Store> index() {
-		String q = "SELECT s FROM Store";
+		String q = "SELECT s FROM Store s";
 		return em.createQuery(q, Store.class).getResultList();
 	}
 	
 	@Override 
 	public Inventory showInventory(Integer storeId) {
-		String q = "SELECT i FROM Inventory";
-		return em.createQuery(q, Inventory.class).getSingleResult();
+		String q = "SELECT i FROM Inventory i WHERE i.store.id = :id";
+		return em.createQuery(q, Inventory.class).setParameter("id", storeId).getSingleResult();
 	}
 
 	@Override

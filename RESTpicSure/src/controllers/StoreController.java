@@ -25,7 +25,7 @@ public class StoreController {
 	private StoreDAO storeDAO;
 	
 	@RequestMapping(value = "store", method = RequestMethod.GET)
-	public List<Store> index(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer storeId) {
+	public List<Store> index(HttpServletRequest req, HttpServletResponse res) {
 		return storeDAO.index();
 	}
 

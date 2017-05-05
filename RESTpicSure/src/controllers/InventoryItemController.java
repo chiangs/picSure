@@ -41,15 +41,9 @@ public class InventoryItemController {
 	}
 
 	@RequestMapping(path = "inventory/{inventoryid}/inventoryItem/{equipmentId}", method = RequestMethod.POST)
-	public InventoryItem createInventoryItem(@PathVariable int equipmentId,@PathVariable int inventoryid, @RequestBody String jsonInvItem, HttpServletRequest request, HttpServletResponse response) {
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			InventoryItem mappedInventoryItem = mapper.readValue(jsonInvItem, InventoryItem.class);
-			return invItem.create(inventoryid, equipmentId, mappedInventoryItem);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	public InventoryItem createInventoryItem(@PathVariable int equipmentId,@PathVariable int inventoryid, HttpServletRequest request, HttpServletResponse response) {
+
+			return invItem.create(inventoryid, equipmentId);
 	}
 	
 	
