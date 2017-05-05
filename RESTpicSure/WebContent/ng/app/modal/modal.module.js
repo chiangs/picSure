@@ -1,0 +1,1 @@
+angular.module('modal',['ngAnimate', 'ngSanitize', 'ui.bootstrap']);

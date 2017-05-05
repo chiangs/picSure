@@ -10,13 +10,16 @@ angular.module('userModule')
 		}
 	}
 	
-//	needs store index
-	var listStores = function() {
+	service.listStores = function() {
 		checkLogin();
-		
+		return $http({
+			method : 'GET',
+			url : BASE_URL + 'address'
+		}).then(function(res) {
+			return res;
+		})
 	}
 	
-//	needs equip index
 	
 	return service;
 })
