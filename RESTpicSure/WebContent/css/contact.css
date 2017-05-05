@@ -1,0 +1,29 @@
+    .contact-content {
+        text-align: center;
+        padding: 50px 0;
+    }
+
+    .contact-content h1 {
+        font-size: calc(15% + 3vw);
+        color: #fff;
+    }
+
+    .contact-content a {
+        color: #fff;
+        font-size: calc(20% + 1vw);
+    }
+
+    .contact-content p {
+        font-size: 20px;
+        font-size: calc(20% + 1vw);
+    }
+
+    .contact-content ul {
+        padding: 20px 0 20px 0;
+        font-size: calc(20% + 1vw);
+    }
+
+    .contact-content li {
+        line-height: 3em;
+    }
+

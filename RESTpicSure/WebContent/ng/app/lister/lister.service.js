@@ -28,12 +28,13 @@ angular.module('listerModule')
 			})
 		}
 		
-		service.inventoryIndex = function(id) {
+		service.inventoryIndex = function() {
 			checkLogin();
 			return $http({
 				method : 'GET',
-				url : BASE_URL + 'inventoryItem/' + id
+				url : BASE_URL + 'store/' + authService.getToken().id + '/inventory/'
 			}).then(function(res) {
+				console.log(res);
 				return res;
 			})
 		}

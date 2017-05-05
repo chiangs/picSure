@@ -58,6 +58,14 @@ body {
 	border-radius: 0;
 }
 
+#inventoryCount {
+	color: #fff;
+}
+
+#inventoryTable {
+	color: #fff;
+}
+
 /* Footer */
 
 footer {
