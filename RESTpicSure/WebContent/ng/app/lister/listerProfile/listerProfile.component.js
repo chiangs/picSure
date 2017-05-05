@@ -5,11 +5,14 @@ angular.module('listerModule')
 		
 			var vm = this;
 			vm.destroyListerAccount = function() {
-				listerService.destroyListerAccount(authService.getToken().id).then(function(res) {
+				listerService.destroyListerAccount(authService.getToken().id)
+				.then(function(res) {
 					$location.path('/');
 				})
 			}
-			
+			vm.updateLister = function(){
+				listerService.updateLister
+			}
 		},
 		controllerAs: 'vm'
 	})

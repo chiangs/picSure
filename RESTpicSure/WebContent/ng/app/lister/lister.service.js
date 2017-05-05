@@ -49,6 +49,16 @@ angular.module('listerModule')
 			})
 		}
 		
+		service.updateLister = function () {
+			checkLogin()
+			return $http({
+				method : 'PUT',
+				url : BASE_URL + 'user' + id
+			}).then(function(res){
+				return res;
+			})
+		}
+		
 		
 			
 		return service;
