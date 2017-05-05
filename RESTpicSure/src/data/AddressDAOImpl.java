@@ -1,5 +1,7 @@
 package data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -7,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Address;
-import entities.User;
 
 @Transactional
 @Repository
@@ -15,6 +16,13 @@ public class AddressDAOImpl implements AddressDAO {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	
+	@Override
+	public List<Address> index() {
+		String q = "SELECT a FROM Address a";
+		return em.createQuery(q, Address.class).getResultList();
+	}
 
 	@Override
 	public Address show(Integer id) {

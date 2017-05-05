@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Equipment {
@@ -31,11 +32,17 @@ public class Equipment {
 
 	private String make;
 	
-	@JsonBackReference(value="equipmentToinvItem")
-	@OneToMany(mappedBy="equipment", fetch= FetchType.EAGER)
+	@JsonIgnore
+	@OneToMany(mappedBy="equipment")
 	private List<InventoryItem> inventoryItems;
 
+	
 	// gets and sets
+
+	public int getId() {
+		return id;
+	}
+
 	public String getModel() {
 		return model;
 	}
@@ -90,10 +97,5 @@ public class Equipment {
 
 	public void setInventoryItems(List<InventoryItem> inventoryItems) {
 		this.inventoryItems = inventoryItems;
-	}
-
-	public int getId() {
-		return id;
-	}
-
+	}	
 }

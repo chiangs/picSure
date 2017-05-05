@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Reservation {
@@ -29,8 +31,8 @@ public class Reservation {
 	@JoinColumn(name="userId")
 	private User user;
 
-	@JsonIgnore
-	@OneToMany(mappedBy="reservations")
+	@JsonManagedReference
+	@OneToMany(mappedBy="reservations", fetch= FetchType.EAGER)
 	private List<ReservationItem> reservationItems;
 	
 	@JsonIgnore

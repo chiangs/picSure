@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,6 +27,12 @@ public class AddressController {
 	@RequestMapping(path="ping", method=RequestMethod.GET)
 	public String ping() {
 		return "pong";
+	}
+	
+	
+	@RequestMapping(path="address", method=RequestMethod.GET)
+	public List<Address> index (HttpServletRequest request, HttpServletResponse response){
+		return add.index();
 	}
 	
 	@RequestMapping(path="store/{storeId}/address", method=RequestMethod.GET)
