@@ -18,7 +18,7 @@ public class AddressDAOImpl implements AddressDAO {
 
 	@Override
 	public Address show(Integer id) {
-		String q = "SELECT a FROM Address a WHERE a.user.id = :id";
+		String q = "SELECT a FROM Address a WHERE a.store.id = :id";
 		return em.createQuery(q, Address.class).setParameter("id", id).getSingleResult();
 	}
 

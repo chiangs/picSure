@@ -32,8 +32,9 @@ public class InventoryItemDAOImpl implements InventoryItemDAO {
 
 	@Override
 	public InventoryItem update(Integer id, InventoryItem i) {
-
-		return null;
+		InventoryItem item = em.find(InventoryItem.class, id);
+		item.setActive(i.getActive());
+		return item;
 	}
 
 	@Override

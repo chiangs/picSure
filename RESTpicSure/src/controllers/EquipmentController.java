@@ -23,23 +23,18 @@ public class EquipmentController {
 	@Autowired
 	private EquipmentDAO equip;
 
-	@RequestMapping(path = "equipment/", method = RequestMethod.GET)
+	@RequestMapping(path = "equipment", method = RequestMethod.GET)
 	public List<Equipment> index(HttpServletRequest request, HttpServletResponse response) {
 		return equip.index();
 	}
 	
-	@RequestMapping(path = "store/{storeId}/equipment/", method = RequestMethod.GET)
-	public List<Equipment> indexStore(@PathVariable Integer storeId, HttpServletRequest request, HttpServletResponse response) {
-		return equip.indexStore(storeId);
-	}
-	
 	@RequestMapping(path="equipment/{equipmentId}", method=RequestMethod.GET)
-	public Equipment show(@PathVariable int equipmentid, HttpServletRequest request, HttpServletResponse response){
-		return equip.show(equipmentid);
+	public Equipment show(@PathVariable Integer equipmentId, HttpServletRequest request, HttpServletResponse response){
+		return equip.show(equipmentId);
 	}
 	
 	@RequestMapping(path="equipment/{equipmentId}", method=RequestMethod.PUT)
-	public Equipment update(@PathVariable int equipmentId, @RequestBody String jsonEquip, HttpServletRequest request, HttpServletResponse response){
+	public Equipment update(@PathVariable Integer equipmentId, @RequestBody String jsonEquip, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Equipment mappedEquip = mapper.readValue(jsonEquip, Equipment.class);
@@ -51,7 +46,7 @@ public class EquipmentController {
 	}
 	
 	@RequestMapping(path="user/{userid}/equipment", method=RequestMethod.POST)
-	public Equipment createEquipment(@PathVariable int userid,@RequestBody String jsonEquip, HttpServletRequest request, HttpServletResponse response){
+	public Equipment createEquipment(@PathVariable Integer userid,@RequestBody String jsonEquip, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Equipment mappedEquip = mapper.readValue(jsonEquip, Equipment.class);
@@ -63,7 +58,7 @@ public class EquipmentController {
 	}
 	
 	@RequestMapping(path="equipment/{equipmentId}", method=RequestMethod.DELETE)
-	public Boolean destroy(@PathVariable int equipmentId, HttpServletRequest request, HttpServletResponse response){
+	public Boolean destroy(@PathVariable Integer equipmentId, HttpServletRequest request, HttpServletResponse response){
 		return equip.destroy(equipmentId);
 	}
 
