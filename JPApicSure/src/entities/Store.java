@@ -29,6 +29,8 @@ public class Store {
 	private String phone;
 	  
 	private String email;
+	
+	private Boolean active;
 
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name="addressId")
@@ -50,6 +52,14 @@ public class Store {
 	
 	
 	// gets and sets
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	public String getName() {
 		return name;
 	}
