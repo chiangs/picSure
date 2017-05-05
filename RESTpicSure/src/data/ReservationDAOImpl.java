@@ -1,10 +1,12 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.rmi.CORBA.UtilDelegate;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,7 +50,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 		
 		reservation.setStore(em.find(Store.class, storeId));
 		reservation.setUser(em.find(User.class, userId));
-		
+		reservation.setCreatedDate(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
 		List<CartItem> items = em.find(Cart.class, cartId).getCartItems();
 		
 		for(int i = 0; i < items.size(); i++) {
