@@ -17,36 +17,17 @@ import entities.Cart;
 
 @RestController
 public class CartController {
-	
+
 	@Autowired
 	private CartDAO cart;
 
-	@RequestMapping(path="user/{userId}/cart/", method=RequestMethod.GET)
-	public Cart show(@PathVariable int userId, HttpServletRequest request, HttpServletResponse response){
+	@RequestMapping(path = "user/{userId}/cart", method = RequestMethod.GET)
+	public Cart show(@PathVariable Integer userId, HttpServletRequest request, HttpServletResponse response) {
 		return cart.show(userId);
 	}
-	
-	@RequestMapping(path="user/{userId}/cart/", method=RequestMethod.PUT)
-	public Cart update(@PathVariable int userId, @RequestBody String jsonCart, HttpServletRequest request, HttpServletResponse response){
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			Cart mappedCart = mapper.readValue(jsonCart, Cart.class);
-			return cart.update(userId, mappedCart);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+
+	@RequestMapping(path = "user/{userId}/cart", method = RequestMethod.POST)
+	public Cart create(@PathVariable Integer userId, HttpServletRequest request, HttpServletResponse response) {
+		return cart.create(userId);
 	}
-	
-	@RequestMapping(path="user/{userId}/cart/", method=RequestMethod.POST)
-	public Cart create(@PathVariable int userId, @RequestBody String jsonCart, HttpServletRequest request, HttpServletResponse response){
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			Cart mappedCart = mapper.readValue(jsonCart, Cart.class);
-			return cart.create(userId, mappedCart);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}	
 }

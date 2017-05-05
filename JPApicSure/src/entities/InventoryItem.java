@@ -23,7 +23,7 @@ public class InventoryItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private boolean active;
+	private Boolean active;
 
 	@JsonBackReference
 	@ManyToOne
@@ -43,63 +43,50 @@ public class InventoryItem {
 	@OneToMany(mappedBy="inventoryItem")
 	private List<CartItem> cartItems;
 
-
 	// gets and sets
-
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
-	public boolean isActive() {
+	public Boolean getActive() {
 		return active;
 	}
-
 
 	public void setActive(boolean active) {
 		this.active = active;
 	}
 
-
 	public Equipment getEquipment() {
 		return equipment;
 	}
-
 
 	public void setEquipment(Equipment equipment) {
 		this.equipment = equipment;
 	}
 
-
 	public Inventory getInventory() {
 		return inventory;
 	}
-
 
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
 	}
 
-
 	public List<ReservationItem> getReservationItems() {
 		return reservationItems;
 	}
-
 
 	public void setReservationItems(List<ReservationItem> reservationItems) {
 		this.reservationItems = reservationItems;
 	}
 
-
 	public List<CartItem> getCartItems() {
 		return cartItems;
 	}
-
 
 	public void setCartItems(List<CartItem> cartItems) {
 		this.cartItems = cartItems;

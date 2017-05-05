@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cart {
@@ -26,7 +26,7 @@ public class Cart {
 	@JoinColumn(name = "userId")
 	private User user;
 	
-	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(mappedBy="cart",fetch= FetchType.EAGER)
 	private List<CartItem> cartItems;
 
