@@ -136,15 +136,23 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `userId` INT NOT NULL,
   `createdDate` DATETIME NOT NULL,
+  `store_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_reservation_user1`
     FOREIGN KEY (`userId`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_reservation_store1`
+    FOREIGN KEY (`store_id`)
+    REFERENCES `store` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_reservation_user1_idx` ON `reservation` (`userId` ASC);
+
+CREATE INDEX `fk_reservation_store1_idx` ON `reservation` (`store_id` ASC);
 
 
 -- -----------------------------------------------------
@@ -408,7 +416,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `reservation` (`id`, `userId`, `createdDate`) VALUES (1, 2, '2017-05-02 12:20:00');
+INSERT INTO `reservation` (`id`, `userId`, `createdDate`, `store_id`) VALUES (1, 2, '2017-05-02 12:20:00', 1);
 
 COMMIT;
 

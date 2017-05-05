@@ -1,5 +1,6 @@
 package data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -40,14 +41,15 @@ public class ReservationDAOImpl implements ReservationDAO {
 	}
 
 	@Override
-	public Reservation create(Integer userId, Integer storeId, Cart c) {	
+	public Reservation create(Integer userId, Integer storeId, Integer cartId) {	
 		
 		Reservation reservation = new Reservation();
+		reservation.setReservationItems(new ArrayList<ReservationItem>());
 		
 		reservation.setStore(em.find(Store.class, storeId));
 		reservation.setUser(em.find(User.class, userId));
 		
-		List<CartItem> items = c.getCartItems();
+		List<CartItem> items = em.find(Cart.class, cartId).getCartItems();
 		
 		for(int i = 0; i < items.size(); i++) {
 			ReservationItem resItem = new ReservationItem();
