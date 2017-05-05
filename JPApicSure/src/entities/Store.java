@@ -30,12 +30,12 @@ public class Store {
 	  
 	private String email;
 
-	
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name="addressId")
 	private Address address;
 	 
-	@JsonManagedReference
+//	@JsonManagedReference
+	@JsonIgnore
 	@OneToOne(mappedBy="store")
 	private Inventory inventory; 
 	 

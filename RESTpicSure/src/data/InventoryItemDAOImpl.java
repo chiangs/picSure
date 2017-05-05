@@ -38,7 +38,8 @@ public class InventoryItemDAOImpl implements InventoryItemDAO {
 	}
 
 	@Override
-	public InventoryItem create(Integer inventoryId, Integer equipmentId, InventoryItem i) {
+	public InventoryItem create(Integer inventoryId, Integer equipmentId) {
+		InventoryItem i = new InventoryItem();
 		i.setActive(true);
 		i.setEquipment(em.find(Equipment.class, equipmentId));
 		i.setInventory(em.find(Inventory.class, inventoryId));

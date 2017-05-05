@@ -44,18 +44,6 @@ public class AddressController {
 		}
 	}
 	
-	@RequestMapping(path="address", method=RequestMethod.POST)
-	public Address createAddress(@RequestBody String jsonAddress, HttpServletRequest request, HttpServletResponse response){
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			Address mappedAddress = mapper.readValue(jsonAddress, Address.class);
-			return add.createAddress(mappedAddress);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
 	@RequestMapping(path="address/{addressId}", method=RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable int addressId, HttpServletRequest request, HttpServletResponse response){
 		return add.destroy(addressId);

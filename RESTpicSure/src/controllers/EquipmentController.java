@@ -45,12 +45,12 @@ public class EquipmentController {
 		}
 	}
 	
-	@RequestMapping(path="user/{userid}/equipment", method=RequestMethod.POST)
-	public Equipment createEquipment(@PathVariable Integer userid,@RequestBody String jsonEquip, HttpServletRequest request, HttpServletResponse response){
+	@RequestMapping(path="equipment", method=RequestMethod.POST)
+	public Equipment createEquipment(@RequestBody String jsonEquip, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			Equipment mappedEquip = mapper.readValue(jsonEquip, Equipment.class);
-			return equip.create(userid, mappedEquip);
+			return equip.create(mappedEquip);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

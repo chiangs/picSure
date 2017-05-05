@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Equipment {
@@ -31,8 +31,7 @@ public class Equipment {
 
 	private String make;
 	
-	
-	@JsonManagedReference
+	@JsonBackReference(value="equipmentToinvItem")
 	@OneToMany(mappedBy="equipment", fetch= FetchType.EAGER)
 	private List<InventoryItem> inventoryItems;
 

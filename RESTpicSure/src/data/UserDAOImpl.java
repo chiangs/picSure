@@ -36,16 +36,15 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 		
 	public User create(User u) {
-//	 Cart cart = new Cart();
-//	 
-//	 	em.persist(cart);
-//	 	em.flush();
-//	 
-//	 	u.setCart(cart);
+		
 		em.persist(u);
 		em.flush();
 		
+		Cart c = new Cart();
+		c.setUser(u);
 		
+		em.persist(c);
+		em.flush();
 		return u;
 	}
 

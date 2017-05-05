@@ -11,8 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Cart {
@@ -26,7 +25,7 @@ public class Cart {
 	@JoinColumn(name = "userId")
 	private User user;
 	
-	@JsonIgnore
+	@JsonManagedReference(value="cartTocartItem")
 	@OneToMany(mappedBy="cart",fetch= FetchType.EAGER)
 	private List<CartItem> cartItems;
 

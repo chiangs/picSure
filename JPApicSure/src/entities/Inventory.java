@@ -27,12 +27,9 @@ public class Inventory {
 	@JoinColumn(name="storeId")
 	private Store store;
 	
-	
-	@JsonManagedReference
+	@JsonManagedReference(value="inventoryToinvItem")
 	@OneToMany(mappedBy="inventory", fetch= FetchType.EAGER)
 	private List<InventoryItem> iventoryItems;
-
-	
 	
 	// gets and sets
 	public Store getStore() {
