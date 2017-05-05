@@ -40,7 +40,7 @@ public class InventoryItemController {
 		}
 	}
 
-	@RequestMapping(path = "inventory/{inventoryid}/inventoryItem/{equipmentId}", method = RequestMethod.POST)
+	@RequestMapping(path = "inventory/{inventoryid}/equipment/{equipmentId}/inventoryItem", method = RequestMethod.POST)
 	public InventoryItem createInventoryItem(@PathVariable int equipmentId,@PathVariable int inventoryid, HttpServletRequest request, HttpServletResponse response) {
 
 			return invItem.create(inventoryid, equipmentId);

@@ -49,6 +49,7 @@ public class EquipmentController {
 	public Equipment createEquipment(@RequestBody String jsonEquip, HttpServletRequest request, HttpServletResponse response){
 		ObjectMapper mapper = new ObjectMapper();
 		try {
+			System.out.println(jsonEquip);
 			Equipment mappedEquip = mapper.readValue(jsonEquip, Equipment.class);
 			return equip.create(mappedEquip);
 		} catch (Exception e) {

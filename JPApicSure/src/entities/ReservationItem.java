@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 public class ReservationItem {
@@ -22,11 +25,12 @@ public class ReservationItem {
 	
 	private Date timeOut;
 	
-	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="reservationId")
 	private Reservation reservations;
-
+	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="inventoryItemId")
 	private InventoryItem inventoryitems;

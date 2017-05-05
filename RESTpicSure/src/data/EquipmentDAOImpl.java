@@ -52,7 +52,7 @@ public class EquipmentDAOImpl implements EquipmentDAO {
 	@Override
 	public Boolean destroy(Integer id) {
 		try {
-			em.remove(em.find(CartItem.class, id));
+			em.remove(em.find(Equipment.class, id));
 			return true;
 		} catch (Exception e) {
 			return false;

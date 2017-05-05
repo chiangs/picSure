@@ -29,7 +29,7 @@ public class CartItem {
 	@JoinColumn(name="cartId")
 	private Cart cart;
 	
-	@JsonManagedReference(value="cartItemsToinvItem")
+//	@JsonManagedReference(value="test")
 	@ManyToOne
 	@JoinColumn(name="inventoryItemId")
 	private InventoryItem inventoryItem;

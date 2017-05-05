@@ -25,7 +25,6 @@ public class InventoryItem {
 
 	private Boolean active;
 
-	@JsonManagedReference(value="equipmentToinvItem")
 	@ManyToOne
 	@JoinColumn(name="equipmentId")
 	private Equipment equipment;
@@ -39,7 +38,8 @@ public class InventoryItem {
 	@ManyToMany(mappedBy="inventoryitems")
 	private List<ReservationItem> reservationItems;
 
-	@JsonBackReference(value="cartItemsToinvItem")
+//	@JsonBackReference(value="test")
+	@JsonIgnore
 	@OneToMany(mappedBy="inventoryItem")
 	private List<CartItem> cartItems;
 
