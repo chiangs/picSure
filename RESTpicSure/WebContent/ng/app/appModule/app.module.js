@@ -1,4 +1,4 @@
-angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'listerModule' ]).config(
+angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'listerModule']).config(
 		function($routeProvider) {
 			$routeProvider.when('/', {
 				template : '<home></home>'
@@ -12,6 +12,8 @@ angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'list
 				template : '<login></login>'
 			}).when('/lister/listerProfile', {
 				template : '<lister-profile></lister-profile>'
+			}).when('/inventory', {
+				template : '<store></store>'
 			}).when('/user/userProfile', {
 				template : '<user-profile></user-profile>'
 			}).otherwise({
