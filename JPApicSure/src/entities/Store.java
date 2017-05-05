@@ -34,7 +34,8 @@ public class Store {
 	@JoinColumn(name="addressId")
 	private Address address;
 	 
-	@JsonManagedReference
+//	@JsonManagedReference
+	@JsonIgnore
 	@OneToOne(mappedBy="store")
 	private Inventory inventory; 
 	 

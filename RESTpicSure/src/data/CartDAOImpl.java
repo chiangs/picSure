@@ -18,8 +18,9 @@ public class CartDAOImpl implements CartDAO {
 	
 	@Override
 	public Cart show(Integer id) {
-		String q = "SELECT c FROM Cart c WHERE c.user.id = :id";
-		return em.createQuery(q, Cart.class).setParameter("id", id).getSingleResult();
+//		String q = "SELECT c FROM Cart c JOIN FETCH CartItem ci ON c.id = ci.cart.id JOIN FETCH InventoryItem i ON ci.inventoryItems = i.id JOIN FETCH Equipment e ON i.equipmentId = e.id WHERE c.user.id = :id";
+		String q = "SELECT c FROM Cart c JOIN FETCH CartItem ci ON c.id = ci.cart.id";
+		return em.createQuery(q, Cart.class).getSingleResult();
 	}
 
 	@Override
