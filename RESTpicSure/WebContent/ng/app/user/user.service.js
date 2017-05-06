@@ -20,6 +20,48 @@ angular.module('userModule')
 		})
 	}
 	
+	service.getUserData = function() {
+		checkLogin();
+		return $http({
+			method : 'GET',
+			url : BASE_URL + 'user/' + authService.getToken().id
+		}).then(function(res) {
+			return res;
+		})
+	}
+	
+	service.destroyUser = function() {
+		checkLogin();
+		return $http({
+			method : 'DELETE',
+			url : BASE_URL + 'user/' + authService.getToken().id
+		}).then(function(){
+			authService.logout();
+		})
+	}
+	
+	service.updateUser = function(user) {
+		checkLogin();
+		return $http({
+			method : 'PUT',
+			url : BASE_URL + 'user/' + authService.getToken().id,
+			headers : {
+				'Content-Type' : 'application/json'
+			},
+			data : user
+		})
+	}
+	
+	service.getUserReservations = function() {
+		checkLogin();
+		return $http({
+			method : 'GET',
+			url : BASE_URL + 'user/' + authService.getToken().id + '/reservation'
+		}).then(function(res){
+			return res;
+		})
+	}
+	
 	
 	return service;
 })
