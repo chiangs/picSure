@@ -29,10 +29,14 @@ angular.module('userModule')
 		}
 		
 		vm.deleteRes = function(reservation) {
-			console.log('in delete');
 			userService.destroyReservation(reservation.id).then(function(res) {
 				vm.reload();
 			})
+		}
+		
+		vm.displayTable = function() {
+			vm.showResSummary = true;
+			vm.selected = null;
 		}
 		
 		vm.reload();	
