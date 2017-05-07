@@ -20,6 +20,8 @@ angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'list
 				template : '<user-profile></user-profile>'
 			}).when('/user/userReservations', {
 				template : '<user-reservation></user-reservation>' 
+			}).when('/lister/listerInventory', {
+				template : '<lister-inventory></lister-inventory>' 
 			}).otherwise({
 				template : '<error></error>'
 			})

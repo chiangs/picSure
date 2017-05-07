@@ -33,7 +33,7 @@ angular.module('navbar').component('navbar', {
 		
 		vm.reservationRoute = function() {
 			if (authService.getToken().admin === "true") {
-				$location.path('/contact');
+				$location.path('/lister/listerInventory');
 			} else {
 				$location.path('/user/userReservations');
 			}
