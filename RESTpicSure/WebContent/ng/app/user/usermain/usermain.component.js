@@ -8,25 +8,40 @@ angular.module('userModule')
 		vm.markers = [];
 		vm.showLocations = false;
 		vm.showTable = true;
-		vm.showEquipment = false;
+		vm.showEquipmentList = false;
 		vm.modalItems = [];
+		vm.equipment = false;
+		vm.equipmentList = [];
+		vm.selectedEquipment = null;
 		
 		vm.showLocList = function() {
 			vm.showTable = false;
 			vm.showLocations = true;
-			vm.showEquipment = false;
+			vm.equipment = false;
+			vm.showEquipmentList = false;
 		}
 		
 		vm.showMapButton = function() {
 			vm.showTable = true;
-			vm.showLocations = false;
-			vm.showEquipment = false;
+			vm.showLocations = false;		
+			vm.equipment = false;
+			vm.showEquipmentList = false;
 		}
 
 		vm.showEquipList = function() {
 			vm.showTable = false;
 			vm.showLocations = false;
-			vm.showEquipment = true;
+			vm.equipment = false;
+			vm.showEquipmentList = true;
+		}
+		
+		vm.showEquipment = function(e) {
+			vm.showTable = false;
+			vm.showLocations = false;
+			vm.showEquipmentList = false;
+			vm.showEqupment = true;
+			vm.selectedEquipment = e;
+			console.log(vm.selectedEquipment);
 		}
 		
 //		Get array of stores and address info
@@ -45,7 +60,9 @@ angular.module('userModule')
 			
 		}
 
-     
+		userService.getEquipmentList().then(function(res){
+			vm.equipmentList = res.data;
+		})
       
 		
  	
