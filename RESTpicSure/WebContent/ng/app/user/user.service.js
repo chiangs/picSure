@@ -103,6 +103,16 @@ angular.module('userModule').factory(
 					return res;
 				})
 			}
+			
+			service.getStoresByEquipmentId = function(id) {
+				checkLogin();
+				return $http({
+					method : 'GET',
+					url : BASE_URL + 'store/equipment/' + id
+				}).then(function(res) {
+					return res;
+				})
+			}
 
 			return service;
 		})

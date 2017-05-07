@@ -31,6 +31,12 @@ public class StoreDAOImpl implements StoreDAO {
 	}
 	
 	@Override
+	public List<Store> indexEquipment(Integer equipmentId) {
+		String q = "SELECT s FROM Store s JOIN FETCH Inventory i ON s.id = i.store.id JOIN FETCH InventoryItem ii ON i.id = ii.inventory.id JOIN FETCH Equipment e ON ii.equipment.id = e.id WHERE e.id = :id";
+		return em.createQuery(q, Store.class).setParameter("id", equipmentId).getResultList();
+	}
+	
+	@Override
 	public List<Store> index() {
 		String q = "SELECT s FROM Store s";
 		return em.createQuery(q, Store.class).getResultList();

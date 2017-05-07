@@ -48,6 +48,6 @@ public class ReservationController {
 	
 	@RequestMapping(value = "reservationItem/{reservationItemId}", method = RequestMethod.DELETE)
 	public Boolean destroyReservationItem(@PathVariable Integer reservationItemId) {
-		return reservationDAO.destroy(reservationItemId);
+		return reservationDAO.destroyReservationItem(reservationItemId);
 	}
 }

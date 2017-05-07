@@ -7,6 +7,7 @@ angular.module('userModule')
 		vm.equipmentList = [];
 		vm.modalItems = [];
 		vm.locations = [];
+		vm.locationsByEquipment = [];
 		vm.markers = [];
 		vm.showTable = true;
 		vm.showLocations = false;
@@ -44,6 +45,10 @@ angular.module('userModule')
 			vm.showEquipmentList = false;
 			vm.showEquip = true;
 			vm.selectedEquipment = e;
+//		Get array of stores by equipment id
+			userService.getStoresByEquipmentId(vm.selectedEquipment.id).then(function(res){
+				vm.locationsByEquipment = res.data;
+			})
 		}
 		
 //		Get array of stores and address info
