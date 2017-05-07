@@ -76,4 +76,14 @@ public class ReservationDAOImpl implements ReservationDAO {
 			return false;
 		}
 	}
+
+	@Override
+	public Boolean destroyReservationItem(Integer reservationItemId) {
+		try {
+			em.remove(em.find(ReservationItem.class, reservationItemId));
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }

@@ -7,15 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import data.ReservationDAO;
-import entities.Cart;
 import entities.Reservation;
 
 @RestController
@@ -48,5 +44,10 @@ public class ReservationController {
 	@RequestMapping(value = "reservation/{reservationId}", method = RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable Integer reservationId) {
 		return reservationDAO.destroy(reservationId);
+	}
+	
+	@RequestMapping(value = "reservationItem/{reservationItemId}", method = RequestMethod.DELETE)
+	public Boolean destroyReservationItem(@PathVariable Integer reservationItemId) {
+		return reservationDAO.destroy(reservationItemId);
 	}
 }

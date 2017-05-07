@@ -2,7 +2,6 @@ package data;
 
 import java.util.List;
 
-import entities.Cart;
 import entities.Reservation;
 
 public interface ReservationDAO {
@@ -11,4 +10,5 @@ public interface ReservationDAO {
 	public Reservation show(Integer id);
 	public Reservation create(Integer userId, Integer storeId, Integer cartId);
 	public Boolean destroy(Integer id);
+	public Boolean destroyReservationItem(Integer reservationItemId);
 }
