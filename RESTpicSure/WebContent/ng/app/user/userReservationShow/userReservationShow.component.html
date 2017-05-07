@@ -24,7 +24,7 @@
 				<td>{{resItem.inventoryitems.equipment.make}}</td>
 				<td>{{resItem.inventoryitems.equipment.model}}</td>
 				<td>{{resItem.inventoryitems.equipment.type}}</td>
-				<td>{{resItem.inventoryitems.equipment.rate}}</td>
+				<td>{{resItem.inventoryitems.equipment.rate | number : 2}}</td>
 				<td>{{resItem.timeIn}}</td>
 				<td>{{resItem.timeOut}}</td>
 				<td><button type="submit" class="btn btn-danger" ng-click="vm.deleteItem(resItem)">X</button></td>

@@ -14,18 +14,22 @@ angular.module('userModule').component('userResShow', {
 			}
 		}
 		
-		vm.deleteItem = function(resItem) {
-			userService.destroyResItem().then(function(res){
-				vm.reload();
-			})
-		}
-		
 		vm.reload = function() {
 			userService.getUserReservations().then(function(res) {
 				vm.userReservations = res.data;
 			});
-			vm.showResSummary = false;
 		}
+		
+		vm.deleteItem = function(resItem) {
+			console.log(resItem);
+			userService.destroyResItem(resItem.id).then(function(){
+				vm.editMode = false;
+				vm.editRes = null;
+				vm.reload();
+			})
+		}
+		
+
 		
 	},
 	controllerAs : 'vm',
