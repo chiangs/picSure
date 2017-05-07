@@ -15,7 +15,9 @@ angular.module('userModule').component('userResShow', {
 		}
 		
 		vm.deleteItem = function(resItem) {
-			
+			userService.destroyResItem().then(function(res){
+				vm.reload();
+			})
 		}
 		
 		vm.reload = function() {
