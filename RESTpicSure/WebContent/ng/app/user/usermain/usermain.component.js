@@ -4,44 +4,46 @@ angular.module('userModule')
 	 controller : function(userService, $scope, $uibModal) {
 		var vm = this;
 		vm.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-eCSz4m2r6WczpOcJANrtbF8xps8EDuU&libraries=places";
+		vm.equipmentList = [];
+		vm.modalItems = [];
 		vm.locations = [];
 		vm.markers = [];
-		vm.showLocations = false;
 		vm.showTable = true;
+		vm.showLocations = false;
+		vm.showEquip = false;
 		vm.showEquipmentList = false;
-		vm.modalItems = [];
-		vm.equipment = false;
-		vm.equipmentList = [];
 		vm.selectedEquipment = null;
 		
 		vm.showLocList = function() {
 			vm.showTable = false;
 			vm.showLocations = true;
-			vm.equipment = false;
+			vm.showEquip = false;
 			vm.showEquipmentList = false;
+			vm.selectedEquipment = null;
 		}
 		
 		vm.showMapButton = function() {
 			vm.showTable = true;
 			vm.showLocations = false;		
-			vm.equipment = false;
+			vm.showEquip = false;
 			vm.showEquipmentList = false;
+			vm.selectedEquipment = null;
 		}
 
 		vm.showEquipList = function() {
 			vm.showTable = false;
 			vm.showLocations = false;
-			vm.equipment = false;
+			vm.showEquip = false;
 			vm.showEquipmentList = true;
+			vm.selectedEquipment = null;
 		}
 		
 		vm.showEquipment = function(e) {
 			vm.showTable = false;
 			vm.showLocations = false;
 			vm.showEquipmentList = false;
-			vm.showEqupment = true;
+			vm.showEquip = true;
 			vm.selectedEquipment = e;
-			console.log(vm.selectedEquipment);
 		}
 		
 //		Get array of stores and address info
@@ -56,16 +58,14 @@ angular.module('userModule')
 		
 		vm.showStore = function(mk) {
 			console.log('clicked');
-			console.log(mk);
-			
+			console.log(mk);	
 		}
 
+//		Get array of equipment list
 		userService.getEquipmentList().then(function(res){
 			vm.equipmentList = res.data;
 		})
       
-		
- 	
 	 },
 	 controllerAs: 'vm'
 })

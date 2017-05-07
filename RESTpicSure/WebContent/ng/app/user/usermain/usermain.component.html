@@ -82,31 +82,42 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="e in vm.equipmentList | orderBy : 'id'" ng-click="vm.showEquipment(e)">
-				<td><img src='{{e.image}}'></td>
+				<td><img src='{{e.image}}' id="EquipImage"></td>
 				<td>{{e.make}}</td>
 				<td>{{e.model}}</td>
 				<td>{{e.type}}</td>
 				<td>{{e.description | limitTo: 175}} ...</td>
-				<td>{{e.rate | currency:"USD $":0}} hr</td>
+				<td>{{e.rate | currency}} hr</td>
 			</tr>
 		</tbody>
 	</table>
 </div>
 
-<div id="equpimentSingle" ng-show="vm.showEquipment">
+<div id="equpimentSingle" ng-show="vm.showEquip">
 	<table class="table">
 		<tbody>
 			<tr>
-				<td><img src="{{vm.selectedEquipment.image}}"></td>
+				<td colspan='3' id="singleEquipImage"><img src="{{vm.selectedEquipment.image}}"></td>
 			</tr>
 			<tr>
 				<td>{{vm.selectedEquipment.make}}</td>
 				<td>{{vm.selectedEquipment.model}}</td>
 				<td>{{vm.selectedEquipment.type}}</td>
 			</tr>
-			<tr colspan='3'>
-				<td>{{vm.selectedEquipment.description}} ...</td>			
+			<tr>
+				<td colspan='3'>{{vm.selectedEquipment.description}} ...</td>			
 			</tr>
+			<tr>
+				<td colspan='3'>Rental Rate: {{vm.selectedEquipment.rate | currency}} per Hour</td>			
+			</tr>
+			<tr></tr>
 		</tbody>
+	</table>
+	<table>
+		<thead>
+			<tr>
+				<th>Available At These Stores!</th>
+			</tr>
+		</thead>
 	</table>
 </div>
