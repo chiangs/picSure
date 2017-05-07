@@ -71,7 +71,7 @@
 				<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="fa fa-user"></span>
+								class="fa fa-envelope"></span>
 							</span> <input type="text" class="form-control" ng-model="vm.storeData.email">
 							
 						</div>
@@ -80,15 +80,63 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="fa fa-user"></span>
+								class="fa fa-phone"></span>
 							</span> <input type="text" class="form-control" ng-model="vm.storeData.phone" >
 						</div>
 					</div>
 					
-				
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="fa fa-phone"></span>
+							</span> <input type="text" class="form-control" ng-model="vm.storeData.address.street" >
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="fa fa-phone"></span>
+							</span> <input type="text" class="form-control" ng-model="vm.storeData.address.street2" >
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="fa fa-phone"></span>
+							</span> <input type="text" class="form-control" ng-model="vm.storeData.address.city" >
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="fa fa-phone"></span>
+							</span> <input type="text" class="form-control" ng-model="vm.storeData.address.state" >
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="fa fa-phone"></span>
+							</span> <input type="text" class="form-control" ng-model="vm.storeData.address.zip" >
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="fa fa-phone"></span>
+							</span> <input type="hidden" class="form-control" ng-model="vm.storeData.address.latitude" >
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span
+								class="fa fa-phone"></span>
+							</span> <input type="hidden" class="form-control" ng-model="vm.storeData.address.longitude" >
+						</div>
+					</div>		
 
 					<div class="form-group text-center">
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="vm.updateLister(lister)">Update User Profile</button>
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="vm.updateStore(store)">Update Store Details</button>
 					</div>
 				</form>
 			</div>
