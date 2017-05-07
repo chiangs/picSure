@@ -15,7 +15,7 @@ angular.module('userModule').factory(
 				checkLogin();
 				return $http({
 					method : 'GET',
-					url : BASE_URL + 'address'
+					url : BASE_URL + 'store'
 				}).then(function(res) {
 					return res;
 				})
