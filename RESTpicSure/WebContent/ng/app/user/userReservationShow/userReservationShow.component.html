@@ -1,6 +1,9 @@
 <div id="resFocus" ng-show="vm.editMode">
 	<h2>Reservation Created: {{vm.res.createdDate}}</h2>
-	<h3>Store Data Goes Here**</h3>
+	<h2>{{vm.store.name}}</h2>
+	<h3>{{vm.store.phone}}</h3>
+	<h3>{{vm.store.email}}</h3>
+	<p>{{vm.store.address.street}}, {{vm.store.address.state}}, {{vm.store.address.zip}}</p>
 
 	<table class="table">
 		<thead>

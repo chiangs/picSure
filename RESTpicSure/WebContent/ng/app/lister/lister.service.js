@@ -81,5 +81,18 @@ angular.module('listerModule')
 			})	
 		}
 		
+		service.updateStoreData = function(store){
+			checkLogin();
+			return $http ({
+				method : 'PUT',
+				url: BASE_URL + 'store/' + authService.getToken().id,
+				headers : {
+					'Content-Type' : 'application/json'
+				},
+				data : store
+			})
+		}
+		
+		
 		return service;
 	})
