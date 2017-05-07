@@ -12,13 +12,13 @@ angular.module('listerModule')
 			vm.displayListerInventory = function(){
 				listerService.inventoryIndex(
 						authService.getToken().id)
-						.then(funciton(res){
+						.then(function(res){
 							vm.listerInventory = res.data;
 						})
 			}
 		},
 	
-		controllerAs ; 'vm'
+		controllerAs : 'vm'
 	})
 	
 	

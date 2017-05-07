@@ -28,7 +28,11 @@ angular.module('listerModule')
 									})
 						}
 						vm.updateLister = function() {
-							listerService.updateLister
+							listerService.updateLister(vm.listerData)
+							.then(function(res){
+								vm.literData = res.data;
+								vm.reload();
+							})
 						}
 
 						vm.reload();
