@@ -3,13 +3,33 @@ angular.module('userModule')
 		templateUrl: 'ng/app/user/userReservation/userReservation.component.html',
 		controller : function(userService, authService, $location, $scope){
 		var vm = this;	
+		vm.showResSummary = true;
 		vm.userReservations = [];
 		
 		vm.reload = function() {
 			userService.getUserReservations().then(function(res) {
 				vm.userReservations = res.data;
-				console.log(vm.userReservations);
 			});
+		}
+		
+		vm.numItems = function(reservation) {
+			return reservation.reservationItems.length;
+		}
+		
+		vm.displayRes = function(res) {
+			console.log(res);
+			vm.showResSummary = false;
+		}
+		
+		vm.goBack = function() {
+			vm.showResSummary = true;
+		}
+		
+		vm.deleteRes = function(reservation) {
+			console.log('in delete');
+			userService.destroyReservation(reservation.id).then(function(res) {
+				vm.reload();
+			})
 		}
 		
 		vm.reload();	
