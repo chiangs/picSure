@@ -75,6 +75,14 @@ angular.module('userModule').factory(
 					return res;
 				})
 			}
+			
+			service.destroyResItem = function() {
+				checkLogin();
+				return $http({
+					method : 'DELETE',
+					url : BASE_URL + ''
+				}).then
+			}
 
 			service.getEquipmentList = function() {
 				checkLogin();

@@ -4,7 +4,7 @@ angular.module('userModule').component('userResShow', {
 		var vm = this;
 		vm.editMode = true;
 		vm.editRes = null;
-		vm.storeData = [];
+		
 		
 		vm.backButton = function() {
 			if (parseInt($routeParams.id)) {
@@ -14,12 +14,22 @@ angular.module('userModule').component('userResShow', {
 			}
 		}
 		
+		vm.deleteItem = function(resItem) {
+			
+		}
+		
+		vm.reload = function() {
+			userService.getUserReservations().then(function(res) {
+				vm.userReservations = res.data;
+			});
+			vm.showResSummary = false;
+		}
 		
 	},
 	controllerAs : 'vm',
 	bindings : {
 		res : '<',
 		goBack : '&',
-		onUpdate : '&'
+		store : '<'
 	}
 })
