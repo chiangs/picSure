@@ -1,0 +1,25 @@
+<div id="resFocus" ng-hide="vm.editMode">
+	<h2>Reservation Date</h2>
+	<h3>Store Data</h3>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Item #</th>
+				<th>Description</th>
+				<th>Make</th>
+				<th>Model</th>
+				<th>Type</th>
+				<th>Available</th>
+				<th>Due</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat = "item in vm.res | orderBy: id">
+				<td>{{item.reservationItems}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+</div>
