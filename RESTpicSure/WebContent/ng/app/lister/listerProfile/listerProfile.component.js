@@ -1,13 +1,19 @@
-angular.module('listerModule')
-	.component('listerProfile',{
-		templateUrl : 'ng/app/lister/listerProfile/listerProfile.component.html',
-			controller : function(listerService, authService,$location, $scope) {
+angular
+		.module('listerModule')
+		.component(
+				'listerProfile',
+				{
+					templateUrl : 'ng/app/lister/listerProfile/listerProfile.component.html',
+					controller : function(geoService, listerService,
+							authService, $location, $scope) {
 
-			 var vm = this;
+						var vm = this;
+						
+						var geo = [];
 
-			 vm.listerData = [];
+						vm.listerData = [];
 
-			 vm.storeData = [];
+						vm.storeData = [];
 
 						vm.reload = function() {
 							listerService.getListerData().then(function(res) {
@@ -28,12 +34,26 @@ angular.module('listerModule')
 									})
 						}
 						vm.updateLister = function() {
-							listerService.updateLister(vm.listerData)
-							.then(function(res){
-								vm.literData = res.data;
-								vm.reload();
-							})
+							listerService.updateLister(vm.listerData).then(
+									function(res) {
+										vm.listerData = res.data;
+										vm.reload();
+									})
 						}
+
+						vm.updateStore = function() {
+						 geo = geoService.address(vm.storeData.address.street + vm.storeData.address.city + vm.storeData.address.state)
+							console.log(geo+"****************************************");
+							listerService.updateStoreData(vm.storeData).then(
+									function(res) {
+										vm.storeData = res.data;
+										vm.reload();
+									})
+						}
+//						console.log(geoService.address(vm.storeData.address.street+","+
+//								 vm.storeData.address.city +","+
+//								 vm.storeData.address.state));
+
 
 						vm.reload();
 					},
