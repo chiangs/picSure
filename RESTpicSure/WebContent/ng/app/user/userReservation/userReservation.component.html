@@ -3,7 +3,7 @@
 		<tr>
 			<th>Reservation ID</th>
 			<th>Reservation Creation Date</th>
-			<th>Store?</th>
+			<th>Store</th>
 			<th># of Items</th>
 			<th>Edit</th>
 			<th>Delete</th>
@@ -13,7 +13,7 @@
 		<tr ng-repeat="re in vm.userReservations | orderBy : 'id'">
 			<td ng-click="vm.displayRes(re)">{{re.id}}</td>
 			<td ng-click="vm.displayRes(re)">{{re.createdDate}}</td>
-			<td ng-click="vm.displayRes(re)">{{re.store_id}}</td>
+			<td ng-click="vm.displayRes(re)">{{re.id}}</td>
 			<td ng-click="vm.displayRes(re)">{{vm.numItems(re)}}</td>
 			<td><button type="submit" class="btn btn-warning btn-sm"
 					ng-click="vm.displayRes(re)">∆</button></td>
@@ -23,4 +23,4 @@
 	</tbody>
 </table>
 
-<user-reservation-show res="vm.selected" ng-show="vm.selected" go-back="" on-update=""></user-reservation-show>
+<user-res-show store="vm.storeDetails" res="vm.selected" ng-show="vm.selected" go-back="vm.displayTable()"></user-res-show>

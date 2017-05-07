@@ -1,5 +1,7 @@
 package data;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -71,6 +73,29 @@ public class ReservationDAOImpl implements ReservationDAO {
 	public Boolean destroy(Integer id) {
 		try {
 			em.remove(em.find(Reservation.class, id));
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean destroyReservationItem(Integer reservationItemId) {
+		
+		ReservationItem item = em.find(ReservationItem.class, reservationItemId);
+		Reservation res = em.find(Reservation.class, item.getReservations().getId());
+		List<ReservationItem> updatedItems = res.getReservationItems();
+		
+		for (int i = 0; i < updatedItems.size(); i++) {
+			if (updatedItems.get(i).getId() == reservationItemId){
+				updatedItems.remove(updatedItems.get(i));
+			}
+		}
+		
+		res.setReservationItems(updatedItems);
+		
+		try {
+			em.remove(em.find(ReservationItem.class, reservationItemId));
 			return true;
 		} catch (Exception e) {
 			return false;

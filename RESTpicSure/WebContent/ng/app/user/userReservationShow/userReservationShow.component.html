@@ -1,25 +1,36 @@
-<div id="resFocus" ng-hide="vm.editMode">
-	<h2>Reservation Date</h2>
-	<h3>Store Data</h3>
+<div id="resFocus" ng-show="vm.editMode">
+	<h2>Reservation Created: {{vm.res.createdDate}}</h2>
+	<h2>{{vm.store.name}}</h2>
+	<h3>{{vm.store.phone}}</h3>
+	<h3>{{vm.store.email}}</h3>
+	<p>{{vm.store.address.street}}, {{vm.store.address.state}}, {{vm.store.address.zip}}</p>
 
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Item #</th>
-				<th>Description</th>
 				<th>Make</th>
 				<th>Model</th>
 				<th>Type</th>
+				<th>Rate</th>
 				<th>Available</th>
 				<th>Due</th>
+				<th>Remove</th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr ng-repeat = "item in vm.res | orderBy: id">
-				<td>{{item.reservationItems}}</td>
+		<tbody ng-repeat="resItem in vm.res.reservationItems">
+			<tr>
+				<td>{{resItem.id}}</td>
+				<td>{{resItem.inventoryitems.equipment.make}}</td>
+				<td>{{resItem.inventoryitems.equipment.model}}</td>
+				<td>{{resItem.inventoryitems.equipment.type}}</td>
+				<td>{{resItem.inventoryitems.equipment.rate}}</td>
+				<td>{{resItem.timeIn}}</td>
+				<td>{{resItem.timeOut}}</td>
+				<td><button type="submit" class="btn btn-danger" ng-click="vm.deleteItem(resItem)">X</button></td>
 			</tr>
 		</tbody>
 	</table>
 
-
+<button type="submit" class="btn btn-primary btn-md" ng-click="vm.backButton()">Go Back</button>
 </div>

@@ -5,7 +5,7 @@
 		<li ng-click="vm.showMapButton()">Map&nbsp;&nbsp;|&nbsp;&nbsp;</li>
 		<li ng-click="vm.showLocList()">Location
 			List&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-		<li ng-click="vm.showEquipList()">Equip List</li>
+		<li ng-click="vm.showEquipList()">List of Available Equipment</li>
 	</ul>
 </div>
 
@@ -68,21 +68,59 @@
 	</table>
 </div>
 
-<div id="equpimentGlobal" ng-show="vm.showEquipment">
+<div id="equpimentGlobal" ng-show="vm.showEquipmentList">
 	<table class="table">
 		<thead>
 			<tr>
+				<th>Image</th>
 				<th>Make</th>
 				<th>Model</th>
-				<th>City</th>
-				<th>State</th>
-				<th>Rate</th>
+				<th>Type</th>
+				<th>Description</th>
+				<th>Rental Rate</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td></td>
+			<tr ng-repeat="e in vm.equipmentList | orderBy : 'id'" ng-click="vm.showEquipment(e)">
+				<td><img src='{{e.image}}' id="EquipImage"></td>
+				<td>{{e.make}}</td>
+				<td>{{e.model}}</td>
+				<td>{{e.type}}</td>
+				<td>{{e.description | limitTo: 175}} ...</td>
+				<td>{{e.rate | currency}} hr</td>
 			</tr>
 		</tbody>
+	</table>
+</div>
+
+<div id="equpimentSingle" ng-show="vm.showEquip">
+	<table class="table">
+		<tbody>
+			<tr>
+				<td colspan='3' id="singleEquipImage"><img src="{{vm.selectedEquipment.image}}"></td>
+			</tr>
+			<tr>
+				<td>{{vm.selectedEquipment.make}}</td>
+				<td>{{vm.selectedEquipment.model}}</td>
+				<td>{{vm.selectedEquipment.type}}</td>
+			</tr>
+			<tr>
+				<td colspan='3'>{{vm.selectedEquipment.description}} ...</td>			
+			</tr>
+			<tr>
+				<td colspan='3'>Rental Rate: {{vm.selectedEquipment.rate | currency}} per Hour</td>			
+			</tr>
+			<tr></tr>
+		</tbody>
+	</table>
+	<table>
+		<thead>
+			<tr>
+				<th>Available At These Stores!</th>
+			</tr>
+			<tr ng-repeat="s in vm.locationsByEquipment | orderBy : 'id'" ng-click="vm.showEquipment(e)">
+				<td></td>
+			</tr>
+		</thead>
 	</table>
 </div>

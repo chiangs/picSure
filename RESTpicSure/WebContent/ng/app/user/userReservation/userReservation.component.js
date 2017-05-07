@@ -6,6 +6,7 @@ angular.module('userModule')
 		vm.showResSummary = true;
 		vm.userReservations = [];
 		vm.selected = null;
+		vm.storeDetails = [];
 
 		
 		vm.reload = function() {
@@ -18,10 +19,14 @@ angular.module('userModule')
 			return reservation.reservationItems.length;
 		}
 		
-		vm.displayRes = function(res) {
-			console.log(res);
+		vm.displayRes = function(r) {
+			console.log(r);
 			vm.showResSummary = false;
-			vm.selected = res;
+			userService.getStoreData(r.id).then(function(res){
+				vm.storeDetails = res.data;
+			})
+			vm.selected = r;
+			
 		}
 		
 		vm.goBack = function() {
@@ -29,10 +34,14 @@ angular.module('userModule')
 		}
 		
 		vm.deleteRes = function(reservation) {
-			console.log('in delete');
 			userService.destroyReservation(reservation.id).then(function(res) {
 				vm.reload();
 			})
+		}
+		
+		vm.displayTable = function() {
+			vm.showResSummary = true;
+			vm.selected = null;
 		}
 		
 		vm.reload();	

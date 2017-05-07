@@ -28,6 +28,11 @@ public class StoreController {
 	public List<Store> index(HttpServletRequest req, HttpServletResponse res) {
 		return storeDAO.index();
 	}
+	
+	@RequestMapping(value = "store/equipment/{equipmentId}", method = RequestMethod.GET)
+	public List<Store> indexEquipment(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer equipmentId) {
+		return storeDAO.indexEquipment(equipmentId);
+	}
 
 	@RequestMapping(value = "store/{storeId}", method = RequestMethod.GET)
 	public Store show(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer storeId) {
