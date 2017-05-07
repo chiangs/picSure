@@ -81,8 +81,9 @@ public class ReservationDAOImpl implements ReservationDAO {
 
 	@Override
 	public Boolean destroyReservationItem(Integer reservationItemId) {
+		
 		ReservationItem item = em.find(ReservationItem.class, reservationItemId);
-		Reservation res = em.find(Reservation.class, item.getReservations());
+		Reservation res = em.find(Reservation.class, item.getReservations().getId());
 		List<ReservationItem> updatedItems = res.getReservationItems();
 		
 		for (int i = 0; i < updatedItems.size(); i++) {
