@@ -62,6 +62,16 @@ angular.module('userModule')
 		})
 	}
 	
+	service.destroyReservation = function(id) {
+		checkLogin();
+		return $http({
+			method : 'DELETE',
+			url : BASE_URL + 'reservation/' + id
+		}).then(function(res){
+			return res;
+		})
+	}
+	
 	
 	return service;
 })

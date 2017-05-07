@@ -3,6 +3,7 @@ package entities;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class Reservation {
 	private User user;
 
 	@JsonManagedReference
-	@OneToMany(mappedBy="reservations", fetch= FetchType.EAGER)
+	@OneToMany(mappedBy="reservations", fetch= FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<ReservationItem> reservationItems;
 	
 	@JsonIgnore
