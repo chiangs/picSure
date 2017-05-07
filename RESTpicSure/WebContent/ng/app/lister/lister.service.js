@@ -49,7 +49,35 @@ angular.module('listerModule')
 			})
 		}
 		
+		service.updateLister = function () {
+			checkLogin()
+			return $http({
+				method : 'PUT',
+				url : BASE_URL + 'user' + id
+			}).then(function(res){
+				return res;
+			})
+		}
 		
-			
+		service.getListerData = function() {
+			checkLogin();
+			return $http({
+				method : 'GET',
+				url: BASE_URL +'/user/' + authService.getToken().id
+			}). then(function(res){
+				return res;
+			})
+		}
+		
+		service.getStoreData = function() {
+			checkLogin();
+			return $http ({
+				method : 'GET',
+				url : BASE_URL + '/store/' + authService.getToken().id
+			}). then(function(res){
+				return res;
+			})	
+		}
+		
 		return service;
 	})

@@ -11,7 +11,7 @@
 							<span class="input-group-addon"> <span
 								class="fa fa-user"></span>
 							</span> <input type="text" class="form-control"
-								placeholder="vm.fName" ng-model="lister.fName">
+								ng-model="vm.listerData.fName">
 						</div>
 					</div>
 					
@@ -20,7 +20,7 @@
 							<span class="input-group-addon"> <span
 								class="fa fa-user"></span>
 							</span> <input type="text" class="form-control"
-								placeholder="vm.lName" ng-model="lister.lName">
+								ng-model="vm.listerData.lName" >
 						</div>
 					</div>
 					
@@ -29,7 +29,7 @@
 							<span class="input-group-addon"> <span
 								class="fa fa-envelope"></span>
 							</span> <input type="email" class="form-control"
-								placeholder="vm.email" ng-model="lister.email">
+								ng-model="vm.listerData.email">
 						</div>
 					</div>
 					
@@ -38,7 +38,7 @@
 							<span class="input-group-addon"> <span
 								class="fa fa-phone"></span>
 							</span> <input type="text" class="form-control"
-								placeholder="vm.phone" ng-model="lister.phone">
+								ng-model="vm.listerData.phone" >
 						</div>
 					</div>
 
@@ -46,7 +46,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"> <span
 								class="fa fa-lock"></span>
-							</span> <input type="password" class="form-control" placeholder="vm.password" ng-model="lister.password">
+							</span> <input type="password" class="form-control" ng-model="vm.listerData.password" >
 						</div>
 					</div>			
 
@@ -72,7 +72,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"> <span
 								class="fa fa-user"></span>
-							</span> <input type="text" class="form-control">
+							</span> <input type="text" class="form-control" ng-model="vm.storeData.email">
+							
 						</div>
 					</div>
 					
@@ -80,7 +81,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"> <span
 								class="fa fa-user"></span>
-							</span> <input type="text" class="form-control">
+							</span> <input type="text" class="form-control" ng-model="vm.storeData.phone" >
 						</div>
 					</div>
 					

@@ -30,6 +30,14 @@ angular.module('navbar').component('navbar', {
 				$location.path('/user/userMain');
 			}
 		}
+		
+		vm.reservationRoute = function() {
+			if (authService.getToken().admin === "true") {
+				$location.path('/contact');
+			} else {
+				$location.path('/user/userReservations');
+			}
+		}
 
 	},
 	controllerAs : 'vm'
