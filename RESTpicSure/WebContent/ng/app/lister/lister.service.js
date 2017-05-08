@@ -113,5 +113,15 @@ angular.module('listerModule')
 			})
 		}
 		
+		service.destroyInventoryItem = function(id) {
+			checkLogin();
+			return $http({
+				method : 'DELETE',
+				url : BASE_URL + 'equipment/' + id
+			}).then(function(res){
+				return res;
+			})
+		}
+		
 		return service;
 	})
