@@ -40,7 +40,7 @@ angular.module('listerModule').component('listerProfile',
 								 vm.storeData.address.city +","+
 								 vm.storeData.address.state);
 						console.log(geo);
-						geoService.address("Denver,CO").then(function(data){
+						geoService.address(geo).then(function(data){
 							console.log("IN THEN BLOCK");
 							console.log(data);
 							newGeo = data;
