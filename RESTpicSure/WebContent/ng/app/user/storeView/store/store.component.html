@@ -4,8 +4,7 @@
 <p>{{vm.store.address.street}}, {{vm.store.address.city}}, {{vm.store.address.state}},
 	{{vm.store.address.zip}}</p>
 
-<button type="submit" class="btn btn-warning btn-md" ng-click="vm.showCart()">View Cart ( {{vm.cartItemCount}} )</button>
-<button type="submit" class="btn btn-primary btn-md" ng-click="vm.backToStore()">Back To Store</button>
+<button type="submit" class="btn btn-warning btn-md" ng-click="vm.showCart()" ng-show="vm.showStore">View Cart ( {{vm.cartItemCount}} )</button>
 <!-- StoreView -->
 <div id="store" ng-show="vm.showStore">
 <table class="table">

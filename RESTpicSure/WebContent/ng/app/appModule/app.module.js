@@ -20,6 +20,8 @@ angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'list
 				template : '<user-profile></user-profile>'
 			}).when('/user/userReservations', {
 				template : '<user-reservation></user-reservation>'
+			}).when('/store/store/cart/:id', {
+				template : '<store-view></store-view>'
 			}).when('/lister/listerInventory', {
 				template : '<lister-inventory></lister-inventory>'
 			}).when('/store/store/:id', {
