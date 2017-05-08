@@ -36,7 +36,7 @@
 	<button class="dropDownSubmitBtn" type="submit" value="Search">Search</button>
 </div>
 
-<div ng-show="vm.showStoreDiv">
+<div ng-click="vm.goToStore(vm.selectedStore)" ng-show="vm.showStoreDiv">
 	<h1>{{vm.selectedStore.name}}</h1>
 	<h3>{{vm.selectedStore.phone}}</h3>
 	<h3>{{vm.selectedStore.email}}</h3>
@@ -122,7 +122,7 @@
 				<th><h1>Available At These Stores!</h1></th>
 			</tr>
 
-			<tr ng-repeat="s in vm.locationsByEquipment | orderBy : 'id'" ng-click="vm.showEquipList()">
+			<tr ng-repeat="s in vm.locationsByEquipment | orderBy : 'id'" ng-click="vm.goToStore(s)">
 				<td><h3><b>{{s.name}}</b><br>{{s.phone}}<br>{{s.email}}<br>{{s.address.street}}<br>{{s.address.city}}, {{s.address.state}} {{s.address.zip}}</h3></td>
 
 			</tr>
