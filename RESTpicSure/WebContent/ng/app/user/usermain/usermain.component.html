@@ -43,11 +43,11 @@
     <button type="button" class="btn btn-default" ng-click="$ctrl.open('sm')">Small modal</button>
 </div>
 
-
 <div  ng-show="vm.showTable">
 	<div id="map" map-lazy-load="https://maps.google.com/maps/api/js"
 		map-lazy-load-params="{{vm.googleMapsUrl}}">
-		<ng-map center="41,-87" zoom="3"> <marker ng-repeat="mk in vm.markers" position="{{mk}}" on-click="vm.showStore(mk)">
+		<ng-map center="41,-87" zoom="3"> 
+		<marker ng-repeat="mk in vm.markers" position="{{mk}}" on-click="vm.showStore(mk,data)">
 		 
 	</div>
 	</ng-map>
