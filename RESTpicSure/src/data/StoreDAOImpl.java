@@ -73,7 +73,7 @@ public class StoreDAOImpl implements StoreDAO {
 
 		List<InventoryItem> items = new ArrayList<>();
 		Inventory inventory = new Inventory();
-		inventory.setIventoryItems(items);
+		inventory.setInventoryItems(items);
 
 		inventoryDAO.create(s.getId(), inventory);
 		return s;

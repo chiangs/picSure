@@ -1,30 +1,29 @@
 angular.module('geoModule')
 	.factory('geoService', function($http, $location){
 		var service = {};
+		var geo = {'longitude':'nope','latitude':'nope'};
 
-		var BASE_URL = 'http://maps.google.com/maps/api/js?key=AIzaSyB-eCSz4m2r6WczpOcJANrtbF8xps8EDuU'
-
+		var BASE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?'
+			
 		service.address = function(address) {
-            var geocoder = new google.maps.Geocoder();
-            geocoder.geocode({ 'address': address }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    var latitude = results[0].geometry.location.lat();
-                    var longitude = results[0].geometry.location.lng();
-                    var geo = {longitude:longitude,latitude:latitude};
-                    console.log("longitude "+ geo.longitude+" latitude "+ latitude);
-                    return geo;
-
-                } else {
-                    console.log("Request failed.")
-                }
-                return geo;
-            });
-
+			var p = new Promise(function(resolve, reject){
+	            var geocoder = new google.maps.Geocoder();
+	            geocoder.geocode({ 'address': address}, function (results, status) {
+	                if (status == google.maps.GeocoderStatus.OK) {
+	                    var lat = results[0].geometry.location.lat();
+	                    var long = results[0].geometry.location.lng();
+	                    geo = {'long':long,'lat':lat};
+	                    resolve(geo);
+	                } 
+	                else {
+	                    console.log("Request failed.")
+	                    reject(results);
+	                }
+	            });
+			});
+			
+			return p;
         };
 
 		return service;
 	})
-
-	
-	
-	

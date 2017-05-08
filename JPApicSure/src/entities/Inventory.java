@@ -29,7 +29,7 @@ public class Inventory {
 	
 	@JsonManagedReference(value="inventoryToinvItem")
 	@OneToMany(mappedBy="inventory", fetch= FetchType.EAGER)
-	private List<InventoryItem> iventoryItems;
+	private List<InventoryItem> inventoryItems;
 	
 	// gets and sets
 	public Store getStore() {
@@ -40,12 +40,12 @@ public class Inventory {
 		this.store = store;
 	}
 
-	public List<InventoryItem> getIventoryItems() {
-		return iventoryItems;
+	public List<InventoryItem> getInventoryItems() {
+		return inventoryItems;
 	}
 
-	public void setIventoryItems(List<InventoryItem> iventoryItems) {
-		this.iventoryItems = iventoryItems;
+	public void setInventoryItems(List<InventoryItem> inventoryItems) {
+		this.inventoryItems = inventoryItems;
 	}
 
 	public int getId() {

@@ -1,4 +1,4 @@
-angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'listerModule', 'userModule', 'ui.bootstrap', 'modal', 'storeModule', 'geoModule']).config(
+angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'listerModule', 'userModule', 'ui.bootstrap', 'modal', 'storeViewModule', 'geoModule']).config(
 		function($routeProvider) {
 			$routeProvider.when('/', {
 				template : '<home></home>'
@@ -23,7 +23,7 @@ angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'list
 			}).when('/lister/listerInventory', {
 				template : '<lister-inventory></lister-inventory>'
 			}).when('/store/store/:id', {
-				template : '<store></store>'
+				template : '<store-view></store-view>'
 			}).otherwise({
 				template : '<error></error>'
 			})
