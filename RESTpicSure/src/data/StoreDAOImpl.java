@@ -81,9 +81,14 @@ public class StoreDAOImpl implements StoreDAO {
 
 	@Override
 	public Boolean destroy(Integer id) {
+//		String q = "SELECT s FROM Store s JOIN FETCH Lister l ON s.id = l.store.id JOIN FETCH User u ON u.id = l.user.id WHERE u.id = :id";
+		String q = "SELECT s FROM Store s JOIN FETCH s.users WHERE s.id = :id";
+		Store s = em.createQuery(q, Store.class).setParameter("id", id).getSingleResult();
 		try {
-			em.remove(em.find(Store.class, id));
+			System.out.println(s.getUsers().get(0).getfName());
+			s.setActive(false);
 			return true;
+			
 		} catch (Exception e) {
 			return false;
 		}

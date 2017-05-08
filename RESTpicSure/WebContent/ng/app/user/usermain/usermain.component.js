@@ -57,14 +57,23 @@ angular.module('userModule')
 		console.log(res.data);
 		vm.locations = res.data;
 		for (var i = 0; i < vm.locations.length; i++) {
-			vm.markers[i] = '[' + vm.locations[i].address.latitude + ',' + vm.locations[i].address.longitude + ']' ;
+			console.log(vm.locations[i].address.latitude)
+			console.log(vm.locations[i].address.longitude)
+			vm.locations[i].id =20;
+			vm.markers[i] = '[' + vm.locations[i].address.latitude + ',' + 
+				vm.locations[i].address.longitude + ','+ JSON.stringify(vm.locations[i]) + ']';
 		}
 		return vm.markers;
 		})
 		
-		vm.showStore = function(mk) {
-			console.log('clicked');
-			console.log(mk);	
+		// first argument is metadata from the map 
+		// second argument it marker data provided by 'userService.listStores()' above
+		vm.showStore = function(mk, data) {
+			var modifiedStrArray = data.split(",").slice(2).join(",").split("");
+			modifiedStrArray.pop();
+			modifiedStrArray = modifiedStrArray.join("")
+			var store = JSON.parse(modifiedStrArray);
+			console.log(store);
 		}
 
 //		Get array of equipment list
