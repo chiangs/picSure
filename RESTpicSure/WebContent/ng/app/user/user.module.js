@@ -1,1 +1,1 @@
-angular.module('userModule',['ngMap']);
+angular.module('userModule',['ngMap', 'angular.filter']);
