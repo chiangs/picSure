@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.Address;
 import entities.Inventory;
 import entities.InventoryItem;
 import entities.Store;
@@ -56,7 +57,11 @@ public class StoreDAOImpl implements StoreDAO {
 		store.setPhone(s.getPhone());
 		store.setInventory(s.getInventory());
 		store.setActive(s.getActive());
-
+		if (s.getAddress().getId() > 0) {
+			store.setAddress(em.find(Address.class, s.getAddress().getId()));
+		} else {
+			store.setAddress(s.getAddress());
+		}
 		em.persist(store);
 		em.flush();
 		return store;
