@@ -61,7 +61,7 @@
 	<h3>{{vm.selectedStore.address.city}}, {{vm.selectedStore.address.state}} {{vm.selectedStore.address.zip}}</h3>
 </div>
 
-<div id="listLocations" ng-show="vm.showLocations">
+<div class="tableCenter" id="listLocations" ng-show="vm.showLocations">
 	<table class="table">
 		<thead>
 			<tr>
@@ -86,7 +86,7 @@
 	</table>
 </div>
 
-<div id="equpimentGlobal" ng-show="vm.showEquipmentList">
+<div class="95" id="equpimentGlobal" ng-show="vm.showEquipmentList">
 	<table class="table">
 		<thead>
 			<tr>
@@ -111,7 +111,7 @@
 	</table>
 </div>
 
-<div id="equpimentSingle" ng-show="vm.showEquip">
+<div class="tableCenter" id="equpimentSingle" ng-show="vm.showEquip">
 	<table class="table">
 		<tbody>
 			<tr>
@@ -131,13 +131,15 @@
 			<tr></tr>
 		</tbody>
 	</table>
+</div>
+<div class="tableCenter" ng-show="vm.showEquip">
 	<table>
 		<thead>
 			<tr>
-				<th>Available At These Stores!</th>
+				<th><h1>Available At These Stores!</h1></th>
 			</tr>
 			<tr ng-repeat="s in vm.locationsByEquipment | orderBy : 'id'" ng-click="vm.showEquipList()">
-				<td>{{s.name}}<br>{{s.phone}}<br>{{s.email}}<br>{{s.address.street}}<br>{{s.address.city}}, {{s.address.state}} {{s.address.zip}}</td>
+				<td><h3><b>{{s.name}}</b><br>{{s.phone}}<br>{{s.email}}<br>{{s.address.street}}<br>{{s.address.city}}, {{s.address.state}} {{s.address.zip}}</h3></td>
 			</tr>
 		</thead>
 	</table>
