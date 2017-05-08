@@ -24,15 +24,18 @@ angular.module('listerModule').component('listerProfile',
 									.then(function(r){
 										listerService.destroyListerAccount(authService.getToken().id)
 									})
-									.then(function(res) {
-				       
-						vm.destroyListerAccount = function() {
-							listerService.destroyListerAccount(
-									authService.getToken().id).then(
-									function(res) {
-										$location.path('/');
+									.then(function(res){
+										
 									})
 						}
+				       
+						vm.destroyListerAccount = function() {
+							
+						}
+						
+									
+									
+						
 						
 						vm.updateLister = function() {
 							listerService.updateLister(vm.listerData).then(

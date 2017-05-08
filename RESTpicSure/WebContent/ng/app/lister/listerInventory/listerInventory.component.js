@@ -7,16 +7,26 @@ angular.module('listerModule')
 			
 			var vm = this;
 			
+			vm.store={};
 			vm.listerInventory = [];
 			
-			vm.displayListerInventory = function(){
-				listerService.inventoryIndex(
-						authService.getToken().id)
+			
+			vm.displayStoreInventoryByUserId = function(){
+				listerService.storeInventoryByUserId()
 						.then(function(res){
-							vm.listerInventory = res.data;
+							vm.store = res.data
+							listerService.inventoryIndex(res.data.id)
+							.then(function(r){
+								vm.listerInventory = r.data.inventoryItems;
+								console.log(vm.listerInventory)
+
+							})
+						}).catch(function(r){
+							console.log('fail')
 						})
 			}
-		},
+			vm.displayStoreInventoryByUserId();	
+			},
 	
 		controllerAs : 'vm'
 	})

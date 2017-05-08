@@ -13,7 +13,7 @@ angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'list
 			}).when('/lister/listerProfile', {
 				template : '<lister-profile></lister-profile>'
 			}).when('/inventory', {
-				template : '<store></store>'
+				template : '<lister-inventory></lister-inventory>'
 			}).when('/user/userMain', {
 				template : '<user-main></user-main>'
 			}).when('/user/userProfile', {
