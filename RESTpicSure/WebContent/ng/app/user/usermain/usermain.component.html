@@ -128,7 +128,7 @@
 			<tr>
 				<th>Available At These Stores!</th>
 			</tr>
-			<tr ng-repeat="s in vm.locationsByEquipment | orderBy : 'id'" ng-click="vm.showEquipList()">
+			<tr ng-repeat="s in vm.locationsByEquipment | orderBy : 'id'" ng-click="vm.showEquipList(s)">
 				<td>{{s.name}}<br>{{s.phone}}<br>{{s.email}}<br>{{s.address.street}}<br>{{s.address.city}}, {{s.address.state}} {{s.address.zip}}</td>
 			</tr>
 		</thead>

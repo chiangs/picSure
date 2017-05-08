@@ -72,6 +72,20 @@ angular.module('storeViewModule').factory(
 					url : BASE_URL + '/cartItem/' + id
 				})
 			}
+			
+			service.bookReservation = function(cart, userId, storeId, cartId) {
+				checkLogin();
+				return $http({
+					method : 'POST',
+					url : BASE_URL + 'user/' + userId '/store/' + storeId '/cart/' + cartId '/reservation'
+					headers : {
+						'Content-Type' : 'application/json'
+					},
+					data : cart
+				}).then(function(res){
+					console.log(res)
+				})
+			}
 
 
 			return service;
