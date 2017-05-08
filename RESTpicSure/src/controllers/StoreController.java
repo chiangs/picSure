@@ -39,6 +39,11 @@ public class StoreController {
 		return storeDAO.show(storeId);
 	}
 	
+	@RequestMapping(value = "user/{userId}/store/", method = RequestMethod.GET)
+	public Store showByUserId(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer userId) {
+		return storeDAO.showByUserId(userId);
+	}
+	
 	@RequestMapping(value = "store/{storeId}/inventory", method = RequestMethod.GET)
 	public Inventory showInventory(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer storeId) {
 		return storeDAO.showInventory(storeId);

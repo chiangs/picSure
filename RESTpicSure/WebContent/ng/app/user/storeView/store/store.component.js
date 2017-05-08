@@ -1,14 +1,14 @@
 angular.module('storeViewModule').component('storeView', {
 	templateUrl : 'ng/app/user/storeView/store/store.component.html',
-	controller : function($routeParams, storeService, $scope) {
+	controller : function($routeParams, storeService, $scope, $location) {
 		var vm = this;
+		var storeId = $routeParams.id;
 		vm.stores = [];
 		vm.storeInventory = [];
 		vm.showStore = true;
 		vm.cart = [];
-		
-		
-		
+		vm.showConfirmationButton = false;
+
 		vm.showCart = function() {
 			vm.showStore = false;
 			vm.getCart();
@@ -20,6 +20,14 @@ angular.module('storeViewModule').component('storeView', {
 			vm.cartItemCount = vm.cart.cartItems.length;
 			})
 		}
+
+		var navCartRoute = function() {
+			if ($location.path().split('/')[3] == 'cart') {
+				vm.showCart()
+			}
+		}
+		
+		navCartRoute();
 		
 		vm.backToStore = function() {
 			vm.showStore = true;
@@ -51,6 +59,16 @@ angular.module('storeViewModule').component('storeView', {
 			storeService.removeCartItem(ci.id).then(function(res){
 				vm.getCart();
 			})
+		}
+		
+		vm.createReservation = function() {
+			storeService.bookReservation(storeId).then(function(res){
+				vm.showConfirmationButton = true;
+			})
+		}
+		
+		vm.continueButton = function() {
+			$location.path('/user/userReservations');
 		}
 		
 		vm.getCart();

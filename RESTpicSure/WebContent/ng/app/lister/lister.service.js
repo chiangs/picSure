@@ -28,14 +28,22 @@ angular.module('listerModule')
 			})
 		}
 		
-		service.inventoryIndex = function() {
+		service.inventoryIndex = function(id) {
 			checkLogin();
 			return $http({
 				method : 'GET',
-				url : BASE_URL + 'store/' + authService.getToken().id + '/inventory/'
+				url : BASE_URL + 'store/' +id + '/inventory/'
 			}).then(function(res) {
 				console.log(res);
 				return res;
+			})
+		}
+		
+		service.storeInventoryByUserId = function(){
+			checkLogin();
+			return $http({
+				method :'GET',
+				url : BASE_URL +'user/' + authService.getToken().id  +'/store/'
 			})
 		}
 		
@@ -104,7 +112,6 @@ angular.module('listerModule')
 				data : store
 			})
 		}
-		
 		
 		return service;
 	})
