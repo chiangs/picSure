@@ -32,13 +32,13 @@ public class StoreDAOImpl implements StoreDAO {
 	
 	@Override
 	public List<Store> indexEquipment(Integer equipmentId) {
-		String q = "SELECT s FROM Store s JOIN FETCH Inventory i ON s.id = i.store.id JOIN FETCH InventoryItem ii ON i.id = ii.inventory.id JOIN FETCH Equipment e ON ii.equipment.id = e.id WHERE e.id = :id";
+		String q = "SELECT s FROM Store s JOIN FETCH Inventory i ON s.id = i.store.id JOIN FETCH InventoryItem ii ON i.id = ii.inventory.id JOIN FETCH Equipment e ON ii.equipment.id = e.id WHERE e.id = :id and s.active = true";
 		return em.createQuery(q, Store.class).setParameter("id", equipmentId).getResultList();
 	}
 	
 	@Override
 	public List<Store> index() {
-		String q = "SELECT s FROM Store s";
+		String q = "SELECT s FROM Store s WHERE s.active = true";
 		return em.createQuery(q, Store.class).getResultList();
 	}
 	
@@ -73,7 +73,7 @@ public class StoreDAOImpl implements StoreDAO {
 
 		List<InventoryItem> items = new ArrayList<>();
 		Inventory inventory = new Inventory();
-		inventory.setIventoryItems(items);
+		inventory.setInventoryItems(items);
 
 		inventoryDAO.create(s.getId(), inventory);
 		return s;
