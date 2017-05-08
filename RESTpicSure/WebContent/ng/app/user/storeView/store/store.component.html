@@ -1,0 +1,59 @@
+
+<h1>{{vm.store.name}}</h1>
+<h3>{{vm.store.email}}, {{vm.store.phone}}</h3>
+<p>{{vm.store.address.street}}, {{vm.store.address.city}}, {{vm.store.address.state}},
+	{{vm.store.address.zip}}</p>
+
+<button type="submit" class="btn btn-warning btn-md" ng-click="vm.showCart()">View Cart ({{vm.countCartItems}})</button>
+<!-- StoreView -->
+<div id="store" ng-show="vm.showStore">
+<table class="table">
+	<thead>
+		<tr>
+			<th>Make</th>
+			<th>Model</th>
+			<th>Type</th>
+			<th>Rental Rate per Day (USD)</th>
+			<th>Qty Available</th>
+			<th>Add to Cart</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in vm.storeInventory.inventoryItems">
+			<td>{{item.equipment.make}}</td>
+			<td>{{item.equipment.model}}</td>
+			<td>{{item.equipment.type}}</td>
+			<td>{{item.equipment.rate | number :2}}</td>
+			<td>vm.countInventory()</td>
+			<td><button type="submit" class="btn btn-success" ng-click="vm.addToCart(item)">+</button></td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<!-- CartView -->
+<div id="cart" ng-hide="vm.showStore">
+<table class="table" >
+	<thead>
+		<tr>
+			<th>Make</th>
+			<th>Model</th>
+			<th>Type</th>
+			<th>Rental Rate per Day (USD)</th>
+			<th>Qty Reserved</th>
+			<th>Remove from Cart</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="ci in vm.cart">
+			<td>{{ci.equipment.make}}</td>
+			<td>{{ci.equipment.model}}</td>
+			<td>{{ci.equipment.type}}</td>
+			<td>{{ci.equipment.rate | number :2}}</td>
+			<td>vm.countInventory()</td>
+			<td>Delete Button</td>
+		</tr>
+	</tbody>
+</table>
+<button type="submit" class="btn btn-success btn-lg" ng-click="vm.createReservation(vm.cart)">Book this reservation!</button>
+</div>
