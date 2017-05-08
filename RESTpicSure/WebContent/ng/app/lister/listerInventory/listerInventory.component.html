@@ -16,9 +16,8 @@
 			<th>Type</th>
 			<th>Rental Rate per Day (USD)</th>
 			<th>Qty Available</th>
-			<th>Pick-up Date<br>(YYYY-MM-DD)</th>
-			<th>Return Date<br>(YYYY-MM-DD)</th>
-			<th>Add to Cart</th>
+			<th>Edit Item</th>
+			<th>Delete Item</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -28,8 +27,10 @@
 			<td>{{item.equipment.type}}</td>
 			<td>{{item.equipment.rate | number :2}}</td>
 			<td>vm.countInventory()</td>
-			<td><button type="submit" class="btn btn-success" ng-click="vm.addToCart(dates, item)">X</button></td>
+			<td><button type="submit" class="btn btn-success" ng-click="vm.addToCart(dates, item)">∆</button></td>
+			<td><button type="submit" class="btn btn-danger" ng-click="vm.addToCart(dates, item)">X</button></td>
 		</tr>
 	</tbody>
+	<button type="submit" class="btn btn-warning">Add Item</button>
 </table>
 </div>
