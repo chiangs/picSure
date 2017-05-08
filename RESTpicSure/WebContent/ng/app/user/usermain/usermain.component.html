@@ -1,4 +1,7 @@
-<h1>Find a rental location near you!</h1>
+<h1 ng-show="vm.showTable">Find a rental location near you!</h1>
+<h1 ng-show="vm.showLocations">Find a rental location near you!</h1>
+<h1 ng-show="vm.showEquip">Photography Equipment For Rent!</h1>
+<h1 ng-show="vm.showEquipmentList">Photography Equipment For Rent!</h1>
 
 <div id="tabNav">
 	<ul id="tablist">
@@ -54,15 +57,22 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Store Name</th>
+				<th>Store</th>
 				<th>Street</th>
 				<th>City</th>
 				<th>State</th>
+				<th>Phone</th>
+				<th>Email</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td></td>
+			<tr ng-repeat="s in vm.locations" ng-click="">
+				<td>{{s.name}}</td>
+				<td>{{s.address.street}}</td>
+				<td>{{s.address.city}}</td>
+				<td>{{s.address.state}}</td>
+				<td>{{s.phone}}</td>
+				<td>{{s.email}}</td>
 			</tr>
 		</tbody>
 	</table>
@@ -118,8 +128,8 @@
 			<tr>
 				<th>Available At These Stores!</th>
 			</tr>
-			<tr ng-repeat="s in vm.locationsByEquipment | orderBy : 'id'" ng-click="vm.showEquipment(e)">
-				<td></td>
+			<tr ng-repeat="s in vm.locationsByEquipment | orderBy : 'id'" ng-click="vm.showEquipList()">
+				<td>{{s.name}}<br>{{s.phone}}<br>{{s.email}}<br>{{s.address.street}}<br>{{s.address.city}}, {{s.address.state}} {{s.address.zip}}</td>
 			</tr>
 		</thead>
 	</table>

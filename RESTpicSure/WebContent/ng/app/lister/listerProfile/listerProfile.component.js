@@ -5,9 +5,11 @@ angular
 				{
 					templateUrl : 'ng/app/lister/listerProfile/listerProfile.component.html',
 					controller : function(geoService, listerService,
-							authService, $location, $rootScope) {
+							authService, $location, $scope) {
 
 						var vm = this;
+						
+						var geo = [];
 
 						vm.listerData = [];
 
@@ -39,11 +41,8 @@ angular
 									})
 						}
 
-						vm.updateStore = function(store) {
-							var string = (vm.storeData.address.street+","+
-									 vm.storeData.address.city +","+
-									 vm.storeData.address.state);
-							var geo = geoService.address(string);
+						vm.updateStore = function() {
+						 geo = geoService.address(vm.storeData.address.street + vm.storeData.address.city + vm.storeData.address.state)
 							console.log(geo+"****************************************");
 							listerService.updateStoreData(vm.storeData).then(
 									function(res) {

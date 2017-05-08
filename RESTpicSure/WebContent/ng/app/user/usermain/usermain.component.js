@@ -49,6 +49,7 @@ angular.module('userModule')
 			userService.getStoresByEquipmentId(vm.selectedEquipment.id).then(function(res){
 				vm.locationsByEquipment = res.data;
 			})
+			console.log(vm.locationsByEquipment);
 		}
 		
 //		Get array of stores and address info
@@ -56,7 +57,7 @@ angular.module('userModule')
 		console.log(res.data);
 		vm.locations = res.data;
 		for (var i = 0; i < vm.locations.length; i++) {
-			vm.markers[i] = '[' + vm.locations[i].latitude + ',' + vm.locations[i].longitude + ']' ;
+			vm.markers[i] = '[' + vm.locations[i].address.latitude + ',' + vm.locations[i].address.longitude + ']' ;
 		}
 		return vm.markers;
 		})
