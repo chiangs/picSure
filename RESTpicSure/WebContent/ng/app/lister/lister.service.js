@@ -39,13 +39,23 @@ angular.module('listerModule')
 			})
 		}
 		
-		service.destroyListerAccount = function() {
+		service.destroyStoreAccount = function() {
 			checkLogin();
 			return $http({
 				method : 'DELETE',
-				url : BASE_URL + '/user/' + authService.getToken().id
+				url : BASE_URL + 'store/' + authService.getToken().id
 			}).then(function(res){
 				authService.logout();
+			})
+		}
+		
+		service.destroyListerAccount = function(){
+			checkLogin();
+			return $http({
+				method : 'Delete',
+				url : BASE_URL + 'user/' + authService.getToken().id
+			}).then(function(res){
+				authSercive.logout();
 			})
 		}
 		
@@ -65,7 +75,7 @@ angular.module('listerModule')
 			checkLogin();
 			return $http({
 				method : 'GET',
-				url: BASE_URL +'/user/' + authService.getToken().id
+				url: BASE_URL +'user/' + authService.getToken().id
 			}). then(function(res){
 				return res;
 			})
@@ -75,7 +85,7 @@ angular.module('listerModule')
 			checkLogin();
 			return $http ({
 				method : 'GET',
-				url : BASE_URL + '/store/' + authService.getToken().id
+				url : BASE_URL + 'store/' + authService.getToken().id
 			}). then(function(res){
 				return res;
 			})	

@@ -18,6 +18,13 @@ angular.module('listerModule').component('listerProfile',
 								})
 							})
 						}
+
+						vm.destroyStoreAccount = function() {
+							listerService.destroyStoreAccount(authService.getToken().id)
+									.then(function(r){
+										listerService.destroyListerAccount(authService.getToken().id)
+									})
+									.then(function(res) {
 				       
 						vm.destroyListerAccount = function() {
 							listerService.destroyListerAccount(

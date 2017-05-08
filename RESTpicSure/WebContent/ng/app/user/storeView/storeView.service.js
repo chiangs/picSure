@@ -41,17 +41,35 @@ angular.module('storeViewModule').factory(
 				})
 			}
 			
-			service.addToCart = function(item) {
+			service.addToCart = function(dates, id) {
 				checkLogin();
 				return $http({
 					method : 'POST',
-					url : BASE_URL + 'user/' + authService.getToken().id + '/inventoryItem/' + item.id + '/cartItem',
+					url : BASE_URL + 'user/' + authService.getToken().id + '/inventoryItem/' + id + '/cartItem',
 					headers : {
 						'Content-Type' : 'application/json'
 					},
-					data : item
+					data : dates
 				}).then(function(res){
 					return res;
+				})
+			}
+			
+			service.showCart = function() {
+				checkLogin();
+				return $http({
+					method : 'GET',
+					url : BASE_URL + 'user/' + authService.getToken().id  + '/cart'
+				}).then(function(res){
+					return res;
+				})
+			}
+			
+			service.removeCartItem = function(id) {
+				checkLogin();
+				return $http({
+					method : 'DELETE',
+					url : BASE_URL + '/cartItem/' + id
 				})
 			}
 

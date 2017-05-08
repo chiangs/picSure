@@ -27,5 +27,3 @@ angular.module('geoModule')
 
 		return service;
 	})
-	
-
