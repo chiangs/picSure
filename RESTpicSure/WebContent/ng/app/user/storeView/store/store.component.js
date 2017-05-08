@@ -2,10 +2,12 @@ angular.module('storeViewModule').component('storeView', {
 	templateUrl : 'ng/app/user/storeView/store/store.component.html',
 	controller : function($routeParams, storeService, $scope, $location) {
 		var vm = this;
+		var storeId = $routeParams.id;
 		vm.stores = [];
 		vm.storeInventory = [];
 		vm.showStore = true;
 		vm.cart = [];
+		vm.showConfirmationButton = false;
 
 		vm.showCart = function() {
 			vm.showStore = false;
@@ -60,7 +62,13 @@ angular.module('storeViewModule').component('storeView', {
 		}
 		
 		vm.createReservation = function() {
-			storeService.
+			storeService.bookReservation(storeId).then(function(res){
+				vm.showConfirmationButton = true;
+			})
+		}
+		
+		vm.continueButton = function() {
+			$location.path('/user/userReservations');
 		}
 		
 		vm.getCart();
