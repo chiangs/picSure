@@ -1,6 +1,10 @@
 #map {
-	height: 100%;
-	margin: 0 auto;
+	margin: 2.5%;
+	height: 150%;
+}
+
+.tableCenter {
+	margin: 2.5%;;
 }
 
 #tabNav ul {

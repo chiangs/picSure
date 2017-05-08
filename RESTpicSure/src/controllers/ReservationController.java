@@ -35,9 +35,9 @@ public class ReservationController {
 		return reservationDAO.storeIndex(storeId);
 	}
 	
-	@RequestMapping(value = "user/{userId}/store/{storeId}/cart/{cartId}/reservation", method = RequestMethod.POST)
-	public Reservation create(@PathVariable Integer userId, @PathVariable Integer storeId, @PathVariable Integer cartId) {
-			return reservationDAO.create(userId, storeId, cartId);
+	@RequestMapping(value = "user/{userId}/store/{storeId}/reservation", method = RequestMethod.POST)
+	public Reservation create(@PathVariable Integer userId, @PathVariable Integer storeId) {
+			return reservationDAO.create(userId, storeId);
 		
 	}
 

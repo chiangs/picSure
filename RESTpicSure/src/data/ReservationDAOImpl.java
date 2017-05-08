@@ -45,16 +45,17 @@ public class ReservationDAOImpl implements ReservationDAO {
 	}
 
 	@Override
-	public Reservation create(Integer userId, Integer storeId, Integer cartId) {	
+	public Reservation create(Integer userId, Integer storeId) {	
 		
 		Reservation reservation = new Reservation();
+		User u = em.find(User.class, userId);
 		reservation.setReservationItems(new ArrayList<ReservationItem>());
 		
 		reservation.setStore(em.find(Store.class, storeId));
-		reservation.setUser(em.find(User.class, userId));
+		reservation.setUser(u);
 		reservation.setCreatedDate(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
 		
-		List<CartItem> items = em.find(Cart.class, cartId).getCartItems();
+		List<CartItem> items = em.find(Cart.class, u.getCart().getId()).getCartItems();
 		
 		for(int i = 0; i < items.size(); i++) {
 			ReservationItem resItem = new ReservationItem();

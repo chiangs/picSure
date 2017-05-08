@@ -22,7 +22,6 @@ angular.module('modal').controller(
 					appendTo : parentElem,
 					resolve : {
 						items : function() {
-							return $ctrl.items;
 						}
 					}
 				});
