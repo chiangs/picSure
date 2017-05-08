@@ -76,12 +76,14 @@ angular.module('userModule').factory(
 				})
 			}
 			
-			service.destroyResItem = function() {
+			service.destroyResItem = function(id) {
 				checkLogin();
 				return $http({
 					method : 'DELETE',
-					url : BASE_URL + ''
-				}).then
+					url : BASE_URL + 'reservationItem/' + id
+				}).then(function(res){
+					return res;
+				})
 			}
 
 			service.getEquipmentList = function() {
