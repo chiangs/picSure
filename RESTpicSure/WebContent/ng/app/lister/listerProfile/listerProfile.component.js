@@ -17,6 +17,7 @@ angular.module('listerModule').component('listerProfile',
                             })
                         }
 
+<<<<<<< HEAD
                         vm.destroyStoreAccount = function() {
                             listerService.destroyStoreAccount(authService.getToken().id)
                                     .then(function(r){
@@ -37,6 +38,33 @@ angular.module('listerModule').component('listerProfile',
                                         vm.reload();
                                     })
                         }
+=======
+						vm.destroyStoreAccount = function() {
+							listerService.destroyStoreAccount(authService.getToken().id)
+									.then(function(r){
+										listerService.destroyListerAccount(authService.getToken().id)
+									})
+									.then(function(res){
+										
+									})
+						}
+				       
+						vm.destroyListerAccount = function() {
+							
+						}
+						
+									
+									
+						
+						
+						vm.updateLister = function() {
+							listerService.updateLister(vm.listerData).then(
+									function(res) {
+										vm.listerData = res.data;
+										vm.reload();
+									})
+						}
+>>>>>>> a3ba9cc14d11cd3f3a971dd7e4aad4954b4bc840
 
                         vm.updateStore = function() {
                         geo = (vm.storeData.address.street+","+

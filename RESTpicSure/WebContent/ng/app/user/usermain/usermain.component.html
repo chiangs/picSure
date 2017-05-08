@@ -11,49 +11,31 @@
 		<li ng-click="vm.showEquipList()">List of Available Equipment</li>
 	</ul>
 </div>
-<!-- 
-<div ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo" ng-show="vm.selectedStore">
-    <script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
-        </div>
-        <div class="modal-body" id="modal-body">
-            <ul>
-                <li ng-repeat="item in $ctrl.items">
-                    <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
-                </li>
-            </ul>
-            Selected: <b>{{ $ctrl.selected.item }}</b>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
-        </div>
-    </script>
-    <script type="text/ng-template" id="stackedModal.html">
-        <div class="modal-header">
-            <h3 class="modal-title" id="modal-title-{{name}}">The {{name}} modal!</h3>
-        </div>
-        <div class="modal-body" id="modal-body-{{name}}">
-            Having multiple modals open at once is probably bad UX but it's technically possible.
-        </div>
-    </script>
-    
-
-     <button type="button" class="btn btn-default" ng-click="$ctrl.open('sm')">Small modal</button> 
-</div> -->
 
 <div  ng-show="vm.showTable" id="mapDiv">
 	<div id="map" map-lazy-load="https://maps.google.com/maps/api/js"
 		map-lazy-load-params="{{vm.googleMapsUrl}}">
-		<ng-map center="41,-87" zoom="3"> 
+		<ng-map center="41,-87" zoom="3">
 		<marker ng-repeat="mk in vm.markers" position="{{mk}}" on-click="vm.showStore(mk,data)">
-		 
+
 	</div>
 	</ng-map>
-</div> 
+</div>
 
-<div ng-show="vm.showStoreDiv">	
+<div id="selectTable">
+	<h3>Search for a specific piece of equipment!</h3>
+	<select class="dropDown">
+		<option default>Search by Category</option>
+  		<option ng-repeat="e in vm.equipmentList | unique: 'type'" value="{{e.id}}">{{e.type}}</option>
+ 	</select>
+	<select class="dropDown">
+		<option default>Search by Equipment</option>
+  		<option ng-repeat="e in vm.equipmentList" value="{{e.id}}">{{e.make}} {{e.model}}</option>
+ 	</select><br><br>
+ 	<button type="submit" value="Search">Search</button>
+</div>
+
+<div ng-show="vm.showStoreDiv">
 	<h1>{{vm.selectedStore.name}}</h1>
 	<h3>{{vm.selectedStore.phone}}</h3>
 	<h3>{{vm.selectedStore.email}}</h3>
@@ -61,7 +43,7 @@
 	<h3>{{vm.selectedStore.address.city}}, {{vm.selectedStore.address.state}} {{vm.selectedStore.address.zip}}</h3>
 </div>
 
-<div id="listLocations" ng-show="vm.showLocations">
+<div class="tableCenter" id="listLocations" ng-show="vm.showLocations">
 	<table class="table">
 		<thead>
 			<tr>
@@ -86,7 +68,7 @@
 	</table>
 </div>
 
-<div id="equpimentGlobal" ng-show="vm.showEquipmentList">
+<div class="tableCenter" id="equpimentGlobal" ng-show="vm.showEquipmentList">
 	<table class="table">
 		<thead>
 			<tr>
@@ -111,7 +93,7 @@
 	</table>
 </div>
 
-<div id="equpimentSingle" ng-show="vm.showEquip">
+<div class="tableCenter" id="equpimentSingle" ng-show="vm.showEquip">
 	<table class="table">
 		<tbody>
 			<tr>
@@ -123,21 +105,25 @@
 				<td>{{vm.selectedEquipment.type}}</td>
 			</tr>
 			<tr>
-				<td colspan='3'>{{vm.selectedEquipment.description}} ...</td>			
+				<td colspan='3'>{{vm.selectedEquipment.description}} ...</td>
 			</tr>
 			<tr>
-				<td colspan='3'>Rental Rate: {{vm.selectedEquipment.rate | currency}} per Hour</td>			
+				<td colspan='3'>Rental Rate: {{vm.selectedEquipment.rate | currency}} per Hour</td>
 			</tr>
 			<tr></tr>
 		</tbody>
 	</table>
+</div>
+<div class="tableCenter" ng-show="vm.showEquip">
 	<table>
 		<thead>
 			<tr>
-				<th>Available At These Stores!</th>
+				<th><h1>Available At These Stores!</h1></th>
 			</tr>
+
 			<tr ng-repeat="s in vm.locationsByEquipment | orderBy : 'id'" ng-click="vm.showEquipList()">
-				<td>{{s.name}}<br>{{s.phone}}<br>{{s.email}}<br>{{s.address.street}}<br>{{s.address.city}}, {{s.address.state}} {{s.address.zip}}</td>
+				<td><h3><b>{{s.name}}</b><br>{{s.phone}}<br>{{s.email}}<br>{{s.address.street}}<br>{{s.address.city}}, {{s.address.state}} {{s.address.zip}}</h3></td>
+
 			</tr>
 		</thead>
 	</table>

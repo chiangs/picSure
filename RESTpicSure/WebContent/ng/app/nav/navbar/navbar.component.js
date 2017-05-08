@@ -1,11 +1,12 @@
 angular.module('navbar').component('navbar', {
 	templateUrl : 'ng/app/nav/navbar/navbar.component.html',
-	controller : function(authService, $location) {
+	controller : function(authService, $location, userService) {
 		var vm = this;
 
 		vm.isLoggedIn = function() {
 			if (authService.getToken().id) {
 				vm.name = authService.getToken().fName;
+				vm.id = authService.getToken().id;
 				return true;
 			}
 			return false;
@@ -36,6 +37,15 @@ angular.module('navbar').component('navbar', {
 				$location.path('/lister/listerInventory');
 			} else {
 				$location.path('/user/userReservations');
+			}
+		}
+		
+		vm.cartRoute = function() {
+			if (vm.isLoggedIn) {
+				$location.path('/store/store/cart/' + vm.id);
+			}
+			else {
+				$location.path('/');
 			}
 		}
 

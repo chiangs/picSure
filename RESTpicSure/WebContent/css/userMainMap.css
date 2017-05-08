@@ -3,6 +3,15 @@
 	height: 150%;
 }
 
+.tableCenter {
+	margin: 2.5%;
+}
+
+.dropDown {
+	margin: 5px;
+	width: 150px;
+}
+
 #tabNav ul {
 	margin: 0;
 	padding: 0;

@@ -1,9 +1,35 @@
-<table class = "table">
-<tr>
-<th>Stuff</th>
-<th>Stuff2</th>
-<th>Stuff3</th>
-<th>Stuff4</th>
-<th>Stuff5</th>
-</tr>
+
+<h1 id="inventoryCount">Inventory Items:
+	{{vm.countInventoryItems()}}</h1>
+<h1>{{vm.store.name}}</h1>
+<h3>{{vm.store.email}}, {{vm.store.phone}}</h3>
+<p>{{vm.store.address.street}}, {{vm.store.address.city}}, {{vm.store.address.state}},
+	{{vm.store.address.zip}}</p>
+
+<!-- StoreView -->
+<div id="listerstore" ng-show="vm.listerInventory">
+<table class="table">
+	<thead>
+		<tr>
+			<th>Make</th>
+			<th>Model</th>
+			<th>Type</th>
+			<th>Rental Rate per Day (USD)</th>
+			<th>Qty Available</th>
+			<th>Pick-up Date<br>(YYYY-MM-DD)</th>
+			<th>Return Date<br>(YYYY-MM-DD)</th>
+			<th>Add to Cart</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in vm.listerInventory">
+			<td>{{item.equipment.make}}</td>
+			<td>{{item.equipment.model}}</td>
+			<td>{{item.equipment.type}}</td>
+			<td>{{item.equipment.rate | number :2}}</td>
+			<td>vm.countInventory()</td>
+			<td><button type="submit" class="btn btn-success" ng-click="vm.addToCart(dates, item)">X</button></td>
+		</tr>
+	</tbody>
 </table>
+</div>
