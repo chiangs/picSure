@@ -93,8 +93,7 @@ angular.module('storeViewModule').factory(
 					url : BASE_URL + 'user/' + authService.getToken().id + '/emptyCart',
 					headers : {
 						'Content-type' : 'application/json'
-					},
-					data : cart
+					}
 				}).then(function(res){
 					return res;
 				})
