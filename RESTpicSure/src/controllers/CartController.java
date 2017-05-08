@@ -26,7 +26,7 @@ public class CartController {
 		return cart.show(userId);
 	}
 	
-	@RequestMapping(path = "user/{userId}/emptyCart", method = RequestMethod.GET)
+	@RequestMapping(path = "user/{userId}/emptyCart", method = RequestMethod.PUT)
 	public Cart empty(@PathVariable Integer userId, HttpServletRequest request, HttpServletResponse response) {
 		return cart.show(userId);
 	}
