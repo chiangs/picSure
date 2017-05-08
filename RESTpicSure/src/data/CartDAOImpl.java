@@ -24,9 +24,21 @@ public class CartDAOImpl implements CartDAO {
 	}
 
 	@Override
-	public Cart create(Integer id) {
+	public Cart create(Integer userId) {
 		Cart c = new Cart();
-		c.setUser(em.find(User.class, id));
+		c.setUser(em.find(User.class, userId));
+		em.persist(c);
+		em.flush();
+		return c;
+	}
+	
+	@Override
+	public Cart empty(Integer userId) {
+		User u = em.find(User.class, userId);
+		Cart c = u.getCart();
+		for (int i = 0; i < c.getCartItems().size(); i++) {
+			c.getCartItems().remove(i);
+		}
 		em.persist(c);
 		em.flush();
 		return c;
