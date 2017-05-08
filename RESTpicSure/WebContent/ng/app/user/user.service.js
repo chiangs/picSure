@@ -65,6 +65,16 @@ angular.module('userModule').factory(
 					return res;
 				})
 			}
+			
+			service.getUserSingleReservation = function(id) {
+				checkLogin();
+				return $http({
+					method : 'GET',
+					url : BASE_URL + 'reservation/' + id
+				}).then(function(res){
+					return res;
+				})
+			}
 
 			service.destroyReservation = function(id) {
 				checkLogin();

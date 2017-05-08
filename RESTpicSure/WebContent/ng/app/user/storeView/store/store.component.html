@@ -4,7 +4,8 @@
 <p>{{vm.store.address.street}}, {{vm.store.address.city}}, {{vm.store.address.state}},
 	{{vm.store.address.zip}}</p>
 
-<button type="submit" class="btn btn-warning btn-md" ng-click="vm.showCart()">View Cart ({{vm.countCartItems}})</button>
+<button type="submit" class="btn btn-warning btn-md" ng-click="vm.showCart()">View Cart ( {{vm.cartItemCount}} )</button>
+<button type="submit" class="btn btn-primary btn-md" ng-click="vm.backToStore()">Back To Store</button>
 <!-- StoreView -->
 <div id="store" ng-show="vm.showStore">
 <table class="table">
@@ -15,6 +16,8 @@
 			<th>Type</th>
 			<th>Rental Rate per Day (USD)</th>
 			<th>Qty Available</th>
+			<th>Pick-up Date<br>(YYYY-MM-DD)</th>
+			<th>Return Date<br>(YYYY-MM-DD)</th>
 			<th>Add to Cart</th>
 		</tr>
 	</thead>
@@ -25,7 +28,9 @@
 			<td>{{item.equipment.type}}</td>
 			<td>{{item.equipment.rate | number :2}}</td>
 			<td>vm.countInventory()</td>
-			<td><button type="submit" class="btn btn-success" ng-click="vm.addToCart(item)">+</button></td>
+			<td><input type="date" ng-model="dates.timeOut"></td>
+			<td><input type="date" ng-model="dates.timeIn"></td>
+			<td><button type="submit" class="btn btn-success" ng-click="vm.addToCart(dates, item)">+</button></td>
 		</tr>
 	</tbody>
 </table>
@@ -40,18 +45,20 @@
 			<th>Model</th>
 			<th>Type</th>
 			<th>Rental Rate per Day (USD)</th>
-			<th>Qty Reserved</th>
+			<th>Pick-up</th>
+			<th>Turn-in</th>
 			<th>Remove from Cart</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="ci in vm.cart">
-			<td>{{ci.equipment.make}}</td>
-			<td>{{ci.equipment.model}}</td>
-			<td>{{ci.equipment.type}}</td>
-			<td>{{ci.equipment.rate | number :2}}</td>
-			<td>vm.countInventory()</td>
-			<td>Delete Button</td>
+		<tr ng-repeat="ci in vm.cart.cartItems">
+			<td>{{ci.inventoryItem.equipment.make}}</td>
+			<td>{{ci.inventoryItem.equipment.model}}</td>
+			<td>{{ci.inventoryItem.equipment.type}}</td>
+			<td>{{ci.inventoryItem.equipment.rate}}</td>
+			<td>{{ci.timeOut}}</td>
+			<td>{{ci.timeIn}}</td>
+			<td><button type="submit" class="btn btn-danger btn-sm" ng-click="vm.removeItem(ci)">X</button></td>
 		</tr>
 	</tbody>
 </table>

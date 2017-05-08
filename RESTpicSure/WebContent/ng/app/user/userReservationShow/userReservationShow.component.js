@@ -15,16 +15,13 @@ angular.module('userModule').component('userResShow', {
 		}
 		
 		vm.reload = function() {
-			userService.getUserReservations().then(function(res) {
-				vm.userReservations = res.data;
+			userService.getUserSingleReservation(vm.res.id).then(function(res) {
+				vm.res.reservationItems = res.data.reservationItems;
 			});
 		}
 		
 		vm.deleteItem = function(resItem) {
-			console.log(resItem);
 			userService.destroyResItem(resItem.id).then(function(){
-				vm.editMode = false;
-				vm.editRes = null;
 				vm.reload();
 			})
 		}

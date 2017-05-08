@@ -30,6 +30,7 @@ public class CartItemController {
 	public CartItem createCartItem(@PathVariable int userId, @PathVariable int inventoryItemId, @RequestBody String jsonCartItem,
 			HttpServletRequest request, HttpServletResponse response) {
 		ObjectMapper mapper = new ObjectMapper();
+		System.out.println("in controller" + jsonCartItem);
 		try {
 			CartItem mappedCartItem = mapper.readValue(jsonCartItem, CartItem.class);
 			return cartItem.create(userId, inventoryItemId, mappedCartItem);
