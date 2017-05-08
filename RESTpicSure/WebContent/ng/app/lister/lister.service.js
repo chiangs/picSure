@@ -82,6 +82,8 @@ angular.module('listerModule')
 		}
 		
 		service.updateStoreData = function(store){
+			console.log(store)
+			console.log("IN SERVICE")
 			checkLogin();
 			return $http ({
 				method : 'PUT',
