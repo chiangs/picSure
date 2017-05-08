@@ -25,6 +25,10 @@ angular.module('listerModule')
 							console.log('fail')
 						})
 			}
+			vm.destroyInventoryItem = function(){
+				listerService.destroyInventoryItem(id)
+			}
+			
 			vm.displayStoreInventoryByUserId();	
 			},
 	
