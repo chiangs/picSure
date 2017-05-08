@@ -12,7 +12,9 @@ angular.module('userModule')
 		vm.showTable = true;
 		vm.showLocations = false;
 		vm.showEquip = false;
+		vm.showStoreDiv = false;
 		vm.showEquipmentList = false;
+		vm.selectedStore = null;
 		vm.selectedEquipment = null;
 		
 		vm.showLocList = function() {
@@ -21,6 +23,7 @@ angular.module('userModule')
 			vm.showEquip = false;
 			vm.showEquipmentList = false;
 			vm.selectedEquipment = null;
+			vm.selectedStore = null;
 		}
 		
 		vm.showMapButton = function() {
@@ -29,6 +32,7 @@ angular.module('userModule')
 			vm.showEquip = false;
 			vm.showEquipmentList = false;
 			vm.selectedEquipment = null;
+			vm.selectedStore = null;
 		}
 
 		vm.showEquipList = function() {
@@ -37,6 +41,7 @@ angular.module('userModule')
 			vm.showEquip = false;
 			vm.showEquipmentList = true;
 			vm.selectedEquipment = null;
+			vm.selectedStore = null;
 		}
 		
 		vm.showEquipment = function(e) {
@@ -45,6 +50,7 @@ angular.module('userModule')
 			vm.showEquipmentList = false;
 			vm.showEquip = true;
 			vm.selectedEquipment = e;
+			vm.selectedStore = null;
 //		Get array of stores by equipment id
 			userService.getStoresByEquipmentId(vm.selectedEquipment.id).then(function(res){
 				vm.locationsByEquipment = res.data;
@@ -54,11 +60,8 @@ angular.module('userModule')
 		
 //		Get array of stores and address info
 		userService.listStores().then(function(res){
-		console.log(res.data);
 		vm.locations = res.data;
 		for (var i = 0; i < vm.locations.length; i++) {
-			console.log(vm.locations[i].address.latitude)
-			console.log(vm.locations[i].address.longitude)
 			vm.locations[i].id =20;
 			vm.markers[i] = '[' + vm.locations[i].address.latitude + ',' + 
 				vm.locations[i].address.longitude + ','+ JSON.stringify(vm.locations[i]) + ']';
@@ -72,8 +75,9 @@ angular.module('userModule')
 			var modifiedStrArray = data.split(",").slice(2).join(",").split("");
 			modifiedStrArray.pop();
 			modifiedStrArray = modifiedStrArray.join("")
-			var store = JSON.parse(modifiedStrArray);
-			console.log(store);
+			vm.selectedStore = JSON.parse(modifiedStrArray);
+			console.log(vm.selectedStore);
+			vm.showStoreDiv = true;
 		}
 
 //		Get array of equipment list
