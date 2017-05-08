@@ -1,5 +1,7 @@
 package data;
 
+import java.util.ArrayList;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Cart;
+import entities.CartItem;
 import entities.User;
 
 @Transactional
@@ -34,14 +37,12 @@ public class CartDAOImpl implements CartDAO {
 	
 	@Override
 	public Cart empty(Integer userId) {
-		User u = em.find(User.class, userId);
-		Cart c = u.getCart();
-		for (int i = 0; i < c.getCartItems().size(); i++) {
-			c.getCartItems().remove(i);
-		}
-		em.persist(c);
-		em.flush();
-		return c;
-	}
+        User u = em.find(User.class, userId);
+        Cart c = u.getCart();
+        for (int i = 0; i < c.getCartItems().size(); i++) {
+            em.remove(em.find(CartItem.class, c.getCartItems().get(i).getId()));
+        }
+        return c;
+    }
 
 }

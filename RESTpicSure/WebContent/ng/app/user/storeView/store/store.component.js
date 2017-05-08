@@ -63,6 +63,9 @@ angular.module('storeViewModule').component('storeView', {
 		
 		vm.createReservation = function() {
 			storeService.bookReservation(storeId).then(function(res){
+				storeService.emptyCart().then(function(){
+					vm.getCart();
+				});
 				vm.showConfirmationButton = true;
 			})
 		}
@@ -70,6 +73,7 @@ angular.module('storeViewModule').component('storeView', {
 		vm.continueButton = function() {
 			$location.path('/user/userReservations');
 		}
+	
 		
 		vm.getCart();
 		

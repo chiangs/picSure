@@ -86,6 +86,18 @@ angular.module('storeViewModule').factory(
 					console.log(res)
 				})
 			}
+			
+			service.emptyCart = function() {
+				return $http({
+					method : 'PUT',
+					url : BASE_URL + 'user/' + authService.getToken().id + '/emptyCart',
+					headers : {
+						'Content-type' : 'application/json'
+					}
+				}).then(function(res){
+					return res;
+				})
+			}
 
 
 			return service;
