@@ -4,7 +4,11 @@
 }
 
 .tableCenter {
-	margin: 2.5%;;
+	margin: 2.5%;
+}
+
+.dropDown {
+	margin: 5px;
 }
 
 #tabNav ul {

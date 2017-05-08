@@ -53,6 +53,19 @@
 	</ng-map>
 </div> 
 
+<div id="selectTable">
+	<h3>Search for a specific piece of equipment!</h3>
+	<select class="dropDown" >
+		<option default>Find by Equipment Type</option>
+  		<option ng-repeat="e in vm.equipmentList | unique: 'type'" value="{{e.id}}">{{e.type}}</option>
+ 	</select>
+	<select class="dropDown">
+		<option default>Find by Equipment</option>
+  		<option ng-repeat="e in vm.equipmentList" value="{{e.id}}">{{e.make}} {{e.model}}</option>
+ 	</select><br><br>
+ 	<button type="submit" value="Search">Search</button>
+</div>
+
 <div ng-show="vm.showStoreDiv">	
 	<h1>{{vm.selectedStore.name}}</h1>
 	<h3>{{vm.selectedStore.phone}}</h3>
@@ -86,7 +99,7 @@
 	</table>
 </div>
 
-<div class="95" id="equpimentGlobal" ng-show="vm.showEquipmentList">
+<div class="tableCenter" id="equpimentGlobal" ng-show="vm.showEquipmentList">
 	<table class="table">
 		<thead>
 			<tr>
