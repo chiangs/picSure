@@ -26,10 +26,12 @@ angular
 							})
 						}
 
-						vm.destroyListerAccount = function() {
-							listerService.destroyListerAccount(
-									authService.getToken().id).then(
-									function(res) {
+						vm.destroyStoreAccount = function() {
+							listerService.destroyStoreAccount(authService.getToken().id)
+									.then(function(r){
+										listerService.destroyListerAccount(authService.getToken().id)
+									})
+									.then(function(res) {
 										$location.path('/');
 									})
 						}

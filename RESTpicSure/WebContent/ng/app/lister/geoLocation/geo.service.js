@@ -12,7 +12,7 @@ angular.module('geoModule')
                     var longitude = results[0].geometry.location.lng();
                     var geo = {longitude:longitude,latitude:latitude};
                     console.log("longitude "+ geo.longitude+" latitude "+ latitude);
-                    return geo.
+                    return geo;
 
                 } else {
                     console.log("Request failed.")
@@ -24,3 +24,7 @@ angular.module('geoModule')
 
 		return service;
 	})
+
+	
+	
+	
