@@ -22,7 +22,7 @@
 	</ng-map>
 </div>
 
-<div id="selectTable">
+<div id="selectTable" ng-show="vm.showTable">
 	<h3>Search for a specific piece of equipment!</h3>
 	<select class="dropDown">
 		<option default>Search by Category</option>
@@ -32,7 +32,8 @@
 		<option default>Search by Equipment</option>
   		<option ng-repeat="e in vm.equipmentList" value="{{e.id}}">{{e.make}} {{e.model}}</option>
  	</select><br><br>
- 	<button type="submit" value="Search">Search</button>
+ 	<button class="dropDownSubmitBtn" type="submit" value="Search">Search</button>
+	<button class="dropDownSubmitBtn" type="submit" value="Search">Search</button>
 </div>
 
 <div ng-show="vm.showStoreDiv">
