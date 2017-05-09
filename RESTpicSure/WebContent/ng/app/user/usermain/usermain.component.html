@@ -32,14 +32,14 @@
 	<h3>Search for a specific piece of equipment!</h3>
 	<select class="dropDown">
 		<option default>Search by Category</option>
-  		<option ng-repeat="e in vm.equipmentList | unique: 'type'" value="{{e.id}}">{{e.type}}</option>
+  		<option ng-repeat="e in vm.equipmentList | unique: 'type'" value="{{e.type}}">{{e.type}}</option>
+		<button class="dropDownSubmitBtn" type="submit">Search</button>
  	</select>
 	<select class="dropDown">
 		<option default>Search by Equipment</option>
   		<option ng-repeat="e in vm.equipmentList" value="{{e.id}}">{{e.make}} {{e.model}}</option>
+	 	<button class="dropDownSubmitBtn" type="submit">Search</button>
  	</select><br><br>
- 	<button class="dropDownSubmitBtn" type="submit" value="Search">Search</button>
-	<button class="dropDownSubmitBtn" type="submit" value="Search">Search</button>
 </div>
 
 
