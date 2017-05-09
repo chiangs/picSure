@@ -51,21 +51,6 @@ public class StoreController {
 
 	@RequestMapping(value = "store/{storeId}", method = RequestMethod.PUT)
 	public Store update(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer storeId, @RequestBody String jsonStore) {
-		System.out.println("****************************************8");
-		System.out.println("****************************************8");
-		System.out.println("****************************************8");
-		System.out.println("****************************************8");
-		System.out.println("****************************************8");
-		System.out.println("****************************************8");
-		System.out.println("****************************************8");
-		System.out.println(jsonStore);
-		System.out.println("****************************************8");
-		System.out.println("****************************************8");
-		System.out.println("****************************************8");
-		System.out.println("****************************************8");
-		System.out.println("****************************************8");
-		System.out.println("****************************************8");
-		System.out.println("****************************************8");
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			Store mappedStore = mapper.readValue(jsonStore, Store.class);
