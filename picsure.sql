@@ -305,11 +305,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `picsure`;
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (1, '1701 Wynkoop', NULL, 'Denver', 'CO', 80202, 'USA', 39.7391536, -104.9847034
--104.9847034
--104.9847034);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (2, '1935 North Logan St', 'Ph 1', 'Denver', 'CO', 80203, 'USA', 39.746910, -104.982303);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (3, '4380 S. Monaco St', 'Unit 2105', 'Denver', 'CO', 80237, 'USA', 39.634528, -104.911013);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (1, '420 9th Ave.', NULL, 'New York', 'NY', 10001, 'USA', 40.730610, -73.935242);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (2, '759 S. Colorado Blvd.', '', 'Denver', 'CO', 80246, 'USA',  39.742043, -104.991531);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip`, `country`, `latitude`, `longitude`) VALUES (3, '1090 Bryant St', '', 'San Francisco', 'CA', 94103, 'USA', 37.733795, -122.446747);
 
 COMMIT;
 
@@ -320,6 +318,8 @@ COMMIT;
 START TRANSACTION;
 USE `picsure`;
 INSERT INTO `store` (`id`, `name`, `phone`, `email`, `addressId`, `active`) VALUES (1, 'UPic', '303-555-0137', 'BigRob@ilovecameras.com', 1, 1);
+INSERT INTO `store` (`id`, `name`, `phone`, `email`, `addressId`, `active`) VALUES (2, 'Samy\'s Camera', '323-938-2420', 'Rentals@samyscamera.com', 2, 1);
+INSERT INTO `store` (`id`, `name`, `phone`, `email`, `addressId`, `active`) VALUES (3, 'Adorama', '212-741-0063', 'contact@adorama.com', 3, 1);
 
 COMMIT;
 

@@ -6,8 +6,10 @@
 
 <button type="submit" class="btn btn-warning btn-md" ng-click="vm.showCart()" ng-show="vm.showStore">View Cart ( {{vm.cartItemCount}} )</button>
 <!-- StoreView -->
-<div id="store" ng-show="vm.showStore">
-<table class="table">
+
+<div>
+<input id="search" class="form-control" type="text" ng-model="search" ng-show="vm.showStore" placeholder="Search by keyword"/>
+<table class="table" ng-show="vm.showStore">
 	<thead>
 		<tr>
 			<th>Make</th>
@@ -21,7 +23,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="item in vm.storeInventory.inventoryItems">
+		<tr ng-repeat="item in vm.storeInventory.inventoryItems | fuzzySearchStore:search | orderBy : 'equipment.make'">
 			<td>{{item.equipment.make}}</td>
 			<td>{{item.equipment.model}}</td>
 			<td>{{item.equipment.type}}</td>

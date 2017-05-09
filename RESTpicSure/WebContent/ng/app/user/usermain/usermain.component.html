@@ -32,14 +32,14 @@
 	<h3>Search for a specific piece of equipment!</h3>
 	<select class="dropDown">
 		<option default>Search by Category</option>
-  		<option ng-repeat="e in vm.equipmentList | unique: 'type'" value="{{e.id}}">{{e.type}}</option>
+  		<option ng-repeat="e in vm.equipmentList | unique: 'type'" value="{{e.type}}">{{e.type}}</option>
  	</select>
 	<select class="dropDown">
 		<option default>Search by Equipment</option>
   		<option ng-repeat="e in vm.equipmentList" value="{{e.id}}">{{e.make}} {{e.model}}</option>
- 	</select><br><br>
- 	<button class="dropDownSubmitBtn" type="submit" value="Search">Search</button>
-	<button class="dropDownSubmitBtn" type="submit" value="Search">Search</button>
+ 	</select><br>
+ 	<button class="dropDownSubmitBtn" type="submit">Search</button>
+	<button class="dropDownSubmitBtn" type="submit">Search</button>
 </div>
 
 
@@ -52,7 +52,7 @@
 </div>
 
 
-
+<input id="search" class="form-control" type="text" ng-model="search" ng-show="vm.showLocations" placeholder="Search by keyword"/>
 <div class="tableCenter" id="listLocations" ng-show="vm.showLocations">
 	<table class="table">
 		<thead>
@@ -66,13 +66,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="s in vm.locations" ng-click="">
-				<td>{{s.name}}</td>
-				<td>{{s.address.street}}</td>
-				<td>{{s.address.city}}</td>
-				<td>{{s.address.state}}</td>
+			<tr ng-repeat="s in vm.locations | fuzzySearchLoc:search | orderBy :'name'">
+				<td ng-click="vm.goToStore(s)">{{s.name}}</td>
+				<td ng-click="vm.goToStore(s)">{{s.address.street}}</td>
+				<td ng-click="vm.goToStore(s)">{{s.address.city}}</td>
+				<td ng-click="vm.goToStore(s)">{{s.address.state}}</td>
 				<td>{{s.phone}}</td>
-				<td>{{s.email}}</td>
+				<td><a href="mailto:{{s.email}}">{{s.email}}</a></td>
 			</tr>
 		</tbody>
 	</table>
@@ -80,7 +80,9 @@
 
 
 
+<input id="search" class="form-control" type="text" ng-model="search" ng-show="vm.showEquipmentList" placeholder="Search by keyword"/>
 <div class="tableCenter" id="equpimentGlobal" ng-show="vm.showEquipmentList">
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -93,7 +95,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="e in vm.equipmentList | orderBy : 'id'" ng-click="vm.showEquipment(e)">
+			<tr ng-repeat="e in vm.equipmentList | fuzzySearchEquip:search | orderBy : 'id'" ng-click="vm.showEquipment(e)">
 				<td><img src='{{e.image}}' id="EquipImage"></td>
 				<td>{{e.make}}</td>
 				<td>{{e.model}}</td>
