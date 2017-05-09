@@ -1,7 +1,9 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import entities.Address;
 import entities.Inventory;
 import entities.InventoryItem;
 import entities.Store;
@@ -38,9 +39,12 @@ public class StoreDAOImpl implements StoreDAO {
 	}
 	
 	@Override
-	public List<Store> indexEquipment(Integer equipmentId) {
+	public Set<Store> indexEquipment(Integer equipmentId) {
 		String q = "SELECT s FROM Store s JOIN FETCH Inventory i ON s.id = i.store.id JOIN FETCH InventoryItem ii ON i.id = ii.inventory.id JOIN FETCH Equipment e ON ii.equipment.id = e.id WHERE e.id = :id and s.active = true";
-		return em.createQuery(q, Store.class).setParameter("id", equipmentId).getResultList();
+		List<Store> storeList =  em.createQuery(q, Store.class).setParameter("id", equipmentId).getResultList();
+		Set<Store> storeSet = new HashSet<Store>(storeList);
+		return storeSet;
+		
 	}
 	
 	@Override

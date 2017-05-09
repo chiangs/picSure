@@ -100,7 +100,17 @@ angular.module('userModule').factory(
 				checkLogin();
 				return $http({
 					method : 'GET',
-					url : BASE_URL + 'equipment'
+					url : BASE_URL + 'inventoryItem'
+				}).then(function(res) {
+					return res;
+				})
+			}
+			
+			service.getEquipmentByType = function(type) {
+				checkLogin();
+				return $http({
+					method : 'GET',
+					url : BASE_URL + 'inventoryItem/' + type
 				}).then(function(res) {
 					return res;
 				})

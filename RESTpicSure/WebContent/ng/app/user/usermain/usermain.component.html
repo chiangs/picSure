@@ -34,12 +34,12 @@
 	
 	<select class="dropDown" ng-model="e.type">
 		<option default>Search by Category</option>
-  		<option ng-repeat="e in vm.equipmentList | unique: 'type'" value="{{e.type}}">{{e.type}}</option>
+  		<option ng-repeat="e in vm.equipmentList | unique: 'equipment.type'" value="{{e.equipment.type}}">{{e.equipment.type}}</option>
  	</select>
  	
 	<select class="dropDown" ng-model="e.id">
 		<option default>Search by Equipment</option>
-  		<option ng-repeat="e in vm.equipmentList" value="{{e.id}}">{{e.make}} {{e.model}}</option>
+  		<option ng-repeat="e in vm.equipmentList | unique: 'equipment.id'" value="{{e.id}}">{{e.equipment.make}} {{e.equipment.model}}</option>
  	</select><br>
  	
  	<button class="dropDownSubmitBtn" ng-click="vm.searchEquipmentByType(equimentType), vm.showStoresByEquipment=true" type="submit">Search</button>
@@ -47,12 +47,28 @@
 </div>
 
 
+
 <div class="tableCenter" ng-show="vm.showStoresByEquipment">
 	<table>
-		<tr ng-repeat="s in vm.storesByEquipment">
-			<td ng-click="vm.selectedStore"><h1>{{s.name}}</h1> <h3>{{s.phone}} | {{s.email}}<br>{{s.address.street}}, {{s.address.city}}, {{s.address.state}} {{s.address.zip}} </h3></td>
+		<tr ng-repeat="s in vm.storesByEquipment" ng-click="vm.goToStore(s)">
+			<td><h1>{{s.name}}</h1>
+				<h3>{{s.phone}}</h3>
+				<h3>{{s.email}}</h3>
+				<h3>{{s.address.street}}</h3>
+				<h3>{{s.address.city}}, {{s.address.state}} {{s.address.zip}}</h3>	
+			</td>
 	</table>
 </div>
+
+
+
+<div class="tableCenter" ng-show="vm.showEquipmentByType">
+	<table>
+		<tr ng-repeat="e in vm.equipmentByType" ng-click="vm.showEquipment(e)">
+			<td>{{e.equioment.name}} | {{e.equipment.make}} | {{e.equipment.model}</td>
+	</table>
+</div>
+
 
 
 <div class="tableCenter" ng-click="vm.goToStore(vm.selectedStore)" ng-show="vm.showStoreDiv">
@@ -108,13 +124,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="e in vm.equipmentList | fuzzySearchEquip:search | orderBy : 'id'" ng-click="vm.showEquipment(e)">
+			<tr ng-repeat="e in vm.equipmentList | fuzzySearchEquip:search | orderBy : 'id'" ng-click="vm.showEquipment(e) | unique: 'e.equipment.id'">
 				<td><img src='{{e.image}}' id="EquipImage"></td>
-				<td>{{e.make}}</td>
-				<td>{{e.model}}</td>
-				<td>{{e.type}}</td>
-				<td>{{e.description | limitTo: 175}} ...</td>
-				<td>{{e.rate | currency}} hr</td>
+				<td>{{e.equipment.make}}</td>
+				<td>{{e.equipment.model}}</td>
+				<td>{{e.equipment.type}}</td>
+				<td>{{e.equipment.description | limitTo: 175}} ...</td>
+				<td>{{e.equipment.rate | currency}} hr</td>
 			</tr>
 		</tbody>
 	</table>

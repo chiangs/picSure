@@ -1,5 +1,6 @@
 package data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -22,6 +23,20 @@ public class InventoryItemDAOImpl implements InventoryItemDAO {
 	@Override
 	public InventoryItem show(Integer id) {
 		return em.find(InventoryItem.class, id);
+	}
+	
+	@Override
+	public List<InventoryItem> index() {
+		String q = "SELECT i FROM InventoryItem i WHERE i.active = true";
+		List<InventoryItem> items = em.createQuery(q, InventoryItem.class).getResultList();
+		return items;
+	}
+	
+	@Override
+	public List<InventoryItem> indexEquipmentType(String equipmentType) {
+		String q = "SELECT i FROM InventoryItem i WHERE i.active = true and i.equipment.type = :equipmentType";
+		List<InventoryItem> items = em.createQuery(q, InventoryItem.class).getResultList();
+		return items;
 	}
 	
 	@Override
