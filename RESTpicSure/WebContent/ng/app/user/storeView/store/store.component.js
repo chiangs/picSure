@@ -1,6 +1,6 @@
 angular.module('storeViewModule').component('storeView', {
 	templateUrl : 'ng/app/user/storeView/store/store.component.html',
-	controller : function($routeParams, storeService, $scope, $location) {
+	controller : function($routeParams, storeService, $scope, $location, $filter) {
 		var vm = this;
 		var storeId = $routeParams.id;
 		vm.stores = [];
