@@ -31,6 +31,7 @@ angular.module('userModule')
 			vm.selectedEquipment = null;
 			vm.selectedStore = null;
 			vm.showStoresByEquipment = false;
+			vm.showEquipmentByType = false;
 		}
 		
 		
@@ -43,6 +44,7 @@ angular.module('userModule')
 			vm.selectedEquipment = null;
 			vm.selectedStore = null;		
 			vm.showStoresByEquipment = false;
+			vm.showEquipmentByType = false;
 		}
 
 		
@@ -55,6 +57,7 @@ angular.module('userModule')
 			vm.selectedEquipment = null;
 			vm.selectedStore = null;
 			vm.showStoresByEquipment = false;
+			vm.showEquipmentByType = false;
 		}
 		
 		
@@ -66,6 +69,7 @@ angular.module('userModule')
 			vm.showEquip = true;
 			vm.selectedEquipment = e;
 			vm.selectedStore = null;
+			vm.showEquipmentByType = false;
 //		Get array of stores by equipment id
 			userService.getStoresByEquipmentId(vm.selectedEquipment.id).then(function(res){
 				vm.locationsByEquipment = res.data;
@@ -98,6 +102,7 @@ angular.module('userModule')
 			console.log(vm.selectedStore);
 			vm.showStoreDiv = true;
 			vm.showStoresByEquipment = false;
+			vm.showEquipmentByType = false;
 		}
 
 		
@@ -105,7 +110,6 @@ angular.module('userModule')
 //		Get array of equipment list
 		userService.getEquipmentList().then(function(res){
 			vm.equipmentList = res.data;
-			console.log("here")
 		})
 		
 		
@@ -133,6 +137,8 @@ angular.module('userModule')
 		
 		
 		vm.searchEquipmentByType = function(type) {
+			console.log("HIT")
+			
 			userService.getEquipmentByType(type).then(function(res){
 				vm.equipmentByType = res.data;
 			})

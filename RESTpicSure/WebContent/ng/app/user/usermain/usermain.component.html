@@ -5,6 +5,14 @@
 
 
 
+
+
+<input id="search" class="form-control" type="text" ng-model="search" ng-show="vm.showLocations" placeholder="Search by keyword"/>
+
+
+
+
+
 <div id="tabNav">
 	<ul id="tablist">
 		<li ng-click="vm.showMapButton()">Map&nbsp;&nbsp;|&nbsp;&nbsp;</li>
@@ -13,6 +21,8 @@
 		<li ng-click="vm.showEquipList()">List of Available Equipment</li>
 	</ul>
 </div>
+
+
 
 
 
@@ -25,6 +35,8 @@
 	</div>
 	</ng-map>
 </div>
+
+
 
 
 
@@ -42,9 +54,11 @@
   		<option ng-repeat="e in vm.equipmentList | unique: 'equipment.id'" value="{{e.id}}">{{e.equipment.make}} {{e.equipment.model}}</option>
  	</select><br>
  	
- 	<button class="dropDownSubmitBtn" ng-click="vm.searchEquipmentByType(equimentType), vm.showStoresByEquipment=true" type="submit">Search</button>
+ 	<button class="dropDownSubmitBtn" ng-click="vm.searchEquipmentByType(e.type)" type="submit">Search</button>
 	<button class="dropDownSubmitBtn" ng-click="vm.searchStoresByEquipment(e.id)" type="submit">Search</button>
 </div>
+
+
 
 
 
@@ -62,12 +76,16 @@
 
 
 
+
+
 <div class="tableCenter" ng-show="vm.showEquipmentByType">
 	<table>
 		<tr ng-repeat="e in vm.equipmentByType" ng-click="vm.showEquipment(e)">
-			<td>{{e.equioment.name}} | {{e.equipment.make}} | {{e.equipment.model}</td>
+			<td><h3>{{e.equipment.make}} | {{e.equipment.model}} | {{e.equipment.description | limitTo: 100}} ... |  {{e.equipment.rate| currency}} hr </h3></td>
 	</table>
 </div>
+
+
 
 
 
@@ -81,7 +99,8 @@
 
 
 
-<input id="search" class="form-control" type="text" ng-model="search" ng-show="vm.showLocations" placeholder="Search by keyword"/>
+
+
 <div class="tableCenter" id="listLocations" ng-show="vm.showLocations">
 	<table class="table">
 		<thead>
@@ -106,6 +125,9 @@
 		</tbody>
 	</table>
 </div>
+
+
+
 
 
 
@@ -138,6 +160,9 @@
 
 
 
+
+
+
 <div class="tableCenter" id="equpimentSingle" ng-show="vm.showEquip">
 	<table class="table">
 		<tbody>
@@ -159,6 +184,9 @@
 		</tbody>
 	</table>
 </div>
+
+
+
 
 
 

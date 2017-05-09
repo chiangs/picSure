@@ -1,6 +1,5 @@
 package data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import entities.Equipment;
 import entities.Inventory;
 import entities.InventoryItem;
+import entities.User;
 
 @Transactional
 @Repository
@@ -34,8 +34,9 @@ public class InventoryItemDAOImpl implements InventoryItemDAO {
 	
 	@Override
 	public List<InventoryItem> indexEquipmentType(String equipmentType) {
-		String q = "SELECT i FROM InventoryItem i WHERE i.active = true and i.equipment.type = :equipmentType";
-		List<InventoryItem> items = em.createQuery(q, InventoryItem.class).getResultList();
+		String q = "SELECT i FROM InventoryItem i WHERE i.active = true and i.equipment.type = :type";
+		List<InventoryItem> items = em.createQuery(q, InventoryItem.class).setParameter("type", equipmentType).getResultList();
+		System.out.println("************************************************************************************************************************");
 		return items;
 	}
 	
@@ -54,11 +55,16 @@ public class InventoryItemDAOImpl implements InventoryItemDAO {
 	}
 
 	@Override
-	public InventoryItem create(Integer inventoryId, Integer equipmentId) {
+	public InventoryItem create(Integer userId, Integer equipmentId) {
+		User u = em.find(User.class, userId);
+		
+		String q = "SELECT i from Inventory i WHERE i.store.id = :id";
+		Inventory inventory = em.createQuery(q, Inventory.class).setParameter("id", u.getStore().get(0).getId()).getSingleResult();
+		
 		InventoryItem i = new InventoryItem();
 		i.setActive(true);
 		i.setEquipment(em.find(Equipment.class, equipmentId));
-		i.setInventory(em.find(Inventory.class, inventoryId));
+		i.setInventory(inventory);
 		em.persist(i);
 		em.flush();
 		return i;

@@ -30,7 +30,7 @@ public class InventoryItemController {
 		return invItem.index();
 	}
 	
-	@RequestMapping(path = "inventoryItem/{equipmentType}", method = RequestMethod.GET)
+	@RequestMapping(path = "inventoryItem/{equipmentType}/equipmentType", method = RequestMethod.GET)
 	public List<InventoryItem> index(@PathVariable String equipmentType, HttpServletRequest request, HttpServletResponse response) {
 		return invItem.indexEquipmentType(equipmentType);
 	}

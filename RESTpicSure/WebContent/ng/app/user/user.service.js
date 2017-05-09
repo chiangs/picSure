@@ -110,7 +110,7 @@ angular.module('userModule').factory(
 				checkLogin();
 				return $http({
 					method : 'GET',
-					url : BASE_URL + 'inventoryItem/' + type
+					url : BASE_URL + 'inventoryItem/' + type + '/equipmentType'
 				}).then(function(res) {
 					return res;
 				})
