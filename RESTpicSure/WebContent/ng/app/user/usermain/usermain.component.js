@@ -5,6 +5,8 @@ angular.module('userModule')
 		var vm = this;
 		vm.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-eCSz4m2r6WczpOcJANrtbF8xps8EDuU&libraries=places";
 		vm.equipmentList = [];
+		vm.equipmentListByType = [];
+		vm.storesByEquipment = [];
 		vm.modalItems = [];
 		vm.locations = [];
 		vm.locationsByEquipment = [];
@@ -17,6 +19,8 @@ angular.module('userModule')
 		vm.selectedStore = null;
 		vm.selectedEquipment = null;
 		
+		
+		
 		vm.showLocList = function() {
 			vm.showTable = false;
 			vm.showLocations = true;
@@ -25,6 +29,8 @@ angular.module('userModule')
 			vm.selectedEquipment = null;
 			vm.selectedStore = null;
 		}
+		
+		
 		
 		vm.showMapButton = function() {
 			vm.showTable = true;
@@ -35,6 +41,8 @@ angular.module('userModule')
 			vm.selectedStore = null;
 		}
 
+		
+		
 		vm.showEquipList = function() {
 			vm.showTable = false;
 			vm.showLocations = false;
@@ -43,6 +51,8 @@ angular.module('userModule')
 			vm.selectedEquipment = null;
 			vm.selectedStore = null;
 		}
+		
+		
 		
 		vm.showEquipment = function(e) {
 			vm.showTable = false;
@@ -58,6 +68,8 @@ angular.module('userModule')
 			console.log(vm.locationsByEquipment);
 		}
 		
+		
+		
 //		Get array of stores and address info
 		userService.listStores().then(function(res){
 		vm.locations = res.data;
@@ -67,6 +79,8 @@ angular.module('userModule')
 		}
 		return vm.markers;
 		})
+		
+		
 		
 		// first argument is metadata from the map 
 		// second argument it marker data provided by 'userService.listStores()' above
@@ -79,14 +93,33 @@ angular.module('userModule')
 			vm.showStoreDiv = true;
 		}
 
+		
+		
 //		Get array of equipment list
 		userService.getEquipmentList().then(function(res){
 			vm.equipmentList = res.data;
 		})
 		
+		
+		
 		vm.goToStore = function(s) {
 			console.log(s);
 			$location.path('store/store/'+ s.id);
+		}
+		
+		
+		
+		vm.searchStoresByEquipment = function(e) {
+			userService.searchStoresByEquipment(e).then(function(res){
+				vm.storesByEquipment = res.data;
+			})
+		}
+		
+		
+		vm.searchEquipmentByType = function(id) {
+			userService.getStoresByEquipmentId(id).then(function(res){
+				vm.equipmentByType = res.data;
+			})
 		}
       
 	 },

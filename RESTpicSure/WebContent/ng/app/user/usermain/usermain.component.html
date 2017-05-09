@@ -33,13 +33,13 @@
 	<select class="dropDown">
 		<option default>Search by Category</option>
   		<option ng-repeat="e in vm.equipmentList | unique: 'type'" value="{{e.type}}">{{e.type}}</option>
-		<button class="dropDownSubmitBtn" type="submit">Search</button>
  	</select>
 	<select class="dropDown">
 		<option default>Search by Equipment</option>
   		<option ng-repeat="e in vm.equipmentList" value="{{e.id}}">{{e.make}} {{e.model}}</option>
-	 	<button class="dropDownSubmitBtn" type="submit">Search</button>
- 	</select><br><br>
+ 	</select><br>
+ 	<button class="dropDownSubmitBtn" type="submit">Search</button>
+	<button class="dropDownSubmitBtn" type="submit">Search</button>
 </div>
 
 
