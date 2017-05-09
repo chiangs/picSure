@@ -1,12 +1,12 @@
 angular.module('userModule')
-.filter('fuzzySearchStore', function() {
+.filter('fuzzySearchLoc', function() {
   return function(list, text) {
     if (!text) return list;
     var results = [];
     list.forEach(function(item) {
-    	for (var i in item.equipment) {
+    	for (var i in item) {
 
-    		if(String (item.equipment[i]).toLowerCase().includes(text.toLowerCase())) {
+    		if(String (item[i]).toLowerCase().includes(text.toLowerCase())) {
     			return results.push(item);
     		}
     	}
