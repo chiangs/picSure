@@ -40,6 +40,14 @@ angular.module('listerModule')
 				vm.displayStoreInventoryByUserId()
 			}
 			
+			vm.editInventoryItems = function(){
+				listerService.editInventoryItems()
+				.then(function(){
+					
+				})
+				vm.displayStoreInventoryByUserId()
+			}
+			
 			vm.displayStoreInventoryByUserId();	
 			},
 	

@@ -24,7 +24,7 @@ angular.module('listerModule')
 			checkLogin();
 			return $http({
 				method : 'GET',
-				url : BASE_URL + 'reservation/' + id
+				url : BASE_URL + 'reservation/' + id,
 			})
 		}
 
@@ -32,7 +32,7 @@ angular.module('listerModule')
 			checkLogin();
 			return $http({
 				method : 'GET',
-				url : BASE_URL + 'store/' +id + '/inventory/'
+				url : BASE_URL + 'store/' +id + '/inventory/',
 			}).then(function(res) {
 				console.log(res);
 				return res;
@@ -43,7 +43,7 @@ angular.module('listerModule')
 			checkLogin();
 			return $http({
 				method :'GET',
-				url : BASE_URL +'user/' + authService.getToken().id  +'/store/'
+				url : BASE_URL +'user/' + authService.getToken().id  +'/store/',
 			})
 		}
 
@@ -51,7 +51,7 @@ angular.module('listerModule')
 			checkLogin();
 			return $http({
 				method : 'DELETE',
-				url : BASE_URL + 'store/' + authService.getToken().id
+				url : BASE_URL + 'store/' + authService.getToken().id,
 			}).then(function(res){
 				authService.logout();
 			})
@@ -61,7 +61,7 @@ angular.module('listerModule')
 			checkLogin();
 			return $http({
 				method : 'Delete',
-				url : BASE_URL + 'user/' + authService.getToken().id
+				url : BASE_URL + 'user/' + authService.getToken().id,
 			}).then(function(res){
 				authSercive.logout();
 			})
@@ -83,7 +83,7 @@ angular.module('listerModule')
 			checkLogin();
 			return $http({
 				method : 'GET',
-				url: BASE_URL +'user/' + authService.getToken().id
+				url: BASE_URL +'user/' + authService.getToken().id,
 			}). then(function(res){
 				return res;
 			})
@@ -93,7 +93,7 @@ angular.module('listerModule')
 			checkLogin();
 			return $http ({
 				method : 'GET',
-				url : BASE_URL + 'store/' + authService.getToken().id
+				url : BASE_URL + 'store/' + authService.getToken().id,
 			}). then(function(res){
 				return res;
 			})
@@ -118,7 +118,7 @@ angular.module('listerModule')
 			checkLogin();
 			return $http({
 				method : 'DELETE',
-				url : BASE_URL + 'inventoryItem/' + id
+				url : BASE_URL + 'inventoryItem/' + id,
 			}).then(function(res){
 				return res;
 			})
@@ -150,6 +150,14 @@ angular.module('listerModule')
 			data : store.address
 		})
 	}
+		
+		service.editInventoryItems = function(){
+			checkLogin();
+			return $http ({
+				method : 'PUT',
+				url: BASE_URL + 'inventoryItem' + id, 
+			})
+		}
 
 		return service;
 	})
