@@ -16,6 +16,7 @@ angular.module('userModule')
 		vm.showEquip = false;
 		vm.showStoreDiv = false;
 		vm.showEquipmentList = false;
+		vm.showStoresByEquipment = false;
 		vm.selectedStore = null;
 		vm.selectedEquipment = null;
 		
@@ -91,6 +92,7 @@ angular.module('userModule')
 			vm.selectedStore = JSON.parse(modifiedStrArray);
 			console.log(vm.selectedStore);
 			vm.showStoreDiv = true;
+			vm.showStoresByEquipment = false;
 		}
 
 		
@@ -109,10 +111,21 @@ angular.module('userModule')
 		
 		
 		
-		vm.searchStoresByEquipment = function(e) {
-			userService.searchStoresByEquipment(e).then(function(res){
+		vm.searchStoresByEquipment = function(equipmentId) {
+			
+			console.log("***************************************************************************************")
+			userService.getStoresByEquipmentId(equipmentId).then(function(res){
+				console.log(res);
 				vm.storesByEquipment = res.data;
+				vm.locations = res.data;
 			})
+
+			vm.showTable = true;
+			vm.showLocations = false;
+			vm.showEquip = false;
+			vm.showStoreDiv = false;
+			vm.showEquipmentList = false;
+			vm.showStoresByEquipment = true;
 		}
 		
 		

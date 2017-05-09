@@ -17,18 +17,18 @@
 			<th>Rental Rate per Day (USD)</th>
 			<th>Qty Available</th>
 			<th>Edit Item</th>
-			<th>Delete Item</th>
+			<th>Active</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="item in vm.listerInventory">
+		<tr ng-repeat="item in vm.listerInventory | unique: 'equipment.id'">
 			<td>{{item.equipment.make}}</td>
 			<td>{{item.equipment.model}}</td>
 			<td>{{item.equipment.type}}</td>
 			<td>{{item.equipment.rate | number :2}}</td>
 			<td>vm.countInventory()</td>
 			<td><button type="submit" class="btn btn-success" ng-click="vm.addToCart(dates, item)">∆</button></td>
-			<td><button type="submit" class="btn btn-danger" ng-click="vm.addToCart(dates, item)">X</button></td>
+			<td><input type="checkbox" class= "" ng-model="item.active" ng-change="vm.updateItems(vm.inventory.id, item)"></td>
 		</tr>
 	</tbody>
 	<button type="submit" class="btn btn-warning">Add Item</button>

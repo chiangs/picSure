@@ -29,27 +29,40 @@
 
 
 <div id="selectTable" ng-show="vm.showTable">
+
 	<h3>Search for a specific piece of equipment!</h3>
-	<select class="dropDown">
+	
+	<select class="dropDown" ng-model="e.type">
 		<option default>Search by Category</option>
   		<option ng-repeat="e in vm.equipmentList | unique: 'type'" value="{{e.type}}">{{e.type}}</option>
  	</select>
-	<select class="dropDown">
+ 	
+	<select class="dropDown" ng-model="e.id">
 		<option default>Search by Equipment</option>
   		<option ng-repeat="e in vm.equipmentList" value="{{e.id}}">{{e.make}} {{e.model}}</option>
  	</select><br>
- 	<button class="dropDownSubmitBtn" type="submit">Search</button>
-	<button class="dropDownSubmitBtn" type="submit">Search</button>
+ 	
+ 	<button class="dropDownSubmitBtn" ng-click="vm.searchEquipmentByType(equimentType), vm.showStoresByEquipment=true" type="submit">Search</button>
+	<button class="dropDownSubmitBtn" ng-click="vm.searchStoresByEquipment(e.id)" type="submit">Search</button>
 </div>
 
 
-<div ng-click="vm.goToStore(vm.selectedStore)" ng-show="vm.showStoreDiv">
+<div class="tableCenter" ng-show="vm.showStoresByEquipment">
+	<table>
+		<tr ng-repeat="s in vm.storesByEquipment">
+			<td ng-click="vm.selectedStore"><h1>{{s.name}}</h1> <h3>{{s.phone}} | {{s.email}}<br>{{s.address.street}}, {{s.address.city}}, {{s.address.state}} {{s.address.zip}} </h3></td>
+	</table>
+</div>
+
+
+<div class="tableCenter" ng-click="vm.goToStore(vm.selectedStore)" ng-show="vm.showStoreDiv">
 	<h1>{{vm.selectedStore.name}}</h1>
 	<h3>{{vm.selectedStore.phone}}</h3>
 	<h3>{{vm.selectedStore.email}}</h3>
 	<h3>{{vm.selectedStore.address.street}}</h3>
 	<h3>{{vm.selectedStore.address.city}}, {{vm.selectedStore.address.state}} {{vm.selectedStore.address.zip}}</h3>
 </div>
+
 
 
 <input id="search" class="form-control" type="text" ng-model="search" ng-show="vm.showLocations" placeholder="Search by keyword"/>
