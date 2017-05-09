@@ -123,6 +123,19 @@ angular.module('listerModule')
 				return res;
 			})
 		}
+		
+		service.updateStoreAddress = function(store){
+			console.log(store);
+		checkLogin();
+		return $http ({
+			method : 'PUT',
+			url: BASE_URL + 'store/' + store.address.id + '/address/',
+			headers : {
+				'Content-Type' : 'application/json'
+			},
+			data : store.address
+		})
+	}
 
 		return service;
 	})

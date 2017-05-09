@@ -63,7 +63,9 @@ angular.module('storeViewModule').component('storeView', {
 		
 		vm.createReservation = function() {
 			storeService.bookReservation(storeId).then(function(res){
-				storeService.emptyCart();
+				storeService.emptyCart().then(function(){
+					vm.getCart();
+				});
 				vm.showConfirmationButton = true;
 			})
 		}
