@@ -3,6 +3,12 @@
 	height: 150%;
 }
 
+#search {
+	width: 250px;
+	margin: auto;
+	text-align:center;
+}
+
 .tableCenter {
 	margin: 2.5%;
 }

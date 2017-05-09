@@ -81,7 +81,7 @@
 <div class="tableCenter" ng-show="vm.showEquipmentByType">
 	<table>
 		<tr ng-repeat="e in vm.equipmentByType" ng-click="vm.showEquipment(e)">
-			<td><h3>{{e.equipment.make}} | {{e.equipment.model}} | {{e.equipment.description | limitTo: 100}} ... |  {{e.equipment.rate| currency}} hr </h3></td>
+			<td><h3>{{e.equipment.make}}</h3></td><td><h3>{{e.equipment.model}}</h3></td><td><h3>{{e.equipment.description | limitTo: 75}} ... </h3></td><td><h3>{{e.equipment.rate| currency}} hr </h3></td>
 	</table>
 </div>
 
