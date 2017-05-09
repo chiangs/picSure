@@ -24,6 +24,8 @@ public class InventoryItem {
 	private int id;
 
 	private Boolean active;
+	
+	private Integer rentalRate;
 
 	@ManyToOne
 	@JoinColumn(name="equipmentId")
@@ -44,20 +46,20 @@ public class InventoryItem {
 	private List<CartItem> cartItems;
 
 	// gets and sets
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public Boolean getActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public Integer getRentalRate() {
+		return rentalRate;
+	}
+
+	public void setRentalRate(Integer rentalRate) {
+		this.rentalRate = rentalRate;
 	}
 
 	public Equipment getEquipment() {
@@ -91,4 +93,8 @@ public class InventoryItem {
 	public void setCartItems(List<CartItem> cartItems) {
 		this.cartItems = cartItems;
 	}
-}
+
+	public int getId() {
+		return id;
+	}
+}	
