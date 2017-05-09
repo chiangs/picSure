@@ -23,7 +23,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="item in vm.storeInventory.inventoryItems | filter:item.active">
+		<tr ng-repeat="item in vm.storeInventory.inventoryItems | fuzzySearchStore:search | filter:item.active='true' | orderBy:'id'">
 			<td>{{item.equipment.make}}</td>
 			<td>{{item.equipment.model}}</td>
 			<td>{{item.equipment.type}}</td>

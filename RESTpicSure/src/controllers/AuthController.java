@@ -35,9 +35,13 @@ public class AuthController {
 	}
 	
 	@RequestMapping(path="/login", method=RequestMethod.POST)
-	public User login(HttpSession session, @RequestBody User user) {
+	public User login(HttpSession session, HttpServletResponse response, @RequestBody User user) {
 		User sessionUser = authDAO.authenticateUser(user);
+		if (sessionUser == null) {
+			response.setStatus(401);
+		} else {
 		session.setAttribute("sessionUser", sessionUser);
+		}
 		return sessionUser;
 	}
 	

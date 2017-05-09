@@ -1,6 +1,7 @@
 package data;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Autowired
 	private PasswordEncoder encoder;
 
@@ -32,15 +33,17 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 	}
 
 	@Override
-	public User authenticateUser(User u) {
-		User managedUser = null;
-		try {
-			String query = "SELECT u from User u WHERE u.username = :username";
-			managedUser = em.createQuery(query, User.class).setParameter("username", u.getUsername().trim()).getSingleResult();
-		} catch (Exception e) {
-			e.printStackTrace();
-        }
-        return managedUser;
+	public User authenticateUser(User u) throws NoResultException {
+		String query = "SELECT u from User u WHERE u.username = :username";
+		User managedUser = em.createQuery(query, User.class).setParameter("username", u.getUsername())
+				.getSingleResult();
+//		if (encoder.matches(u.getPassword(), managedUser.getPassword())) {
+//			System.out.println("in managedUser" + managedUser);
+			return managedUser;
+//		} else {
+//			System.out.println("in null");
+//			return null;
+//		}
 	}
 
 }
