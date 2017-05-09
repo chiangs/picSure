@@ -53,10 +53,11 @@ public class InventoryItemController {
 		}
 	}
 
-	@RequestMapping(path = "inventory/{inventoryid}/equipment/{equipmentId}/inventoryItem", method = RequestMethod.POST)
-	public InventoryItem createInventoryItem(@PathVariable int equipmentId,@PathVariable int inventoryid, HttpServletRequest request, HttpServletResponse response) {
-
-			return invItem.create(inventoryid, equipmentId);
+	@RequestMapping(path = "user/{userId}/equipment/{equipmentId}/inventoryItem", method = RequestMethod.POST)
+	public InventoryItem createInventoryItem(@PathVariable int userId,@PathVariable int equipmentId, HttpServletRequest request, HttpServletResponse response) {
+			System.out.println("in controller");
+			System.out.println(equipmentId);
+			return invItem.create(userId, equipmentId);
 	}
 	
 	

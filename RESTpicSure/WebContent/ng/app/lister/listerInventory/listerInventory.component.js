@@ -9,7 +9,33 @@ angular.module('listerModule')
 			
 			vm.store={};
 			vm.listerInventory = [];
+			vm.showAddForm = false;
 			
+			vm.displayAddForm = function(){
+				vm.showAddForm = true;
+				vm.listerInventory = false;
+			}
+			
+			vm.addInventoryItem = function(e){
+				listerService.addEquipmentItem(e)
+				.then(function(res){
+					listerService.addItemToInventoryList(res.data.id)
+					.then(function(result){
+						vm.showAddForm = false;
+						vm.listerInventory = true;	
+						vm.displayStoreInventoryByUserId();	
+					})
+					
+					
+					
+				})
+			}
+			
+			vm.showInventory = function(){
+				vm.showAddForm = false;
+				vm.displayStoreInventoryByUserId();	
+
+			}
 
 			
 			
@@ -21,8 +47,6 @@ angular.module('listerModule')
 							.then(function(r){
 								vm.inventory = r.data;
 								vm.listerInventory = r.data.inventoryItems;
-								console.log(vm.listerInventory)
-
 							})
 						}).catch(function(r){
 							console.log('fail')
@@ -47,6 +71,7 @@ angular.module('listerModule')
 				})
 				vm.displayStoreInventoryByUserId()
 			}
+			
 			
 			vm.displayStoreInventoryByUserId();	
 			},

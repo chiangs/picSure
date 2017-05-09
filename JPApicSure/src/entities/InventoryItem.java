@@ -25,7 +25,7 @@ public class InventoryItem {
 
 	private Boolean active;
 	
-	private Integer rentalRate;
+	private Double rentalRate;
 
 	@ManyToOne
 	@JoinColumn(name="equipmentId")
@@ -54,11 +54,11 @@ public class InventoryItem {
 		this.active = active;
 	}
 
-	public Integer getRentalRate() {
+	public Double getRentalRate() {
 		return rentalRate;
 	}
 
-	public void setRentalRate(Integer rentalRate) {
+	public void setRentalRate(Double rentalRate) {
 		this.rentalRate = rentalRate;
 	}
 

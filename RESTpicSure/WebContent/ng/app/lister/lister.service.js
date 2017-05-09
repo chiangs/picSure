@@ -34,7 +34,6 @@ angular.module('listerModule')
 				method : 'GET',
 				url : BASE_URL + 'store/' +id + '/inventory/',
 			}).then(function(res) {
-				console.log(res);
 				return res;
 			})
 		}
@@ -158,6 +157,32 @@ angular.module('listerModule')
 				url: BASE_URL + 'inventoryItem' + id, 
 			})
 		}
+		
+		service.addEquipmentItem = function(inventoryItem){
+			checkLogin();
+			return $http({
+				method : 'POST',
+				url: BASE_URL + 'equipment',
+				headers : {
+					'Content-Type' : 'application/json'
+				},
+				data : inventoryItem
+			}).then(function(res){
+				return res;
+			})
+		}
 
+		service.addItemToInventoryList = function(id){
+			checkLogin();
+			return $http({
+				method : 'POST',
+			    url: BASE_URL + 'user/' + authService.getToken().id + '/equipment/'+ id + '/inventoryItem/',
+				headers : {
+					'Content-Type' : 'application/json'
+				}
+			})
+		}
+		
+		
 		return service;
 	})

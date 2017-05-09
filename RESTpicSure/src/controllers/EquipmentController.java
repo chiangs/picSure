@@ -51,8 +51,10 @@ public class EquipmentController {
 		try {
 			System.out.println(jsonEquip);
 			Equipment mappedEquip = mapper.readValue(jsonEquip, Equipment.class);
+			System.out.println("created");
 			return equip.create(mappedEquip);
 		} catch (Exception e) {
+			System.out.println("null");
 			e.printStackTrace();
 			return null;
 		}

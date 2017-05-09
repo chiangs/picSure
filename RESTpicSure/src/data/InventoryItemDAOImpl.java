@@ -63,6 +63,7 @@ public class InventoryItemDAOImpl implements InventoryItemDAO {
 		InventoryItem i = new InventoryItem();
 		i.setActive(true);
 		i.setEquipment(em.find(Equipment.class, equipmentId));
+		i.setRentalRate(i.getEquipment().getRate());
 		i.setInventory(inventory);
 		em.persist(i);
 		em.flush();
