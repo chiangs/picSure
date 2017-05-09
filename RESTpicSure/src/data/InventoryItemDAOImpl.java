@@ -36,7 +36,6 @@ public class InventoryItemDAOImpl implements InventoryItemDAO {
 	public List<InventoryItem> indexEquipmentType(String equipmentType) {
 		String q = "SELECT i FROM InventoryItem i WHERE i.active = true and i.equipment.type = :type";
 		List<InventoryItem> items = em.createQuery(q, InventoryItem.class).setParameter("type", equipmentType).getResultList();
-		System.out.println("************************************************************************************************************************");
 		return items;
 	}
 	
