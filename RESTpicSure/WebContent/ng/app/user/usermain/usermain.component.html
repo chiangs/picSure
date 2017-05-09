@@ -3,6 +3,8 @@
 <h1 ng-show="vm.showEquip">Photography Equipment For Rent!</h1>
 <h1 ng-show="vm.showEquipmentList">Photography Equipment For Rent!</h1>
 
+
+
 <div id="tabNav">
 	<ul id="tablist">
 		<li ng-click="vm.showMapButton()">Map&nbsp;&nbsp;|&nbsp;&nbsp;</li>
@@ -11,6 +13,8 @@
 		<li ng-click="vm.showEquipList()">List of Available Equipment</li>
 	</ul>
 </div>
+
+
 
 <div  ng-show="vm.showTable" id="mapDiv">
 	<div id="map" map-lazy-load="https://maps.google.com/maps/api/js"
@@ -22,19 +26,22 @@
 	</ng-map>
 </div>
 
+
+
 <div id="selectTable" ng-show="vm.showTable">
 	<h3>Search for a specific piece of equipment!</h3>
 	<select class="dropDown">
 		<option default>Search by Category</option>
-  		<option ng-repeat="e in vm.equipmentList | unique: 'type'" value="{{e.id}}">{{e.type}}</option>
+  		<option ng-repeat="e in vm.equipmentList | unique: 'type'" value="{{e.type}}">{{e.type}}</option>
  	</select>
 	<select class="dropDown">
 		<option default>Search by Equipment</option>
   		<option ng-repeat="e in vm.equipmentList" value="{{e.id}}">{{e.make}} {{e.model}}</option>
- 	</select><br><br>
- 	<button class="dropDownSubmitBtn" type="submit" value="Search">Search</button>
-	<button class="dropDownSubmitBtn" type="submit" value="Search">Search</button>
+ 	</select><br>
+ 	<button class="dropDownSubmitBtn" type="submit">Search</button>
+	<button class="dropDownSubmitBtn" type="submit">Search</button>
 </div>
+
 
 <div ng-click="vm.goToStore(vm.selectedStore)" ng-show="vm.showStoreDiv">
 	<h1>{{vm.selectedStore.name}}</h1>
@@ -43,6 +50,8 @@
 	<h3>{{vm.selectedStore.address.street}}</h3>
 	<h3>{{vm.selectedStore.address.city}}, {{vm.selectedStore.address.state}} {{vm.selectedStore.address.zip}}</h3>
 </div>
+
+
 
 <div class="tableCenter" id="listLocations" ng-show="vm.showLocations">
 	<table class="table">
@@ -69,6 +78,8 @@
 	</table>
 </div>
 
+
+
 <div class="tableCenter" id="equpimentGlobal" ng-show="vm.showEquipmentList">
 	<table class="table">
 		<thead>
@@ -94,6 +105,8 @@
 	</table>
 </div>
 
+
+
 <div class="tableCenter" id="equpimentSingle" ng-show="vm.showEquip">
 	<table class="table">
 		<tbody>
@@ -115,6 +128,9 @@
 		</tbody>
 	</table>
 </div>
+
+
+
 <div class="tableCenter" ng-show="vm.showEquip">
 	<table>
 		<thead>

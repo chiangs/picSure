@@ -63,11 +63,7 @@ public class StoreDAOImpl implements StoreDAO {
 		store.setPhone(s.getPhone());
 		store.setInventory(s.getInventory());
 		store.setActive(s.getActive());
-		if (s.getAddress().getId() > 0) {
-			store.setAddress(em.find(Address.class, s.getAddress().getId()));
-		} else {
-			store.setAddress(s.getAddress());
-		}
+
 		em.persist(store);
 		em.flush();
 		return store;

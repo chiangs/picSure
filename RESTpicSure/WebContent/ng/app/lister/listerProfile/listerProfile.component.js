@@ -72,10 +72,15 @@ angular.module('listerModule').component('listerProfile',
                             listerService.updateStoreData(vm.storeData).then(
                                     function(res) {
                                     	vm.storeData = res.data;
-                                     vm.reload();
                                         
                             });
-                        });                   
+                            listerService.updateStoreAddress(vm.storeData).then(
+                            		function(res){
+                            			vm.storeData.address = res.data;
+                            			vm.reload();
+                            		});
+                        }); 
+       	
                        }
                        vm.reload();
                     },

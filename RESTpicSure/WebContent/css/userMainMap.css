@@ -10,14 +10,16 @@
 .dropDown {
 	margin-right: 20px;
 	margin-left: 20px;
+	margin-bottom: 10px;
 	width: 150px;
+	height: 25px;
 	color: black;
 }
 
 .dropDownSubmitBtn {
-	margin-left: 40px;
-	margin-right: 40px;
-	color: blue;
+	margin-left: 65px;
+	margin-right: 65px;
+	color: black;
 }
 
 #tabNav ul {
