@@ -1,4 +1,4 @@
-angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'listerModule', 'userModule', 'ui.bootstrap', 'modal', 'storeViewModule', 'geoModule']).config(
+angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'listerModule', 'userModule', 'ui.bootstrap', 'modal', 'storeViewModule', 'geoModule', 'angular.filter']).config(
 		function($routeProvider) {
 			$routeProvider.when('/', {
 				template : '<home></home>'
