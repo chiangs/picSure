@@ -5,7 +5,7 @@ angular.module('userModule')
 		var vm = this;
 		vm.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-eCSz4m2r6WczpOcJANrtbF8xps8EDuU&libraries=places";
 		vm.equipmentList = [];
-		vm.equipmentListByType = [];
+		vm.equipmentByType = [];
 		vm.storesByEquipment = [];
 		vm.modalItems = [];
 		vm.locations = [];
@@ -17,6 +17,7 @@ angular.module('userModule')
 		vm.showStoreDiv = false;
 		vm.showEquipmentList = false;
 		vm.showStoresByEquipment = false;
+		vm.showEquipmentByType = false;
 		vm.selectedStore = null;
 		vm.selectedEquipment = null;
 		
@@ -29,6 +30,7 @@ angular.module('userModule')
 			vm.showEquipmentList = false;
 			vm.selectedEquipment = null;
 			vm.selectedStore = null;
+			vm.showStoresByEquipment = false;
 		}
 		
 		
@@ -39,7 +41,8 @@ angular.module('userModule')
 			vm.showEquip = false;
 			vm.showEquipmentList = false;
 			vm.selectedEquipment = null;
-			vm.selectedStore = null;
+			vm.selectedStore = null;		
+			vm.showStoresByEquipment = false;
 		}
 
 		
@@ -51,6 +54,7 @@ angular.module('userModule')
 			vm.showEquipmentList = true;
 			vm.selectedEquipment = null;
 			vm.selectedStore = null;
+			vm.showStoresByEquipment = false;
 		}
 		
 		
@@ -67,6 +71,7 @@ angular.module('userModule')
 				vm.locationsByEquipment = res.data;
 			})
 			console.log(vm.locationsByEquipment);
+			vm.showStoresByEquipment = false;
 		}
 		
 		
@@ -100,6 +105,7 @@ angular.module('userModule')
 //		Get array of equipment list
 		userService.getEquipmentList().then(function(res){
 			vm.equipmentList = res.data;
+			console.log("here")
 		})
 		
 		
@@ -112,12 +118,8 @@ angular.module('userModule')
 		
 		
 		vm.searchStoresByEquipment = function(equipmentId) {
-			
-			console.log("***************************************************************************************")
-			userService.getStoresByEquipmentId(equipmentId).then(function(res){
-				console.log(res);
+				userService.getStoresByEquipmentId(equipmentId).then(function(res){
 				vm.storesByEquipment = res.data;
-				vm.locations = res.data;
 			})
 
 			vm.showTable = true;
@@ -125,14 +127,23 @@ angular.module('userModule')
 			vm.showEquip = false;
 			vm.showStoreDiv = false;
 			vm.showEquipmentList = false;
+			vm.showEquipmentByType = false;
 			vm.showStoresByEquipment = true;
 		}
 		
 		
-		vm.searchEquipmentByType = function(id) {
-			userService.getStoresByEquipmentId(id).then(function(res){
+		vm.searchEquipmentByType = function(type) {
+			userService.getEquipmentByType(type).then(function(res){
 				vm.equipmentByType = res.data;
 			})
+			
+			vm.showTable = true;
+			vm.showLocations = false;
+			vm.showEquip = false;
+			vm.showStoreDiv = false;
+			vm.showEquipmentList = false;
+			vm.showStoresByEquipment = false;
+			vm.showEquipmentByType = true;
 		}
       
 	 },

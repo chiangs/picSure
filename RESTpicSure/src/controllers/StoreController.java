@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +31,7 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "store/equipment/{equipmentId}", method = RequestMethod.GET)
-	public List<Store> indexEquipment(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer equipmentId) {
+	public Set<Store> indexEquipment(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer equipmentId) {
 		return storeDAO.indexEquipment(equipmentId);
 	}
 

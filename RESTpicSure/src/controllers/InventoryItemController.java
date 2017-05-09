@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,16 @@ public class InventoryItemController {
 
 	@Autowired
 	private InventoryItemDAO invItem;
+
+	@RequestMapping(path = "inventoryItem", method = RequestMethod.GET)
+	public List<InventoryItem> index(HttpServletRequest request, HttpServletResponse response) {
+		return invItem.index();
+	}
+	
+	@RequestMapping(path = "inventoryItem/{equipmentType}", method = RequestMethod.GET)
+	public List<InventoryItem> index(@PathVariable String equipmentType, HttpServletRequest request, HttpServletResponse response) {
+		return invItem.indexEquipmentType(equipmentType);
+	}
 
 	@RequestMapping(path = "inventoryItem/{inventoryItemId}", method = RequestMethod.GET)
 	public InventoryItem show(@PathVariable int inventoryItemId, HttpServletRequest request, HttpServletResponse response) {
