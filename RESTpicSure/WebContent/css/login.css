@@ -2,6 +2,7 @@ body {
 	background-image: url('../images/landing.jpg');
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-color: #222222;
 }
 
 #loginButton {
@@ -19,8 +20,12 @@ body {
 	border-radius: 1px;
 }
 
+.redText {
+	color: red;
+}
+
 #login {
-	position: fixed;
+	position: absolute;
 	top: 50%;
 	left: 30%;
 	transform: translate(-50%, -50%);
@@ -62,6 +67,14 @@ body {
 #listerLogin {
 	text-align: right;
 	top: 0;
+}
+
+#btnWhite {
+	background: #fff;
+}
+
+#btnWhite:hover {
+	background: #025AA5;
 }
 
 .btn {
@@ -112,4 +125,23 @@ input[type=submit] {
 	cursor: pointer;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
+}
+
+#announcements {
+	position: absolute;
+	bottom : -90vh;
+	width: 100vw;
+}
+
+#loginRow1 {
+	margin: 0 auto;
+	width: 100%;
+	background: #fff;
+	color: #222222;
+}
+
+#loginRow1 img {
+	max-height: 350px;
+	text-align: center;
+	box-shadow: 5px 5px 5px #888888;
 }
