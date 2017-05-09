@@ -498,6 +498,7 @@ INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`, `rent
 INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`, `rentalRate`) VALUES (59, 7, 1, 1, 4);
 INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`, `rentalRate`) VALUES (60, 12, 1, 1, 2);
 INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`, `rentalRate`) VALUES (61, 15, 1, 1, 3);
+INSERT INTO `inventoryItem` (`id`, `equipmentId`, `inventoryId`, `active`, `rentalRate`) VALUES (62, 1, 1, 1, 8);
 
 COMMIT;
 

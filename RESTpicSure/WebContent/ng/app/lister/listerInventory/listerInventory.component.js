@@ -10,6 +10,8 @@ angular.module('listerModule')
 			vm.store={};
 			vm.listerInventory = [];
 			
+
+			
 			
 			vm.displayStoreInventoryByUserId = function(){
 				listerService.storeInventoryByUserId()
@@ -17,6 +19,7 @@ angular.module('listerModule')
 							vm.store = res.data
 							listerService.inventoryIndex(res.data.id)
 							.then(function(r){
+								vm.inventory = r.data;
 								vm.listerInventory = r.data.inventoryItems;
 								console.log(vm.listerInventory)
 
@@ -25,8 +28,16 @@ angular.module('listerModule')
 							console.log('fail')
 						})
 			}
-			vm.destroyInventoryItem = function(){
-				listerService.destroyInventoryItem(id)
+			
+			vm.countInventory = function(){
+				
+			}
+			
+			vm.updateItems = function(inventoryId, item) {
+				listerService.updateInventoryItems(inventoryId, item)
+				.then(function(){
+				})
+				vm.displayStoreInventoryByUserId()
 			}
 			
 			vm.displayStoreInventoryByUserId();	

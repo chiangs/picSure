@@ -10,4 +10,6 @@ public interface InventoryItemDAO {
 	public InventoryItem update(Integer id, InventoryItem i);
 	public InventoryItem create(Integer inventoryId, Integer equipmentId);
 	public Boolean destroy(Integer id);
+	public List <InventoryItem> updateItems(Integer inventoryId, InventoryItem item);
+	
 }

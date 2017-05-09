@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -50,5 +52,17 @@ public class InventoryItemController {
 	@RequestMapping(path="inventoryItem/{inventoryItemId}", method=RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable int inventoryItemId, HttpServletRequest request, HttpServletResponse response){
 		return invItem.destroy(inventoryItemId);
+	}
+	
+	@RequestMapping(path="inventoryItems/inventory/{inventoryId}", method=RequestMethod.PUT)
+	public List <InventoryItem> updateItems(@PathVariable int inventoryId,@RequestBody String jsonInvItem, HttpServletRequest request, HttpServletResponse response){
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			InventoryItem mappedInvItem = mapper.readValue(jsonInvItem, InventoryItem.class);
+			return invItem.updateItems(inventoryId, mappedInvItem);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

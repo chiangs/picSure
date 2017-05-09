@@ -118,7 +118,21 @@ angular.module('listerModule')
 			checkLogin();
 			return $http({
 				method : 'DELETE',
-				url : BASE_URL + 'equipment/' + id
+				url : BASE_URL + 'inventoryItem/' + id
+			}).then(function(res){
+				return res;
+			})
+		}
+		
+		service.updateInventoryItems = function(inventoryId, item) {
+			checkLogin();
+			return $http({
+				method : 'PUT',
+				url : BASE_URL + 'inventoryItems/inventory/' + inventoryId,
+				headers : {
+					'Content-Type' : 'application/json'
+				},
+				data : item
 			}).then(function(res){
 				return res;
 			})
