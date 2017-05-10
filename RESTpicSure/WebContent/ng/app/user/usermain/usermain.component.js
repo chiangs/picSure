@@ -70,12 +70,11 @@ angular.module('userModule')
 			vm.selectedEquipment = e;
 			vm.selectedStore = null;
 			vm.showEquipmentByType = false;
+			vm.showStoresByEquipment = false;
 //		Get array of stores by equipment id
 			userService.getStoresByEquipmentId(vm.selectedEquipment.id).then(function(res){
 				vm.locationsByEquipment = res.data;
 			})
-			console.log(vm.locationsByEquipment);
-			vm.showStoresByEquipment = false;
 		}
 		
 		
