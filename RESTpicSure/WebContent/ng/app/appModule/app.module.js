@@ -34,6 +34,8 @@ angular.module(
 				template : '<lister-inventory></lister-inventory>'
 			}).when('/store/store/:id', {
 				template : '<store-view></store-view>'
+			}).when('/bizStats', {
+				template : '<biz-stats></biz-stats>'
 			}).otherwise({
 				template : '<error></error>'
 			})

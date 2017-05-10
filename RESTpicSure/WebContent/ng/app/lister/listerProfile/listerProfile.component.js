@@ -1,7 +1,6 @@
-angular.module('listerModule').component('listerProfile',
-                {templateUrl : 'ng/app/lister/listerProfile/listerProfile.component.html',
-                    controller : function(geoService, listerService,
-                    authService, $location, $scope) {
+angular.module('listerModule').component('listerProfile',{
+	templateUrl : 'ng/app/lister/listerProfile/listerProfile.component.html',
+    controller : function(geoService, listerService, authService, $location, $scope) {
                         var vm = this;
                         var newGeo={longitude:"nope",latitude:"nope"};
                         var geo = {longitude:"",latitude:""};
@@ -66,5 +65,4 @@ angular.module('listerModule').component('listerProfile',
                     },
                     controllerAs : 'vm'
                 })
-
-				
+	
