@@ -1,12 +1,12 @@
-
+<div ng-hide="showStore">
 <h1>{{vm.store.name}}</h1>
 <h3>{{vm.store.email}}, {{vm.store.phone}}</h3>
 <p>{{vm.store.address.street}}, {{vm.store.address.city}},
 	{{vm.store.address.state}}, {{vm.store.address.zip}}</p>
+</div>
 
 <button type="submit" class="btn btn-warning btn-md"
-	ng-click="vm.showCart()" ng-show="vm.showStore">View Cart (
-	{{vm.cartItemCount}} )</button>
+	ng-click="vm.showCart()" ng-show="vm.showStore">View Cart ({{vm.cartItemCount}} )</button><br>
 <!-- StoreView -->
 
 <div>
