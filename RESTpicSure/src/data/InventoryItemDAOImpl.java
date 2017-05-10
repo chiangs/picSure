@@ -48,7 +48,6 @@ public class InventoryItemDAOImpl implements InventoryItemDAO {
 	@Override
 	public InventoryItem update(Integer id, InventoryItem i) {
 		InventoryItem item = em.find(InventoryItem.class, id);
-		item.setActive(i.getActive());
 		item.setRentalRate(i.getRentalRate());
 		return item;
 	}
@@ -82,7 +81,6 @@ public class InventoryItemDAOImpl implements InventoryItemDAO {
 
 	@Override
 	public List <InventoryItem> updateItems(Integer inventoryId, InventoryItem item) {
-		System.out.println("****************************************************************************");
 		String q = "SELECT i FROM InventoryItem i WHERE i.inventory.id = :inventoryId AND i.equipment.id = :equipmentId ";
 		List<InventoryItem> items = em.createQuery(q, InventoryItem.class).setParameter("inventoryId", inventoryId).setParameter("equipmentId", item.getEquipment().getId()).getResultList();
 		try{
