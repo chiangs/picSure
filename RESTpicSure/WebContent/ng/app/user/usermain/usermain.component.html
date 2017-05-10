@@ -7,12 +7,6 @@
 
 
 
-<input id="search" class="form-control" type="text" ng-model="search" ng-show="vm.showLocations" placeholder="Search by keyword"/>
-
-
-
-
-
 <div id="tabNav">
 	<ul id="tablist">
 		<li ng-click="vm.showMapButton()">Map&nbsp;&nbsp;|&nbsp;&nbsp;</li>
@@ -81,7 +75,7 @@
 <div class="tableCenter" ng-show="vm.showEquipmentByType">
 	<table>
 		<tr ng-repeat="e in vm.equipmentByType" ng-click="vm.showEquipment(e)">
-			<td><h3>{{e.equipment.make}}</h3></td><td><h3>{{e.equipment.model}}</h3></td><td><h3>{{e.equipment.description | limitTo: 75}} ... </h3></td><td><h3>{{e.equipment.rate| currency}} hr </h3></td>
+			<td><h3> {{e.equipment.make}} </h3></td><td><h3> {{e.equipment.model}} </h3></td><td><h3> {{e.equipment.description | limitTo: 75}} ... </h3></td><td><h3>{{e.equipment.rate| currency}} hr </h3></td>
 	</table>
 </div>
 
@@ -102,6 +96,9 @@
 
 
 <div class="tableCenter" id="listLocations" ng-show="vm.showLocations">
+
+<input id="search" class="form-control" type="text" ng-model="search" placeholder="Search by keyword"/>
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -131,8 +128,9 @@
 
 
 
-<input id="search" class="form-control" type="text" ng-model="search" ng-show="vm.showEquipmentList" placeholder="Search by keyword"/>
 <div class="tableCenter" id="equpimentGlobal" ng-show="vm.showEquipmentList">
+
+<input id="search" class="form-control" type="text" ng-model="search" placeholder="Search by keyword"/>
 
 	<table class="table">
 		<thead>
@@ -152,7 +150,7 @@
 				<td>{{e.equipment.model}}</td>
 				<td>{{e.equipment.type}}</td>
 				<td>{{e.equipment.description | limitTo: 175}} ...</td>
-				<td>{{e.equipment.rate | currency}} hr</td>
+				<td>{{e.equipment.rate | currency}} per Day</td>
 			</tr>
 		</tbody>
 	</table>
@@ -170,15 +168,15 @@
 				<td colspan='3' id="singleEquipImage"><img src="{{vm.selectedEquipment.image}}"></td>
 			</tr>
 			<tr>
-				<td>{{vm.selectedEquipment.make}}</td>
-				<td>{{vm.selectedEquipment.model}}</td>
-				<td>{{vm.selectedEquipment.type}}</td>
+				<td>{{vm.selectedEquipment.equipment.make}}</td>
+				<td>{{vm.selectedEquipment.equipment.model}}</td>
+				<td>{{vm.selectedEquipment.equipment.type}}</td>
 			</tr>
 			<tr>
-				<td colspan='3'>{{vm.selectedEquipment.description}} ...</td>
+				<td colspan='3'>{{vm.selectedEquipment.equipment.description}} ...</td>
 			</tr>
 			<tr>
-				<td colspan='3'>Rental Rate: {{vm.selectedEquipment.rate | currency}} per Hour</td>
+				<td colspan='3'>Rental Rate: {{vm.selectedEquipment.equipment.rate | currency}} per Day</td>
 			</tr>
 			<tr></tr>
 		</tbody>

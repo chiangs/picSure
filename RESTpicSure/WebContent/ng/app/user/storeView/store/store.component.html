@@ -1,68 +1,80 @@
 
 <h1>{{vm.store.name}}</h1>
 <h3>{{vm.store.email}}, {{vm.store.phone}}</h3>
-<p>{{vm.store.address.street}}, {{vm.store.address.city}}, {{vm.store.address.state}},
-	{{vm.store.address.zip}}</p>
+<p>{{vm.store.address.street}}, {{vm.store.address.city}},
+	{{vm.store.address.state}}, {{vm.store.address.zip}}</p>
 
-<button type="submit" class="btn btn-warning btn-md" ng-click="vm.showCart()" ng-show="vm.showStore">View Cart ( {{vm.cartItemCount}} )</button>
+<button type="submit" class="btn btn-warning btn-md"
+	ng-click="vm.showCart()" ng-show="vm.showStore">View Cart (
+	{{vm.cartItemCount}} )</button>
 <!-- StoreView -->
 
 <div>
-<input id="search" class="form-control" type="text" ng-model="search" ng-show="vm.showStore" placeholder="Search by keyword"/>
-<table class="table" ng-show="vm.showStore">
-	<thead>
-		<tr>
-			<th>Make</th>
-			<th>Model</th>
-			<th>Type</th>
-			<th>Rental Rate per Day (USD)</th>
-			<th>Qty Available</th>
-			<th>Pick-up Date<br>(YYYY-MM-DD)</th>
-			<th>Return Date<br>(YYYY-MM-DD)</th>
-			<th>Add to Cart</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="item in vm.storeInventory.inventoryItems | fuzzySearchStore:search | filter:item.active='true' | orderBy:'id'">
-			<td>{{item.equipment.make}}</td>
-			<td>{{item.equipment.model}}</td>
-			<td>{{item.equipment.type}}</td>
-			<td>{{item.equipment.rate | number :2}}</td>
-			<td>vm.countInventory()</td>
-			<td><input type="date" ng-model="dates.timeOut"></td>
-			<td><input type="date" ng-model="dates.timeIn"></td>
-			<td><button type="submit" class="btn btn-success" ng-click="vm.addToCart(dates, item)">+</button></td>
-		</tr>
-	</tbody>
-</table>
+	<input id="search" class="form-control" type="text" ng-model="search" ng-show="vm.showStore" placeholder="Search by keyword" />
+	
+	<table class="table" ng-show="vm.showStore">
+		<thead>
+			<tr>
+				<th>Make</th>
+				<th>Model</th>
+				<th>Type</th>
+				<th>Rental Rate per Day (USD)</th>
+				<th>Pick-up Date<br>(YYYY-MM-DD)
+				</th>
+				<th>Return Date<br>(YYYY-MM-DD)
+				</th>
+				<th>Add to Cart</th>
+			</tr>
+		</thead>
+	
+		<tbody>
+			<tr
+				ng-repeat="item in vm.storeInventory.inventoryItems | fuzzySearchStore:search | filter:item.active='true' | orderBy:'id'">
+				<td>{{item.equipment.make}}</td>
+				<td>{{item.equipment.model}}</td>
+				<td>{{item.equipment.type}}</td>
+				<td>{{item.equipment.rate | number :2}}</td>
+				<td><input type="date" ng-model="dates.timeOut"></td>
+				<td><input type="date" ng-model="dates.timeIn"></td>
+				<td><button type="submit" class="btn btn-success" ng-click="vm.addToCart(dates, item)">+</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div ng-hide="vm.cartItemCount">
+	<h1>Your Cart Is Empty!</h1>
 </div>
 
 <!-- CartView -->
-<div id="cart" ng-hide="vm.showStore">
-<table class="table" >
-	<thead>
-		<tr>
-			<th>Make</th>
-			<th>Model</th>
-			<th>Type</th>
-			<th>Rental Rate per Day (USD)</th>
-			<th>Pick-up</th>
-			<th>Turn-in</th>
-			<th>Remove from Cart</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="ci in vm.cart.cartItems">
-			<td>{{ci.inventoryItem.equipment.make}}</td>
-			<td>{{ci.inventoryItem.equipment.model}}</td>
-			<td>{{ci.inventoryItem.equipment.type}}</td>
-			<td>{{ci.inventoryItem.equipment.rate}}</td>
-			<td>{{ci.timeOut}}</td>
-			<td>{{ci.timeIn}}</td>
-			<td><button type="submit" class="btn btn-danger btn-sm" ng-click="vm.removeItem(ci)">X</button></td>
-		</tr>
-	</tbody>
-</table>
-<button type="submit" class="btn btn-primary btn-lg"  id="btnWhite" ng-hide="vm.showConfirmationButton" ng-click="vm.createReservation()">Book this reservation!</button>
+<div id="cart" ng-show="vm.cartItemCount">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Make</th>
+				<th>Model</th>
+				<th>Type</th>
+				<th>Rental Rate per Day (USD)</th>
+				<th>Pick-up</th>
+				<th>Turn-in</th>
+				<th>Remove from Cart</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="ci in vm.cart.cartItems">
+				<td>{{ci.inventoryItem.equipment.make}}</td>
+				<td>{{ci.inventoryItem.equipment.model}}</td>
+				<td>{{ci.inventoryItem.equipment.type}}</td>
+				<td>{{ci.inventoryItem.equipment.rate}}</td>
+				<td>{{ci.timeOut}}</td>
+				<td>{{ci.timeIn}}</td>
+				<td><button type="submit" class="btn btn-danger btn-sm" ng-click="vm.removeItem(ci)">X</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<div ng-show="vm.cartItemCount">
+		<button type="submit" class="btn btn-primary btn-lg" id="btnWhite" ng-hide="vm.showConfirmationButton" ng-click="vm.createReservation()">Book this reservation!</button>
+	</div>
 </div>
-<button type="submit" class="btn btn-success btn-lg"  id="btnWhite" ng-show="vm.showConfirmationButton" ng-click="vm.continueButton()">Your equipment will be waiting for you, thanks!</button>
+
+<button type="submit" class="btn btn-success btn-lg" id="btnWhite" ng-show="vm.showConfirmationButton" ng-click="vm.continueButton()">Your equipment will be waiting for you, thanks!</button>
