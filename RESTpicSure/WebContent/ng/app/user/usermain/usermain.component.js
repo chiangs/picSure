@@ -136,9 +136,7 @@ angular.module('userModule')
 		}
 		
 		
-		vm.searchEquipmentByType = function(type) {
-			console.log("HIT")
-			
+		vm.searchEquipmentByType = function(type) {			
 			userService.getEquipmentByType(type).then(function(res){
 				vm.equipmentByType = res.data;
 			})
