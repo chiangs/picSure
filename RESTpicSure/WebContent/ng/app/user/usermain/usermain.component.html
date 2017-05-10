@@ -111,11 +111,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="s in vm.locations | fuzzySearchLoc:search | orderBy :'name'">
-				<td ng-click="vm.goToStore(s)">{{s.name}}</td>
-				<td ng-click="vm.goToStore(s)">{{s.address.street}}</td>
-				<td ng-click="vm.goToStore(s)">{{s.address.city}}</td>
-				<td ng-click="vm.goToStore(s)">{{s.address.state}}</td>
+			<tr ng-repeat="s in vm.locations | fuzzySearchLoc:search | orderBy :'name'" ng-click="vm.goToStore(s)">
+				<td>{{s.name}}</td>
+				<td>{{s.address.street}}</td>
+				<td>{{s.address.city}}</td>
+				<td>{{s.address.state}}</td>
 				<td>{{s.phone}}</td>
 				<td><a href="mailto:{{s.email}}">{{s.email}}</a></td>
 			</tr>

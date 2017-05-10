@@ -10,8 +10,9 @@ angular.module('storeViewModule').factory(
 					$location.path('user/');
 				}
 			}
-
+			
 			service.show = function(id) {
+				console.log(id)
 				checkLogin();
 				return $http({
 					method : 'GET',
