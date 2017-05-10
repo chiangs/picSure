@@ -199,7 +199,6 @@
 
 			<tr ng-repeat="s in vm.locationsByEquipment | orderBy : 'id'" ng-click="vm.goToStore(s)">
 				<td><h3><b>{{s.name}}</b><br>{{s.phone}}<br>{{s.email}}<br>{{s.address.street}}<br>{{s.address.city}}, {{s.address.state}} {{s.address.zip}}</h3></td>
-
 			</tr>
 		</thead>
 	</table>
