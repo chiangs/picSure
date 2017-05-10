@@ -11,6 +11,8 @@ angular.module('storeViewModule').component(
 				vm.showStore = true;
 				vm.cart = [];
 				vm.showConfirmationButton = false;
+				vm.store = [];
+				
 
 				vm.cartItemsExists = function() {
 					if (vm.cart.length > 0) {
@@ -18,6 +20,14 @@ angular.module('storeViewModule').component(
 					} else
 						return false;
 				}
+				
+				vm.store = function() {
+					storeService.show($routeParams.id).then(function(res){
+						vm.store = res.data;
+						console.log(vm.store)
+					})
+				}
+				
 
 				vm.showCart = function() {
 					vm.showStore = false;
@@ -41,14 +51,6 @@ angular.module('storeViewModule').component(
 
 				vm.backToStore = function() {
 					vm.showStore = true;
-				}
-
-				if (!vm.store && parseInt($routeParams.id)) {
-					storeService.show(parseInt($routeParams.id)).then(
-							function(res) {
-								console.log(res.data);
-								vm.store = res.data;
-							})
 				}
 
 				storeService.index().then(function(res) {
@@ -101,6 +103,7 @@ angular.module('storeViewModule').component(
 				}
 
 				vm.getCart();
+				vm.store();
 
 			},
 			controllerAs : 'vm',
