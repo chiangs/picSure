@@ -20,7 +20,6 @@
 				<th>Model</th>
 				<th>Type</th>
 				<th>Rental Rate per Day (USD)</th>
-				<th>Qty Available</th>
 				<th>Edit Item</th>
 				<th>Active</th>
 			</tr>
@@ -30,12 +29,11 @@
 				<td>{{item.equipment.make}}</td>
 				<td>{{item.equipment.model}}</td>
 				<td>{{item.equipment.type}}</td>
-				<td>{{item.equipment.rate | number :2}}</td>
-				<td>vm.countInventory()</td>
-				<td><button type="submit" class="btn btn-success"
-						ng-click="vm.addToCart(dates, item)">∆</button></td>
-				<td><input type="checkbox" class="" ng-model="item.active"
-					ng-change="vm.updateItems(vm.inventory.id, item)"></td>
+				<td ng-show="vm.showEditField"><input type="number" ng-model="item.equipment.rate"><button type="submit" class="btn btn-primary" ng-click="vm.saveEdit(item)">Save</button><button type="submit" class="btn btn-danger" ng-click="vm.cancelEdit()">Cancel</button></td>
+				<td ng-hide="vm.showEditField">{{item.equipment.rate | number :2}}</td>
+				<td><button type="submit" class="btn btn-warning"
+						ng-click="vm.editItem()">∆</button></td>
+				<td><input type="checkbox" class="" ng-model="item.active" ng-change="vm.updateItems(vm.inventory.id, item)"></td>
 			</tr>
 		</tbody>
 	</table>

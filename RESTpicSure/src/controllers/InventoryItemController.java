@@ -55,8 +55,6 @@ public class InventoryItemController {
 
 	@RequestMapping(path = "user/{userId}/equipment/{equipmentId}/inventoryItem", method = RequestMethod.POST)
 	public InventoryItem createInventoryItem(@PathVariable int userId,@PathVariable int equipmentId, HttpServletRequest request, HttpServletResponse response) {
-			System.out.println("in controller");
-			System.out.println(equipmentId);
 			return invItem.create(userId, equipmentId);
 	}
 	

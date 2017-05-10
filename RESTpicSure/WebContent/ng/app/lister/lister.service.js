@@ -134,16 +134,40 @@ angular.module('listerModule')
 			})
 		}
 		
-		service.updateInventoryItems = function(inventoryId, item) {
+		//this updates active/inactive
+		service.updateInventoryItems = function(id, item) {
 			checkLogin();
 			return $http({
 				method : 'PUT',
-				url : BASE_URL + 'inventoryItems/inventory/' + inventoryId,
+				url : BASE_URL + 'inventoryItems/inventory/' + id,
 				headers : {
 					'Content-Type' : 'application/json'
 				},
 				data : item
 			}).then(function(res){
+				return res;
+			})
+		}
+		
+		//this updates rate
+		service.updateInventoryRate = function(item) {
+			checkLogin();
+			return $http({
+				method : 'PUT',
+				url : BASE_URL + 'inventoryItem/' + item.id,
+				headers : {
+					'Content-Type' : 'application/json'
+				},
+				data : item
+			}).then(function(res){
+				$http({
+					method : 'PUT',
+					url : BASE_URL + 'equipment/' + item.equipment.id,
+					headers : {
+						'Content-Type' : 'application/json'
+					},
+					data : item.equipment
+				})
 				return res;
 			})
 		}

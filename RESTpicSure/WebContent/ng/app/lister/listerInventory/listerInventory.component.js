@@ -10,6 +10,27 @@ angular.module('listerModule')
 			vm.store={};
 			vm.listerInventory = [];
 			vm.showAddForm = false;
+			vm.showEditField = false;
+
+			vm.cancelEdit = function() {
+				vm.displayStoreInventoryByUserId();
+				vm.showEditField = false;
+			}
+			
+			vm.saveEdit = function(item) {
+				item.rentalRate = item.equipment.rate;
+				console.log(item.rentalRate)
+				console.log(item.equipment.rate)
+				listerService.updateInventoryRate(item).then(function(res){
+					vm.listerInventory = res.data;
+					vm.displayStoreInventoryByUserId();
+					vm.showEditField = false;
+				})
+			}
+			
+			vm.editItem = function() {
+				vm.showEditField = true;
+			}
 			
 			vm.displayAddForm = function(){
 				vm.showAddForm = true;
@@ -34,11 +55,8 @@ angular.module('listerModule')
 			vm.showInventory = function(){
 				vm.showAddForm = false;
 				vm.displayStoreInventoryByUserId();	
-
 			}
 
-			
-			
 			vm.displayStoreInventoryByUserId = function(){
 				listerService.storeInventoryByUserId()
 						.then(function(res){
@@ -53,9 +71,6 @@ angular.module('listerModule')
 						})
 			}
 			
-			vm.countInventory = function(){
-				
-			}
 			
 			vm.updateItems = function(inventoryId, item) {
 				listerService.updateInventoryItems(inventoryId, item)
@@ -72,10 +87,8 @@ angular.module('listerModule')
 				vm.displayStoreInventoryByUserId()
 			}
 			
-			
-			vm.displayStoreInventoryByUserId();	
-			},
-	
+			vm.showInventory();
+		},
 		controllerAs : 'vm'
 	})
 	
