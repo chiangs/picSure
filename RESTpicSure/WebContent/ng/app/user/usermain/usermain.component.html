@@ -144,7 +144,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="e in vm.equipmentList | fuzzySearchEquip:search | orderBy : 'id'" ng-click="vm.showEquipment(e) | unique: 'e.equipment.id'">
+			<tr ng-repeat="e in vm.equipmentList | fuzzySearchEquip:search | orderBy : 'id'| unique: 'equipment.id'" ng-click="vm.showEquipment(e)">
 				<td><img ng-src='{{e.equipment.image}}' id="EquipImage"></td>
 				<td>{{e.equipment.make}}</td>
 				<td>{{e.equipment.model}}</td>
