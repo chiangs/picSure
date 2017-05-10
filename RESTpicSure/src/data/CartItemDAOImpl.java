@@ -25,10 +25,21 @@ public class CartItemDAOImpl implements CartItemDAO {
 
 	@Override
 	public CartItem create(Integer userId, Integer inventoryItemId, CartItem cartItem) {
+		InventoryItem inventoryItem = em.find(InventoryItem.class, inventoryItemId);
+		User u = em.find(User.class, userId);
+		Cart c = u.getCart();
+				
+		if (c.getCartItems().get(0).getInventoryItem().getInventory().getStore().getId() != inventoryItem.getInventory().getStore().getId()) {
+			for (CartItem i: c.getCartItems()) {
+				em.remove(i);
+			}
+		}
+		
 		cartItem.setCart(em.find(Cart.class, em.find(User.class, userId).getCart().getId()));
 		cartItem.setInventoryItem(em.find(InventoryItem.class, inventoryItemId));
 		em.persist(cartItem);
 		em.flush();
+				
 		return cartItem;
 	}
 
