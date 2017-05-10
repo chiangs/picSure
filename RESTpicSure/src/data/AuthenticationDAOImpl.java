@@ -37,7 +37,7 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 		String query = "SELECT u from User u WHERE u.username = :username";
 		User managedUser = em.createQuery(query, User.class).setParameter("username", u.getUsername())
 				.getSingleResult();
-//		if (encoder.matches(u.getPassword(), managedUser.getPassword())) {
+//		if (encoder.matches(u.getPassword(), managedUser.getPassword()) && u.getActive() == true) {
 //			System.out.println("in managedUser" + managedUser);
 			return managedUser;
 //		} else {

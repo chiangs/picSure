@@ -1,0 +1,23 @@
+<input class="searchBar" class="form-control" type="text" ng-model="search" ng-show="vm.showResSummary" placeholder="Search by keyword"/>
+<table class="table" id="listerReservations" ng-show="vm.showResSummary">
+	<thead>
+		<tr>
+			<th>Reservation ID</th>
+			<th>Reservation Creation Date</th>
+			<th>Store</th>
+			<th># of Items</th>
+			<th>View Details</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="re in vm.listerReservations | fuzzySearchRes:search | orderBy : 'id'">
+			<td ng-click="vm.displayRes(re)">{{re.id}}</td>
+			<td ng-click="vm.displayRes(re)">{{re.createdDate}}</td>
+			<td ng-click="vm.displayRes(re)">{{re.id}}</td>
+			<td ng-click="vm.displayRes(re)">{{vm.numItems(re)}}</td>
+			<td ng-click="vm.displayRes(re)"><img class="listerIcons" src="./images/icon.png"></td>
+		</tr>
+	</tbody>
+</table>
+
+<lister-res-show store="vm.storeDetails" res="vm.selected" ng-show="vm.selected" go-back="vm.displayTable()"></user-res-show>

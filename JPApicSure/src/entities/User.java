@@ -38,6 +38,8 @@ public class User {
 	  
 	  private Boolean admin;
 	  
+	  private Boolean active;
+	  
 	  @JsonIgnore
 	  @OneToOne(mappedBy="user", cascade = CascadeType.PERSIST)
 	  private Cart cart;
@@ -51,6 +53,16 @@ public class User {
 	  private List<Store> store;
 
 	  // gets and sets
+	  
+	  
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	public String getfName() {
 		return fName;
 	}

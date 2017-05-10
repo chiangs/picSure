@@ -51,7 +51,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public Boolean destroy(Integer id) {
 		try {
-			em.remove(em.find(User.class, id));
+			em.find(User.class, id).setActive(false);
 			return true;
 		} catch (Exception e) {
 			return false;

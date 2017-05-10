@@ -58,7 +58,7 @@
 		</div>
 	</div>
 </div>
-<button type="submit" class="btn btn-danger" ng-click="vm.destroyStoreAccount()">Permanently delete my account</button>
+<button type="submit" class="btn btn-danger" ng-click="vm.destroyUserAccount()">Permanently delete my account</button>
 
 <!-- Store Form -->
 <div class="modal-dialog">
@@ -71,7 +71,7 @@
 				<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="fa fa-home"></span>
+								class="fa fa-user"></span>
 							</span> <input type="text" class="form-control" ng-model="vm.storeData.name">
 							
 						</div>
@@ -96,53 +96,42 @@
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="fa fa-phone"></span>
+								class="fa fa-home"></span>
 							</span> <input type="text" class="form-control" ng-model="vm.storeData.address.street" >
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="fa fa-phone"></span>
+								class="fa fa-home"></span>
 							</span> <input type="text" class="form-control" ng-model="vm.storeData.address.street2" >
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="fa fa-phone"></span>
+								class="fa fa-home"></span>
 							</span> <input type="text" class="form-control" ng-model="vm.storeData.address.city" >
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="fa fa-phone"></span>
+								class="fa fa-home"></span>
 							</span> <input type="text" class="form-control" ng-model="vm.storeData.address.state" >
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="fa fa-phone"></span>
+								class="fa fa-home"></span>
 							</span> <input type="text" class="form-control" ng-model="vm.storeData.address.zip" >
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon"> <span
-								class="fa fa-phone"></span>
-							</span> <input type="hidden" class="form-control" ng-model="vm.storeData.address.latitude" >
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon"> <span
-								class="fa fa-phone"></span>
-							</span> <input type="hidden" class="form-control" ng-model="vm.storeData.address.longitude" >
-						</div>
-					</div>		
-
+					
+						<input type="hidden" class="form-control" ng-model="vm.storeData.address.latitude" >
+						<input type="hidden" class="form-control" ng-model="vm.storeData.address.longitude" >
+				
 					<div class="form-group text-center">
 						<button type="submit" class="btn btn-primary btn-lg" ng-click="vm.updateStore(store)">Update Store Details</button>
 					</div>

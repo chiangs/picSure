@@ -39,9 +39,11 @@ public class ReservationDAOImpl implements ReservationDAO {
 	}
 
 	@Override
-	public List<Reservation> storeIndex(Integer id) {
+	public List<Reservation> storeIndex(Integer userId) {
+		User u = em.find(User.class, userId);
+		Store s = u.getStore().get(0);
 		String q = "SELECT r FROM Reservation r WHERE r.store.id = :id";
-		return em.createQuery(q, Reservation.class).setParameter("id", id).getResultList();
+		return em.createQuery(q, Reservation.class).setParameter("id", s.getId()).getResultList();
 	}
 
 	@Override

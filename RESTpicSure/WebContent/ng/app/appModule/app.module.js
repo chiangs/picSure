@@ -1,4 +1,8 @@
-angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'listerModule', 'userModule', 'ui.bootstrap', 'modal', 'storeViewModule', 'geoModule', 'angular.filter']).config(
+angular.module(
+		'appModule',
+		[ 'ngRoute', 'static', 'navbar', 'authModule', 'listerModule',
+				'userModule', 'ui.bootstrap', 'modal', 'storeViewModule',
+				'geoModule', 'angular.filter' ]).config(
 		function($routeProvider) {
 			$routeProvider.when('/', {
 				template : '<home></home>'
@@ -8,6 +12,8 @@ angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'list
 				template : '<register-user></register-user>'
 			}).when('/registerLister', {
 				template : '<register-lister></register-lister>'
+			}).when('/createStore', {
+				template : '<create-store></create-store>'
 			}).when('/login', {
 				template : '<login></login>'
 			}).when('/lister/listerProfile', {
@@ -20,6 +26,8 @@ angular.module('appModule', [ 'ngRoute', 'static', 'navbar', 'authModule', 'list
 				template : '<user-profile></user-profile>'
 			}).when('/user/userReservations', {
 				template : '<user-reservation></user-reservation>'
+			}).when('/lister/listerReservations', {
+				template : '<lister-reservation></lister-reservation>'
 			}).when('/store/store/cart/:id', {
 				template : '<store-view></store-view>'
 			}).when('/lister/listerInventory', {

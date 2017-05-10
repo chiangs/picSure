@@ -30,9 +30,9 @@ public class ReservationController {
 		return reservationDAO.userIndex(userId);
 	}
 	
-	@RequestMapping(value = "store/{storeId}/reservation", method = RequestMethod.GET)
-	public List<Reservation> storeIndex(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer storeId) {
-		return reservationDAO.storeIndex(storeId);
+	@RequestMapping(value = "store/{userId}/reservation", method = RequestMethod.GET)
+	public List<Reservation> storeIndex(HttpServletRequest req, HttpServletResponse res, @PathVariable Integer userId) {
+		return reservationDAO.storeIndex(userId);
 	}
 	
 	@RequestMapping(value = "user/{userId}/store/{storeId}/reservation", method = RequestMethod.POST)

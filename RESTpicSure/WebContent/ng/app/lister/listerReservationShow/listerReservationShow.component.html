@@ -1,0 +1,29 @@
+<div id="resFocus" ng-show="vm.editMode">
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Item #</th>
+				<th>Make</th>
+				<th>Model</th>
+				<th>Type</th>
+				<th>Rate</th>
+				<th>Available</th>
+				<th>Due</th>
+			</tr>
+		</thead>
+		<tbody ng-repeat="resItem in vm.res.reservationItems">
+			<tr>
+				<td>{{resItem.id}}</td>
+				<td>{{resItem.inventoryitems.equipment.make}}</td>
+				<td>{{resItem.inventoryitems.equipment.model}}</td>
+				<td>{{resItem.inventoryitems.equipment.type}}</td>
+				<td>{{resItem.inventoryitems.equipment.rate | number : 2}}</td>
+				<td>{{resItem.timeIn}}</td>
+				<td>{{resItem.timeOut}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+<button type="submit" class="btn btn-primary btn-md" id="btnWhite" ng-click="vm.backButton()">Go Back</button>
+</div>

@@ -9,8 +9,20 @@
 	text-align:center;
 }
 
+.searchBar {
+	width: 100%;
+	margin: auto;
+	text-align:left;
+	border-radius: 0;
+}
+
 .tableCenter {
 	margin: 2.5%;
+}
+
+.listerIcons {
+	max-height:30px;
+	border-radius:50%;
 }
 
 .dropDown {

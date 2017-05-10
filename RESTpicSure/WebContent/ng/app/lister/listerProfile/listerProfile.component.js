@@ -17,18 +17,10 @@ angular.module('listerModule').component('listerProfile',
                             })
                         }
 
-                        vm.destroyStoreAccount = function() {
-                            listerService.destroyStoreAccount(authService.getToken().id)
-                                    .then(function(r){
-                                        listerService.destroyListerAccount(authService.getToken().id)
-                                    })
-                                    .then(function(res){ 
-                                    })
-                        }
-                       
-                        vm.destroyListerAccount = function() {
-                            
-                        }
+                        vm.destroyUserAccount = function() {
+                            listerService.destroyListerAccount().then(function(){
+                            	})
+                            }
                         
                         vm.updateLister = function() {
                             listerService.updateLister(vm.listerData).then(
@@ -37,19 +29,7 @@ angular.module('listerModule').component('listerProfile',
                                         vm.reload();
                                     })
                         }
-						vm.destroyStoreAccount = function() {
-							listerService.destroyStoreAccount(authService.getToken().id)
-									.then(function(r){
-										listerService.destroyListerAccount(authService.getToken().id)
-									})
-									.then(function(res){
-										
-									})
-						}
-				       
-						vm.destroyListerAccount = function() {
-							
-						}
+					
 
 						vm.updateLister = function() {
 							listerService.updateLister(vm.listerData).then(

@@ -59,10 +59,10 @@ angular.module('listerModule')
 		service.destroyListerAccount = function(){
 			checkLogin();
 			return $http({
-				method : 'Delete',
+				method : 'DELETE',
 				url : BASE_URL + 'user/' + authService.getToken().id,
 			}).then(function(res){
-				authSercive.logout();
+				authService.logout();
 			})
 		}
 
@@ -97,11 +97,22 @@ angular.module('listerModule')
 				return res;
 			})
 		}
+		
+		service.createStore = function(store) {
+			checkLogin();
+			return $http ({
+				method : 'POST',
+				url: BASE_URL + 'user/' + authService.getToken().id + '/store',
+				headers : {
+					'Content-Type' : 'application/json'
+				},
+				data : store
+			}).then(function(res){
+				$location.path('/inventory');
+			})
+		}
 
 		service.updateStoreData = function(store){
-			console.log(store)
-			console.log("IN SERVICE")
-			console.log(store.address)
 			checkLogin();
 			return $http ({
 				method : 'PUT',
@@ -138,7 +149,6 @@ angular.module('listerModule')
 		}
 		
 		service.updateStoreAddress = function(store){
-			console.log(store);
 		checkLogin();
 		return $http ({
 			method : 'PUT',
@@ -180,6 +190,27 @@ angular.module('listerModule')
 				headers : {
 					'Content-Type' : 'application/json'
 				}
+			})
+		}
+		
+		service.getListerReservations = function(storeId) {
+			checkLogin();
+			return $http(
+					{
+						method : 'GET',
+						url : BASE_URL + 'store/' + authService.getToken().id + '/reservation',
+					}).then(function(res) {
+				return res;
+			})
+		}
+		
+		service.getListerSingleReservation = function(id) {
+			checkLogin();
+			return $http({
+				method : 'GET',
+				url : BASE_URL + 'reservation/' + id
+			}).then(function(res){
+				return res;
 			})
 		}
 		

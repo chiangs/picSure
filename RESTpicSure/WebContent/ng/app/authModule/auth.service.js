@@ -91,7 +91,7 @@ angular.module('authModule')
   			data : lister
   		}).then(function(res){
   			saveToken(res.data);
-  			$location.path('/contact');
+  			$location.path('/createStore');
   		})
       }
     

@@ -110,7 +110,7 @@ input {
 	padding: 5px;
 	border: 2px solid #ccc;
 	-webkit-border-radius: 5px;
-	border-radius: 5px;
+	border-radius: 2px;
 	color: black;
 }
 
@@ -124,7 +124,7 @@ input[type=submit] {
 	border: 0 none;
 	cursor: pointer;
 	-webkit-border-radius: 5px;
-	border-radius: 5px;
+	border-radius: 2px;
 }
 
 #announcements {
