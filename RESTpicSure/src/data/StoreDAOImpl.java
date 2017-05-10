@@ -74,10 +74,10 @@ public class StoreDAOImpl implements StoreDAO {
 	}
 
 	@Override
-	public Store create(Integer id, Store s) {
+	public Store create(Integer userId, Store s) {
 		List<User> users = new ArrayList<>();
 		s.setUsers(users);
-		s.getUsers().add(em.find(User.class, id));
+		s.getUsers().add(em.find(User.class, userId));
 
 		em.persist(s);
 		em.flush();
