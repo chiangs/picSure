@@ -9,6 +9,12 @@ angular.module('storeViewModule').component('storeView', {
 		vm.cart = [];
 		vm.showConfirmationButton = false;
 
+		vm.cartItemsExists = function() {
+			if (vm.cart.length > 0) {
+				return true;
+			} else return false;
+		}
+
 		vm.showCart = function() {
 			vm.showStore = false;
 			vm.getCart();
