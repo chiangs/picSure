@@ -4,13 +4,14 @@
 			<tr>
 				<td>Number of Reservations</td>
 				<td>Number of Items Reserved</td>
-				<td>Total Income</td>
+				<td>Total Income (USD)</td>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>{{vm.reservations.length}}</td>
 				<td>{{vm.numItemsReserved()}}</td>
+				<td>{{vm.totalStoreRevenue() | number:2}}</td>
 			</tr>
 		</tbody>
 	</table>

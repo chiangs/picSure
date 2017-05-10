@@ -32,11 +32,9 @@ angular.module('listerModule').component('listerResShow', {
 		}
 		
 		vm.totalItemRevenue = function(item) {
-			console.log(total);
+			return vm.totalDaysRented(item) * item.inventoryitems.rentalRate;
 		}
-		
-
-		
+			
 	},
 	controllerAs : 'vm',
 	bindings : {

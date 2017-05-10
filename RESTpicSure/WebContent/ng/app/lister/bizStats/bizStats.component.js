@@ -24,6 +24,36 @@ angular.module('listerModule').component('bizStats', {
 			return counter;
 		}
 		
+		vm.totalDaysRented = function(item) {
+			var timestamp1 = new Date(item.timeOut).getTime();
+			var timestamp2 = new Date(item.timeIn).getTime();
+			var diff = 1;
+
+			if (diff >= 2) {
+				diff = timestamp1 - timestamp2
+			}
+			return diff;
+		}
+		
+		vm.totalItemRevenue = function(item) {
+			return vm.totalDaysRented(item) * item.inventoryitems.rentalRate;
+		}
+		
+		vm.totalStoreRevenue = function() {
+			var grandTotal = 0;
+			for (var i = 0; i < vm.reservations.length; i++) {
+				for (var k = 0; k < vm.reservations[i].reservationItems.length; k++) {
+					
+				var diff = vm.totalDaysRented(vm.reservations[i].reservationItems[k]);
+				var total = vm.totalItemRevenue(vm.reservations[i].reservationItems[k]);
+				var sum = diff + total;
+				grandTotal = grandTotal + sum;
+				}
+			}
+			return grandTotal;
+		}
+		
+		
 		vm.reservations();
 	},
 	controllerAs : 'vm'

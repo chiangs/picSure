@@ -9,7 +9,7 @@
 				<th>Type</th>
 				<th>Rate</th>
 				<th>Days Rented</th>
-				<th>Total Income for Item</th>
+				<th>Total Income for Item (USD)</th>
 			</tr>
 		</thead>
 		<tbody ng-repeat="resItem in vm.res.reservationItems">
@@ -20,7 +20,7 @@
 				<td>{{resItem.inventoryitems.equipment.type}}</td>
 				<td>{{resItem.inventoryitems.equipment.rate | number : 2}}</td>
 				<td>{{vm.totalDaysRented(resItem)}}</td>
-				<td>{{vm.totalItemRevenue(resItem)}}</td>
+				<td>{{vm.totalItemRevenue(resItem) | number : 2}}</td>
 			</tr>
 		</tbody>
 	</table>

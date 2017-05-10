@@ -33,7 +33,7 @@
 				<td>{{item.equipment.make}}</td>
 				<td>{{item.equipment.model}}</td>
 				<td>{{item.equipment.type}}</td>
-				<td>{{item.equipment.rate | number :2}}</td>
+				<td>{{item.equipment.rate | number:2}}</td>
 				<td><input type="date" ng-model="dates.timeOut"></td>
 				<td><input type="date" ng-model="dates.timeIn"></td>
 				<td><button type="submit" class="btn btn-success" ng-click="vm.addToCart(dates, item)">+</button></td>
@@ -57,6 +57,8 @@
 				<th>Rental Rate per Day (USD)</th>
 				<th>Pick-up</th>
 				<th>Turn-in</th>
+				<th>Total Days</th>
+				<th>Total for Item (USD)</th>
 				<th>Remove from Cart</th>
 			</tr>
 		</thead>
@@ -65,9 +67,11 @@
 				<td>{{ci.inventoryItem.equipment.make}}</td>
 				<td>{{ci.inventoryItem.equipment.model}}</td>
 				<td>{{ci.inventoryItem.equipment.type}}</td>
-				<td>{{ci.inventoryItem.equipment.rate}}</td>
+				<td>{{ci.inventoryItem.equipment.rate | number:2}}</td>
 				<td>{{ci.timeOut}}</td>
 				<td>{{ci.timeIn}}</td>
+				<td>{{vm.numDaysItem(ci)}}</td>
+				<td>{{vm.totalCostItem(ci) | number:2}}</td>
 				<td><button type="submit" class="btn btn-danger btn-sm" ng-click="vm.removeItem(ci)">X</button></td>
 			</tr>
 		</tbody>
