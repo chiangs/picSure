@@ -2,7 +2,7 @@ angular.module('listerModule')
 	.factory('listerService', function($http, $filter, authService, $location, $rootScope){
 		var service = {};
 
-		var BASE_URL = 'http://localhost:8080/RESTpicSure/rest/'
+		var BASE_URL = 'rest/'
 
 		var checkLogin = function() {
 			if (!authService.getToken().id) {

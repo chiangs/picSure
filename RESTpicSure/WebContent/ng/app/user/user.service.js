@@ -3,7 +3,7 @@ angular.module('userModule').factory(
 		function($http, authService, $location) {
 			var service = {};
 
-			var BASE_URL = 'http://localhost:8080/RESTpicSure/rest/';
+			var BASE_URL = 'rest/';
 
 			var checkLogin = function() {
 				if (!authService.getToken().id) {

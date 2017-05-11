@@ -9,7 +9,7 @@ angular.module('authModule')
     	$cookies.put('fName', user.fName);
     } 
     
-	var BASE_URL = 'http://localhost:8080/RESTpicSure/rest/auth/';
+	var BASE_URL = 'rest/auth/';
     
     service.getToken = function() {
       // TODO : Return an object with id and email properties, 

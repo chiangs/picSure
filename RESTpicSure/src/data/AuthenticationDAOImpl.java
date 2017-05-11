@@ -27,6 +27,7 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 	public User register(User u) {
 		String passwordSha = encoder.encode(u.getPassword());
 		u.setPassword(passwordSha);
+		u.setActive(true);
 		em.persist(u);
 		em.flush();
 		return u;
@@ -37,8 +38,7 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 		String query = "SELECT u from User u WHERE u.username = :username";
 		User managedUser = em.createQuery(query, User.class).setParameter("username", u.getUsername())
 				.getSingleResult();
-		if (encoder.matches(u.getPassword(), managedUser.getPassword()) && u.getActive() == true) {
-			System.out.println("in managedUser" + managedUser);
+		if (encoder.matches(u.getPassword(), managedUser.getPassword()) && managedUser.getActive()) {
 			return managedUser;
 		} else {
 			System.out.println("in null");
