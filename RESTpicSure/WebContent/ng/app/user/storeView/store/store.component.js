@@ -89,11 +89,14 @@ angular.module('storeViewModule').component(
 				}
 
 				vm.numDaysItem = function(ci) {
-					var timestamp1 = new Date(ci.timeOut).getTime();
-					var timestamp2 = new Date(ci.timeIn).getTime();
-					var diff = 1;
+					var timestamp1 = new Date(ci.timeOut).getDate();
+					var timestamp2 = new Date(ci.timeIn).getDate();
+			
+					var diff = timestamp2 - timestamp1;
 					if (diff >= 2) {
-						diff = timestamp1 - timestamp2
+						return diff;
+					} else {
+						diff = 1;
 					}
 					return diff;
 				}

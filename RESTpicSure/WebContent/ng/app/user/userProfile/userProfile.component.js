@@ -22,6 +22,7 @@ angular.module('userModule')
 				userService.destroyUser(authService.getToken().id)
 				.then(function(res) {
 					$location.path('/');
+					vm.reload();
 				})
 			}
 			
