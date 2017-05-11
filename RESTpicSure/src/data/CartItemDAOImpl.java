@@ -17,7 +17,7 @@ public class CartItemDAOImpl implements CartItemDAO {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
 	public CartItem show(Integer id) {
 		return em.find(CartItem.class, id);
@@ -28,15 +28,21 @@ public class CartItemDAOImpl implements CartItemDAO {
 		InventoryItem inventoryItem = em.find(InventoryItem.class, inventoryItemId);
 		User u = em.find(User.class, userId);
 		Cart c = u.getCart();
-				
-		if (c.getCartItems().get(0).getInventoryItem().getInventory().getStore().getId() != inventoryItem.getInventory().getStore().getId()) {
-			for (CartItem i: c.getCartItems()) {
-				em.remove(i);
+
+		if (c.getCartItems().size() > 0) {
+			if (c.getCartItems().get(0).getInventoryItem().getInventory().getStore().getId() != inventoryItem
+					.getInventory().getStore().getId()) {
+				for (CartItem i : c.getCartItems()) {
+					em.remove(i);
+				}
 			}
 		}
-		
+
 		cartItem.setCart(em.find(Cart.class, em.find(User.class, userId).getCart().getId()));
 		cartItem.setInventoryItem(em.find(InventoryItem.class, inventoryItemId));
+
+		System.out.println(cartItem);
+
 		em.persist(cartItem);
 		em.flush();
 		return cartItem;
