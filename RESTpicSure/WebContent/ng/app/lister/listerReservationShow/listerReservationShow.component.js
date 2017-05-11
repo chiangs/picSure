@@ -21,12 +21,13 @@ angular.module('listerModule').component('listerResShow', {
 		}
 		
 		vm.totalDaysRented = function(item) {
-			var timestamp1 = new Date(item.timeOut).getTime();
-			var timestamp2 = new Date(item.timeIn).getTime();
-			var diff = 1;
-
+			var timestamp1 = new Date(item.timeOut).getDate();
+			var timestamp2 = new Date(item.timeIn).getDate();
+			var diff = timestamp2 = timestamp1;
 			if (diff >= 2) {
-				diff = timestamp1 - timestamp2
+				return diff;
+			} else {
+				diff = 1;
 			}
 			return diff;
 		}
