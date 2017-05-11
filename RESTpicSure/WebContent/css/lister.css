@@ -1,0 +1,9 @@
+.headerTitle {
+	min-height: 180px;
+	max-height: 200px;
+}
+
+#listerReservations {
+	min-height: 75vh;
+	background: #fff;
+}

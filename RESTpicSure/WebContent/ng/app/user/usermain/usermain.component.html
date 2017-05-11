@@ -9,9 +9,9 @@
 
 <div id="tabNav">
 	<ul id="tablist">
-		<li ng-click="vm.showMapButton()">Map&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+		<li ng-click="vm.showMapButton()">Map&nbsp;&nbsp;<span class="red">|</span>&nbsp;&nbsp;</li>
 		<li ng-click="vm.showLocList()">Location
-			List&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+			List&nbsp;&nbsp;<span class="red">|</span>&nbsp;&nbsp;</li>
 		<li ng-click="vm.showEquipList()">List of Available Equipment</li>
 	</ul>
 </div>
@@ -20,12 +20,11 @@
 
 
 
-<div  ng-show="vm.showTable" id="mapDiv">
+<div ng-show="vm.showTable" id="mapDiv">
 	<div id="map" map-lazy-load="https://maps.google.com/maps/api/js"
 		map-lazy-load-params="{{vm.googleMapsUrl}}">
 		<ng-map center="41,-87" zoom="3">
 		<marker ng-repeat="mk in vm.markers" position="{{mk}}" on-click="vm.showStore(mk,data)">
-
 	</div>
 	</ng-map>
 </div>
@@ -35,29 +34,26 @@
 
 
 <div id="selectTable" ng-show="vm.showTable">
-
 	<h3>Search for a specific piece of equipment!</h3>
-	
-	<select class="dropDown" ng-model="e.type">
-		<option default>Search by Category</option>
+	<select class="dropDown" ng-model="e.type" required>
+		<option value="Search by Category">Search by Category</option>
   		<option ng-repeat="e in vm.equipmentList | unique: 'equipment.type'" value="{{e.equipment.type}}">{{e.equipment.type}}</option>
  	</select>
  	
-	<select class="dropDown" ng-model="e.id">
+	<select class="dropDown" ng-model="e.id" required>
 		<option default>Search by Equipment</option>
   		<option ng-repeat="e in vm.equipmentList | unique: 'equipment.id'" value="{{e.id}}">{{e.equipment.make}} {{e.equipment.model}}</option>
  	</select><br>
  	
- 	<button class="dropDownSubmitBtn" ng-click="vm.searchEquipmentByType(e.type)" type="submit">Search</button>
-	<button class="dropDownSubmitBtn" ng-click="vm.searchStoresByEquipment(e.id)" type="submit">Search</button>
+ 	<button class="btn btn-warning dropDownSubmitBtn" ng-click="vm.searchEquipmentByType(e.type)" type="submit">Search</button>
+	<button class="btn btn-warning dropDownSubmitBtn" ng-click="vm.searchStoresByEquipment(e.id)" type="submit">Search</button>
 </div>
 
 
 
 
-
 <div class="tableCenter" ng-show="vm.showStoresByEquipment">
-	<table>
+	<table class="table">
 		<tr ng-repeat="s in vm.storesByEquipment" ng-click="vm.goToStore(s)">
 			<td><h1>{{s.name}}</h1>
 				<h3>{{s.phone}}</h3>
@@ -72,10 +68,27 @@
 
 
 
-<div class="tableCenter" ng-show="vm.showEquipmentByType">
-	<table>
+<div class="tableCenter container" ng-show="vm.showEquipmentByType">
+	<table class="table">
+	<thead>
+		<tr>
+			<th>Make</th>
+			<th>Model</th>
+			<th>Type</th>
+			<th>Description</th>
+			<th>Rate (USD)</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
 		<tr ng-repeat="e in vm.equipmentByType" ng-click="vm.showEquipment(e)">
-			<td><h3> {{e.equipment.make}} </h3></td><td><h3> {{e.equipment.model}} </h3></td><td><h3> {{e.equipment.description | limitTo: 75}} ... </h3></td><td><h3>{{e.equipment.rate| currency}} hr </h3></td>
+			<td>{{e.equipment.make}}</td>
+			<td>{{e.equipment.model}}</td>
+			<td>{{e.equipment.type}}</td>
+			<td>{{e.equipment.description | limitTo: 100}} ...</td>
+			<td>{{e.equipment.rate | number:2}}</td>
+			</tr>
+			</tbody>
 	</table>
 </div>
 
@@ -83,7 +96,7 @@
 
 
 
-<div class="tableCenter" ng-click="vm.goToStore(vm.selectedStore)" ng-show="vm.showStoreDiv">
+<div class="tableCenter container" ng-click="vm.goToStore(vm.selectedStore)" ng-show="vm.showStoreDiv">
 	<h1>{{vm.selectedStore.name}}</h1>
 	<h3>{{vm.selectedStore.phone}}</h3>
 	<h3>{{vm.selectedStore.email}}</h3>

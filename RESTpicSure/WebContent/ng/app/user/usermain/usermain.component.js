@@ -114,7 +114,6 @@ angular.module('userModule')
 		
 		
 		vm.goToStore = function(s) {
-			console.log(s);
 			$location.path('store/store/'+ s.id);
 		}
 		

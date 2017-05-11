@@ -16,7 +16,7 @@ angular.module('authModule').component('login', {
 		
 		vm.loginLister = function(lister) {
 			authService.loginLister(lister).then(function(res){
-				$location.path('/lister/listerProfile');
+				$location.path('/bizStats');
 			}).catch(function(){
 				vm.error = "Something went wrong";
 			})

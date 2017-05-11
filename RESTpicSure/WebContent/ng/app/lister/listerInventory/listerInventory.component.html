@@ -1,10 +1,9 @@
-
-<h1 id="inventoryCount">Inventory Items:
-	{{vm.countInventoryItems()}}</h1>
+<div class="headerTitle">
 <h1>{{vm.store.name}}</h1>
-<h3>{{vm.store.email}}, {{vm.store.phone}}</h3>
-<p>{{vm.store.address.street}}, {{vm.store.address.city}},
-	{{vm.store.address.state}}, {{vm.store.address.zip}}</p>
+<h3 id="inventoryCount">My Inventory: {{vm.listerInventory.length}} items</h3>
+<h3>{{vm.store.address.street}}, {{vm.store.address.city}},
+	{{vm.store.address.state}}, {{vm.store.address.zip}}</h3>
+</div>
 
 <!-- StoreView -->
 <button type="submit" class="btn btn-warning"

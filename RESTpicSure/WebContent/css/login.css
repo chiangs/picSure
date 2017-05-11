@@ -5,6 +5,11 @@ body {
 	background-color: #222222;
 }
 
+#welcomeName {
+	display:inline-block;
+	margin-top: 20px;
+}
+
 #loginButton {
 	color: #025AA5;
 }
@@ -29,7 +34,7 @@ body {
 	top: 50%;
 	left: 30%;
 	transform: translate(-50%, -50%);
-	width: 30vw;
+	min-width: 30vw;
 	height: 40vh;
 }
 
@@ -128,9 +133,9 @@ input[type=submit] {
 }
 
 #announcements {
-	position: absolute;
-	bottom : -90vh;
-	width: 100vw;
+	position: relative;
+	bottom : -100vh;
+	max-width: 100vw;
 }
 
 #loginRow1 {
@@ -142,6 +147,7 @@ input[type=submit] {
 
 #loginRow1 img {
 	max-height: 350px;
+	max-width: 400px;
 	text-align: center;
 	box-shadow: 5px 5px 5px #888888;
 }

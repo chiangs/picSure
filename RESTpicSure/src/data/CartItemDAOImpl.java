@@ -39,7 +39,6 @@ public class CartItemDAOImpl implements CartItemDAO {
 		cartItem.setInventoryItem(em.find(InventoryItem.class, inventoryItemId));
 		em.persist(cartItem);
 		em.flush();
-				
 		return cartItem;
 	}
 

@@ -1,3 +1,7 @@
+<div class="headerTitle">
+<h1>My Reservations</h1>
+<h3>Current: {{vm.listerReservations.length}}</h3>
+</div>
 <input class="searchBar" class="form-control" type="text" ng-model="search" ng-show="vm.showResSummary" placeholder="Search by keyword"/>
 <table class="table" id="listerReservations" ng-show="vm.showResSummary">
 	<thead>

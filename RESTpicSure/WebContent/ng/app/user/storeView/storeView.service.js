@@ -43,6 +43,7 @@ angular.module('storeViewModule').factory(
 			}
 			
 			service.addToCart = function(dates, id) {
+				console.log(id);
 				checkLogin();
 				return $http({
 					method : 'POST',
