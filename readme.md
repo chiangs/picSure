@@ -50,8 +50,8 @@ Consuming the Google Maps API alongside angular proved to be challenging. Time p
 
 ## Structure Overview
 <p align="center">
-<img src="chart1.png" height="245">
-<img src="chart2.png" height="245">
+<img src="readmeimages/chart1.png" height="245">
+<img src="readmeimages/chart2.png" height="245">
 </p>
 
 ## Code Examples
