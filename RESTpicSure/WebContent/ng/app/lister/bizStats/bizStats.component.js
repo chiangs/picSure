@@ -25,14 +25,13 @@ angular.module('listerModule').component('bizStats', {
 		}
 		
 		vm.totalDaysRented = function(item) {
-			var timestamp1 = new Date(item.timeOut).getTime();
-			var timestamp2 = new Date(item.timeIn).getTime();
-			var diff = 1;
+			var timestamp1 = new Date(item.timeOut).getDate();
+			var timestamp2 = new Date(item.timeIn).getDate();
+			
+			var	diff = timestamp2 - timestamp1;
 
-			if (diff >= 2) {
-				diff = timestamp1 - timestamp2
-			}
-			return diff;
+			return diff += 1;					
+			
 		}
 		
 		vm.totalItemRevenue = function(item) {
@@ -41,13 +40,13 @@ angular.module('listerModule').component('bizStats', {
 		
 		vm.totalStoreRevenue = function() {
 			var grandTotal = 0;
+			console.log(vm.reservations)
 			for (var i = 0; i < vm.reservations.length; i++) {
 				for (var k = 0; k < vm.reservations[i].reservationItems.length; k++) {
 					
 				var diff = vm.totalDaysRented(vm.reservations[i].reservationItems[k]);
-				var total = vm.totalItemRevenue(vm.reservations[i].reservationItems[k]);
-				var sum = diff + total;
-				grandTotal = grandTotal + sum;
+				var itemTotal = diff * vm.reservations[i].reservationItems[k].inventoryitems.rentalRate;
+				grandTotal = grandTotal + itemTotal;
 				}
 			}
 			return grandTotal;

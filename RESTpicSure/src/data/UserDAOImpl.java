@@ -4,10 +4,10 @@ package data;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import entities.Cart;
 import entities.User;
 
 @Transactional
@@ -16,6 +16,9 @@ public class UserDAOImpl implements UserDAO {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Autowired
+	private CartDAO cartDAO;
 
 	@Override
 	public User show(Integer id) {
@@ -39,12 +42,8 @@ public class UserDAOImpl implements UserDAO {
 		
 		em.persist(u);
 		em.flush();
+//		cartDAO.create(u.getId());
 		
-		Cart c = new Cart();
-		c.setUser(u);
-		
-		em.persist(c);
-		em.flush();
 		return u;
 	}
 
