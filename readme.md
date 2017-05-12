@@ -32,7 +32,7 @@ Consuming the Google Maps API alongside angular proved to be challenging. Time p
 
 ## In This Document
 1. [How to Execute](#how-to-execute)
-2. [Project Flow & Structure Overview](#cProject-Flow-&-Structure-Overview)
+2. [Project Flow & Structure Overview](#Project-Flow-&-Structure-Overview)
 
 <p align="center">
 <img src="readmeimages/scrn3.png" height="245">
