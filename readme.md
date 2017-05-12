@@ -15,45 +15,45 @@ It was necessary to develop two sides for the web-app, and develop flow and logi
 Consuming the Google Maps API alongside angular proved to be challenging. Time prevented us from fully utilizing the API where it would provide directions to the store based on the current location of the user, gathered from the user's IP address. However, we did manage to dynamically display all the locations of stores in the database by converting address to latitude and longitude and storing them as part of the address object.
 
 ### User stories:
-	1. User / Lister can register, login, logout, and deactivate account.
-	2. User can search for equipment through map, global equipment list, store list, and search input.
-	3. Lister can create a store and manage equipment as well as deactivate items.
-	4. User can reserve items and book a reservation.
-	5. Lister can review the store's reservations and get statistics such as number of items reserved and total revenue.
-	6. User is given an error page with options to recover from a 404.
+1. User / Lister can register, login, logout, and deactivate account.
+2. User can search for equipment through map, global equipment list, store list, and search input.
+3. Lister can create a store and manage equipment as well as deactivate items.
+4. User can reserve items and book a reservation.
+5. Lister can review the store's reservations and get statistics such as number of items reserved and total revenue.
+6. User is given an error page with options to recover from a 404.
 
 ## If more time were allotted:
-	* Implement payments API.
-	* Messaging function between user and lister.
-	* Notifications of new reservation.
-	* Rating of equipment or rental experience.
-	* Directions to store based on selected map marker.
-	* Include additional JS libraries such as ChartJS.
+* Implement payments API.
+* Messaging function between user and lister.
+* Notifications of new reservation.
+* Rating of equipment or rental experience.
+* Directions to store based on selected map marker.
+* Include additional JS libraries such as ChartJS.
 
 ## In This Document
-	1. [How to Execute](#how-to-execute)
-	2. [Project Flow & Structure Overview](#cProject-Flow-&-Structure-Overview)
+1. [How to Execute](#how-to-execute)
+2. [Project Flow & Structure Overview](#cProject-Flow-&-Structure-Overview)
 
-	<p align="center">
-	<img src="readmeimages/scrn3.png" height="245">
-	<img src="readmeimages/scrn4.png" height="245"></p>
-	<p align="center">
-	<img src="readmeimages/scrn5.png" height="245">
-	<img src="readmeimages/scrn6.png" height="245"></p>
-	<p align="center">
-	<img src="readmeimages/scrn7.png" height="245">
-	<img src="readmeimages/scrn8.png" height="245"></p>
-	<p align="center"><img src="readmeimages/scrn9.png" height="245"></p>
+<p align="center">
+<img src="readmeimages/scrn3.png" height="245">
+<img src="readmeimages/scrn4.png" height="245"></p>
+<p align="center">
+<img src="readmeimages/scrn5.png" height="245">
+<img src="readmeimages/scrn6.png" height="245"></p>
+<p align="center">
+<img src="readmeimages/scrn7.png" height="245">
+<img src="readmeimages/scrn8.png" height="245"></p>
+<p align="center"><img src="readmeimages/scrn9.png" height="245"></p>
 
 ## How to Execute
-	- The web-app is hosted on my AWS server: <a href="http://www.chiangs.ninja:8080/RESTPicSure/">**here**</a>
+- The web-app is hosted on my AWS server: <a href="http://www.chiangs.ninja:8080/RESTPicSure/">**here**</a>
 
 ## Project Flow & Structure Overview
 
-	<p align="center">
-	<img src="chart1.png" height="245">
-	<img src="chart2.png" height="245">
-	</p>
+<p align="center">
+<img src="chart1.png" height="245">
+<img src="chart2.png" height="245">
+</p>
 
 ## Code Examples
 This is a snippet of the our map code, the first is the html and is populated by the ng-repeat provided by the second block of code as strings [latitude, longitude] which are provided from an asynchronous request to the database for all stores and their address objects.
@@ -78,9 +78,9 @@ userService.listStores().then(function(res){
 ```
 
 ## Technologies Used
-	- Java JPA API
-	- Spring framework
-	- MySQL database
-	- HTML/CSS
-	- AngularJS
-	- Google Maps API
+- Java JPA API
+- Spring framework
+- MySQL database
+- HTML/CSS
+- AngularJS
+- Google Maps API
