@@ -32,7 +32,7 @@ Consuming the Google Maps API alongside angular proved to be challenging. Time p
 
 ## In This Document
 1. [How to Execute](#how-to-execute)
-2. [Project Flow & Structure Overview](#Project-Flow-&-Structure-Overview)
+2. [Project Flow & Structure Overview](#structure-overview)
 
 <p align="center">
 <img src="readmeimages/scrn3.png" height="245">
@@ -48,8 +48,7 @@ Consuming the Google Maps API alongside angular proved to be challenging. Time p
 ## How to Execute
 - The web-app is hosted on my AWS server: <a href="http://www.chiangs.ninja:8080/RESTPicSure/">**here**</a>
 
-## Project Flow & Structure Overview
-
+## Structure Overview
 <p align="center">
 <img src="chart1.png" height="245">
 <img src="chart2.png" height="245">
